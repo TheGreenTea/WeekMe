@@ -68,3 +68,9 @@
 .sidebar .grid-stack-item .grid-stack-item-content {
     background: none;
 }
+
+
+.date {
+  float: right;
+  background-color: rgba(0, 0, 255, 0.1);
+}

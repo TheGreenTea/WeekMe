@@ -1,0 +1,49 @@
+out: ./styles/my-styles.css, sourcemap: true, compress: true
+
+@menu-background: #e1e1e1;
+@text-color: #1A237E;
+@task-menu-bar-height: 40px;
+
+.task-menu-bar {
+  height: @task-menu-bar-height;
+  width: 100%;
+  background-color: @menu-background;
+  opacity: 0.0;
+  position: relative;
+  top: -@task-menu-bar-height/2;
+}
+
+.task {
+  height: 120px;
+  width: 200px;
+  overflow: hidden;
+  background-color: lightcoral;
+}
+
+.task:hover .task-menu-bar {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity:1.0;
+  top: 0px;
+}
+
+.task-text-container p {
+  text-align: center;
+}
+
+.date-label {
+  float: right;
+}
+.day-label {
+  display: inline;
+  font-weight: bold;
+}
+.edit-button {
+
+}
+
+.done-button {
+  float: right;
+}
