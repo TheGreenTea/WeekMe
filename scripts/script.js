@@ -4,7 +4,8 @@ $(function () {
         float: false,
         removable: true,
         removeTimeout: 100,
-        acceptWidgets: '.grid-stack-item'
+        acceptWidgets: '.grid-stack-item',
+        disableResize: true
     };
     $('#grid-0').gridstack(options);
     $('#grid-1').gridstack(options);
