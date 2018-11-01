@@ -28,7 +28,7 @@ $(function () {
         }, this);
     });
 
-    $('.sidebar .grid-stack-item').draggable({
+    $('#new-task-container .grid-stack-item').draggable({
         revert: 'invalid',
         handle: '.grid-stack-item-content',
         scroll: false,
@@ -36,10 +36,10 @@ $(function () {
     });
 
 
-    $(".sidebar .grid-stack-item").on("remove", function () {
-        $(".sidebar").append('<div class="grid-stack-item"><div class="grid-stack-item-content">Drag me</div></div>');
+    $("#new-task-container .grid-stack-item").on("remove", function () {
+        $("#new-task-container").append('<div class="grid-stack-item"><div class="grid-stack-item-content">New task</div></div>');
 
-        $('.sidebar .grid-stack-item').draggable({
+        $('#new-task-container .grid-stack-item').draggable({
             revert: 'invalid',
             handle: '.grid-stack-item-content',
             scroll: false,
