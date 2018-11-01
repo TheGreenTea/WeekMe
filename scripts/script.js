@@ -35,16 +35,27 @@ $(function () {
         appendTo: 'body'
     });
 
+    function addOnRemoveAddNewTask(selector) {
+      $(''+selector).on("remove", function () {
 
-    $("#new-task-container .grid-stack-item").on("remove", function () {
-        $("#new-task-container").append('<div class="grid-stack-item"><div class="grid-stack-item-content">New task</div></div>');
+        let innerElement = document.createElement('div');
+        innerElement.setAttribute('class', 'grid-stack-item-content');
+        innerElement.appendChild(document.createTextNode('New task'));
 
-        $('#new-task-container .grid-stack-item').draggable({
+        let newTaskElement = document.createElement('div');
+        newTaskElement.setAttribute('class', 'grid-stack-item');
+        newTaskElement.appendChild(innerElement);
+        document.getElementById('new-task-container').append(newTaskElement);
+        addOnRemoveAddNewTask(selector);
+
+        $(''+selector).draggable({
             revert: 'invalid',
             handle: '.grid-stack-item-content',
             scroll: false,
             appendTo: 'body'
         });
+      });
+    }
 
-    });
+    addOnRemoveAddNewTask('#new-task-container .grid-stack-item')
 });
