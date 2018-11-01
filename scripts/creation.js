@@ -1,58 +1,3 @@
-
-
-function getDateString(dayDiff) {
-  let date = new Date()
-  if (dayDiff != null) {
-    date = date.addDays(dayDiff)
-  }
-  let dateString = date.toISOString().slice(0, 10);
-  return dateString.split("-").reverse().join('.');
-}
-
-function getDayName(dayDiff) {
-  var date = new Date();
-  if (dayDiff != null) {
-    date = date.addDays(dayDiff)
-  }
-
-  let weekday = new Array(7);
-  weekday[0] =  "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
-
-  return weekday[date.getDay()];
-}
-
-function createDateLabel(dateString) {
-  if (dateString != null) {
-    let label = document.createElement('p')
-    label.setAttribute('class', 'date-label')
-    label.appendChild(document.createTextNode(dateString));
-    return label;
-  }
-  return null;
-}
-
-function createDayLabel(dayName) {
-  if (dayName != null) {
-    let label = document.createElement('p')
-    label.setAttribute('class', 'day-label')
-    label.appendChild(document.createTextNode(dayName));
-    return label;
-  }
-  return null;
-}
-
-Date.prototype.addDays = function(days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-}
-
 function createButton(title, glyphicon, id, customClass) {
   let button = document.createElement('button');
   if (id != null) {
@@ -80,7 +25,7 @@ function createTask(task) {
     if (task.id != null) {
       taskNode.setAttribute('id', 'task-' + task.id);
     }
-    taskNode.setAttribute('class', 'task grid-stack-item-content ui-draggable-handle')
+    taskNode.setAttribute('class', 'task')
 
     let menuBar = createTaskMenuBar(task);
     taskNode.appendChild(menuBar);
@@ -122,28 +67,6 @@ function createTextContainer(task) {
   return textContainer;
 }
 
-function enrichDayContainer() {
-  let dayContainer = document.getElementsByClassName('grid-stack grid-stack-6');
-  console.log(dayContainer)
-
-  for (var i = 0; i < dayContainer.length; i++) {
-      console.log(dayContainer[i]); //second console output
-      dayContainer[i].setAttribute('id', "grid-" + (i+1) )
-
-      let dayLabel = createDayLabel(getDayName(i));
-      dayContainer[i].appendChild(dayLabel);
-
-      let dateLabel = createDateLabel(getDateString(i));
-      dayContainer[i].appendChild(dateLabel);
-  }
-}
-
-
-enrichDayContainer();
-
-
-
-
 let mockedJSONResponse = '{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bd9a150a427790015eea2d5", "content": "Do some testing maybe?", "_user": "5bd2ebf9e5ccfb00150fb2ed", "__v": 0 }, { "day": null, "done": false, "doneAt": null, "_id": "5bd9a167a427790015eea2d6", "content": "Crazy how many awesome content", "_user": "5bd2ebf9e5ccfb00150fb2ed", "__v": 0}] }'
 let mockedTasks = JSON.parse(mockedJSONResponse)['tasks'];
 
@@ -154,4 +77,39 @@ var data = mockedTasks.map(function(data) {
 
 let taskNode = createTask(data[0]);
 let grid1 = document.getElementById('grid-1');
-grid1.appendChild(taskNode);
+//grid1.appendChild(taskNode);
+
+console.log(grid1);
+$(function() {
+  $('#grid-1').each(function () {
+    console.log("fofofoofo");
+    var grid = $(this).data('gridstack');
+    console.log('grid: ' + grid);
+    console.log(grid);
+    let element = document.createElement('div');
+    element.setAttribute('class', 'grid-stack-item-content');
+
+    grid.addWidget(element, 0, 0, 2, 2);
+    element.appendChild(taskNode);
+  })
+/*
+
+
+  var items = [
+      {x: 0, y: 0, width: 2, height: 2, autoPosition: true},
+      {x: 3, y: 1, width: 1, height: 2},
+      //{x: 4, y: 1, width: 1, height: 1},
+      //{x: 2, y: 3, width: 3, height: 1},
+      //{x: 2, y: 5, width: 1, height: 1}
+  ];
+
+  $('.grid-stack').each(function () {
+      var grid = $(this).data('gridstack');
+      console.log("pasdlals" + grid)
+      _.each(items, function (node) {
+          grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+              node.x, node.y, node.width, node.height);
+      }, this);
+  });
+  */
+})

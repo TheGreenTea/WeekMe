@@ -8,21 +8,21 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>WeekMe</title>
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css" />
- <!-- <link rel="stylesheet" href="../dist/gridstack-extra.css"/> -->
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link type="text/css" rel="stylesheet" href="styles/my-styles.css"/>
 
- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.0/lodash.min.js"></script>
- <script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
- <script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="../dist/gridstack.css"/>
+ <link rel="stylesheet" href="../dist/gridstack-extra.css"/>
 
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.0/lodash.min.js"></script>
 
+ <script src="../dist/gridstack.js"></script>
+ <script src="../dist/gridstack.jQueryUI.js"></script>
 
 </head>
 <body>
@@ -30,74 +30,94 @@
 <div class="container">
 
   <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-12">
           <div class="sidebar">
               <div class="grid-stack-item"><div class="grid-stack-item-content">Drag me</div></div>
           </div>
       </div>
 
       <hr/>
-
-      <div class="col-md-9">
-          <div class="trash">
-          </div>
-      </div>
   </div>
 
   <hr/>
 
-  <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+  <div class="row  day-container">
+    <p id="day-label-1" class="day-label"></p>
+    <p id="date-label-1" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id='grid-1'>
         </div>
     </div>
   </div>
   <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-2" class="day-label"></p>
+    <p id="date-label-2" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id='grid-2'>
         </div>
     </div>
   </div>
   <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-3" class="day-label"></p>
+    <p id="date-label-3" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id='grid-3'>
         </div>
     </div>
   </div>
   <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-4" class="day-label"></p>
+    <p id="date-label-4" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id='grid-4'>
         </div>
     </div>
   </div>
   <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-5" class="day-label"></p>
+    <p id="date-label-5" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id = "grid-5">
+        </div>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="row">
+    <p id="day-label-6" class="day-label"></p>
+    <p id="date-label-6" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id = "grid-6">
         </div>
     </div>
   </div>
   <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-7" class="day-label"></p>
+    <p id="date-label-7" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id = "grid-7">
         </div>
     </div>
   </div>
-  <hr/>
   <div class="row">
-    <div class="col-md-6">
-        <div class="grid-stack grid-stack-6">
+    <p id="day-label-0" class="day-label"></p>
+    <p id="date-label-0" class="date-label"></p>
+    <div class="col-md-12">
+        <div class="grid-stack" id = "grid-0">
         </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="scripts/creation.js"></script>
+<script type="text/javascript" src="scripts/fancy.js"></script>
+
 <script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/creation.js"></script>
 <script type="text/javascript" src="scripts/calls.js"></script>
 
 </body>
