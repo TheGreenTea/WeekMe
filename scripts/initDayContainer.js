@@ -51,19 +51,22 @@ function createDayLabel(dayName) {
   return null;
 }
 
-function enrichDayContainer() {
+function initDayContainer() {
 
   for (var i = 0; i < 7; i++) {
-      let dayLabel = document.getElementById('day-label-' + (i+1))
+      let dayLabel = document.getElementById('day-label-' + i);
       if (dayLabel != null) {
         dayLabel.appendChild(document.createTextNode(getDayName(i)));
       }
 
-      let dateLabel = document.getElementById('date-label-' + (i+1))
+      let dateLabel = document.getElementById('date-label-' + i);
       if (dateLabel != null) {
         dateLabel.appendChild(document.createTextNode(getDateString(i)));
       }
   }
+
+  let unassignedLabel = document.getElementById('unassigned-label')
+  unassignedLabel.appendChild(document.createTextNode("Unassigned"));
 }
 
-enrichDayContainer();
+initDayContainer();

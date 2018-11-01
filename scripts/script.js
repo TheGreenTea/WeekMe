@@ -6,14 +6,14 @@ $(function () {
         removeTimeout: 100,
         acceptWidgets: '.grid-stack-item'
     };
+    $('#grid-0').gridstack(options);
     $('#grid-1').gridstack(options);
     $('#grid-2').gridstack(options);
     $('#grid-3').gridstack(options);
     $('#grid-4').gridstack(options);
     $('#grid-5').gridstack(options);
     $('#grid-6').gridstack(options);
-    $('#grid-7').gridstack(options);
-    $('#grid-0').gridstack(options);
+    $('#grid-null').gridstack(options);
     var items = [
         {x: 0, y: 0, width: 2, height: 2},
         {x: 3, y: 1, width: 1, height: 2},
