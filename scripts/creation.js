@@ -76,16 +76,16 @@ var data = mockedTasks.map(function(data) {
 });
 
 let taskNode = createTask(data[0]);
-let grid1 = document.getElementById('grid-1');
-//grid1.appendChild(taskNode);
 
-console.log(grid1);
+function gridIdForDay(day) {
+  let id = "grid-" + day
+  return id
+}
+let gridId = gridIdForDay(data[0].day)
+console.log(gridId)
 $(function() {
-  $('#grid-1').each(function () {
-    console.log("fofofoofo");
-    var grid = $(this).data('gridstack');
-    console.log('grid: ' + grid);
-    console.log(grid);
+  $('#'+gridId).each(function () {
+    let grid = $(this).data('gridstack');
     let element = document.createElement('div');
     element.setAttribute('class', 'grid-stack-item-content');
 
