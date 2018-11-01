@@ -20,10 +20,10 @@ function createButton(title, glyphicon, id, customClass) {
   return button;
 }
 
-function createTask(task) {
+function createTaskNode(task) {
     let taskNode = document.createElement('div')
-    if (task.id != null) {
-      taskNode.setAttribute('id', 'task-' + task.id);
+    if (task._id != null) {
+      taskNode.setAttribute('id', 'task-' + task._id);
     }
     taskNode.setAttribute('class', 'task')
 
@@ -38,11 +38,11 @@ function createTask(task) {
 
 function createTaskMenuBar(task) {
   let menuBar = document.createElement('div');
-  if (task.id != null) {
-    menuBar.setAttribute('id', 'task-menu-bar-' + task.id);
+  if (task._id != null) {
+    menuBar.setAttribute('id', 'task-menu-bar-' + task._id);
 
-    let editButton = createButton(" Edit", "glyphicon-edit", "edit-button-" + task.id, 'edit-button btn btn-default');
-    let doneButton = createButton(" Done", "glyphicon-check", "done-button-" + task.id, 'edit-button btn btn-info btn-default');
+    let editButton = createButton(" Edit", "glyphicon-edit", "edit-button-" + task._id, 'edit-button btn btn-default');
+    let doneButton = createButton(" Done", "glyphicon-check", "done-button-" + task._id, 'edit-button btn btn-info btn-default');
 
     menuBar.appendChild(editButton);
     menuBar.appendChild(doneButton);
@@ -54,8 +54,8 @@ function createTaskMenuBar(task) {
 
 function createTextContainer(task) {
   let textContainer = document.createElement('div');
-  if (task.id != null) {
-    textContainer.setAttribute('id', 'task-text-container-' + task.id);
+  if (task._id != null) {
+    textContainer.setAttribute('id', 'task-text-container-' + task._id);
   }
   textContainer.setAttribute('class', 'task-text-container');
 
@@ -67,49 +67,28 @@ function createTextContainer(task) {
   return textContainer;
 }
 
-let mockedJSONResponse = '{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bd9a150a427790015eea2d5", "content": "Do some testing maybe?", "_user": "5bd2ebf9e5ccfb00150fb2ed", "__v": 0 }, { "day": null, "done": false, "doneAt": null, "_id": "5bd9a167a427790015eea2d6", "content": "Crazy how many awesome content", "_user": "5bd2ebf9e5ccfb00150fb2ed", "__v": 0}] }'
+function addTask(task) {
+  let taskNode = createTaskNode(task);
+
+  $(function() {
+    $('#grid-' + task.day).each(function () {
+      let grid = $(this).data('gridstack');
+      let element = document.createElement('div');
+      element.setAttribute('class', 'grid-stack-item-content');
+
+      let frame = eval(task.frame)
+      let x = frame[0];
+      let y = frame[1];
+      let width = frame[2];
+      let height = frame[3];
+      grid.addWidget(element, x, y, width, height);
+
+      element.appendChild(taskNode);
+    })
+  })
+}
+
+let mockedJSONResponse = '{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bdb4d9087c3dd0015464588", "content": "CLOSED", "frame": "[4,4,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 }, { "day": 5, "done": false, "doneAt": null, "_id": "5bdb4dbe87c3dd0015464589", "content": "UPDATED BABY", "frame": "[1,2,1,9]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 } ] }'
 let mockedTasks = JSON.parse(mockedJSONResponse)['tasks'];
 
-var data = mockedTasks.map(function(data) {
-  data.id = data._id
-  return data
-});
-
-let taskNode = createTask(data[0]);
-
-function gridIdForDay(day) {
-  let id = "grid-" + day
-  return id
-}
-let gridId = gridIdForDay(data[0].day)
-console.log(gridId)
-$(function() {
-  $('#'+gridId).each(function () {
-    let grid = $(this).data('gridstack');
-    let element = document.createElement('div');
-    element.setAttribute('class', 'grid-stack-item-content');
-
-    grid.addWidget(element, 0, 0, 2, 2);
-    element.appendChild(taskNode);
-  })
-/*
-
-
-  var items = [
-      {x: 0, y: 0, width: 2, height: 2, autoPosition: true},
-      {x: 3, y: 1, width: 1, height: 2},
-      //{x: 4, y: 1, width: 1, height: 1},
-      //{x: 2, y: 3, width: 3, height: 1},
-      //{x: 2, y: 5, width: 1, height: 1}
-  ];
-
-  $('.grid-stack').each(function () {
-      var grid = $(this).data('gridstack');
-      console.log("pasdlals" + grid)
-      _.each(items, function (node) {
-          grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
-              node.x, node.y, node.width, node.height);
-      }, this);
-  });
-  */
-})
+addTask(mockedTasks[0])
