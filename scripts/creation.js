@@ -91,9 +91,21 @@ function addTask(task) {
   })
 }
 
-let mockedJSONResponse = '{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bdb4d9087c3dd0015464588", "content": "CLOSED", "frame": "[4,4,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 }, { "day": 5, "done": false, "doneAt": null, "_id": "5bdb4dbe87c3dd0015464589", "content": "UPDATED BABY", "frame": "[1,2,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 } ] }'
-let mockedTasks = JSON.parse(mockedJSONResponse)['tasks'];
-
-for (var i = 0; i < mockedTasks.length; i++) {
-  addTask(mockedTasks[i])
+let addTasks = function (tasks) {
+  console.log("tasks")
+  for (var i = 0; i < tasks.length; i++) {
+    addTask(tasks[i])
+  }
 }
+
+let onSuccess = function (json) {
+  console.log("onSuccess")
+  addTasks(json['tasks'])
+}
+
+// Load from server:
+getOpenTasks(onSuccess);
+
+//Load mocked:
+//let mockedJSONResponse = JSON.parse('{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bdb4d9087c3dd0015464588", "content": "CLOSED", "frame": "[4,4,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 }, { "day": 5, "done": false, "doneAt": null, "_id": "5bdb4dbe87c3dd0015464589", "content": "UPDATED BABY", "frame": "[1,2,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 } ] }');
+//onSuccess(mockedJSONResponse)

@@ -22,6 +22,9 @@ const login = async () => {
          .then(response => {
            console.log(response)
            console.log(response.headers)
+           console.log("xAuth:")
+           console.log(response.headers.get('X-Auth'))
+           console.log(Array.from(response.headers))
 
            return response.json()
          })
@@ -39,10 +42,9 @@ const login = async () => {
 // POST /opentasks
 
 const opentasksUrl = baseUrl + '/opentasks';
-const xAuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YmRiNTM1Zjg3YzNkZDAwMTU0NjQ1OTUiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQxMTAwNDAxfQ.F4IWZjHmsIF81apxhqYezfKYumexkwDlSgMzAapYLOg";
+const xAuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YmRiMjBkYTdkZDNlNzAwMTU0YjZmMjIiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQxMjUxMjQ0fQ.6nhOCgKCFobpi281pYnae7YFeOjN1K-HV0K7cEh5InE";
 
-
-const getOpenTasks = async () => {
+const getOpenTasks = async (onSuccess) => {
   const settings = {
         method: 'GET',
         headers: {
@@ -54,12 +56,12 @@ const getOpenTasks = async () => {
 
     const data = await fetch(opentasksUrl, settings)
          .then(response => {
-           console.log(response)
+           console.log("bas")
            return response.json()
          })
          .then(json => {
-             console.log(json);
-             return json;
+           onSuccess(json)
+           return json;
          })
          .catch(e => {
              return e
@@ -69,5 +71,5 @@ const getOpenTasks = async () => {
 }
 
 // Execution
-login();
-getOpenTasks();
+//login();
+//getOpenTasks();
