@@ -92,14 +92,12 @@ function addTask(task) {
 }
 
 let addTasks = function (tasks) {
-  console.log("tasks")
   for (var i = 0; i < tasks.length; i++) {
     addTask(tasks[i])
   }
 }
 
 let onSuccess = function (json) {
-  console.log("onSuccess")
   addTasks(json['tasks'])
 }
 

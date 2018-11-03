@@ -20,16 +20,21 @@ const login = async () => {
 
     const data = await fetch(loginUrl, settings)
          .then(response => {
+           console.log("Login response:")
            console.log(response)
+
+           console.log("response.headers object:")
            console.log(response.headers)
-           console.log("xAuth:")
+
+           console.log("X-Auth header:")
            console.log(response.headers.get('X-Auth'))
+
+           console.log("All headers:")
            console.log(Array.from(response.headers))
 
            return response.json()
          })
          .then(json => {
-             console.log(json);
              return json;
          })
          .catch(e => {
@@ -56,7 +61,6 @@ const getOpenTasks = async (onSuccess) => {
 
     const data = await fetch(opentasksUrl, settings)
          .then(response => {
-           console.log("bas")
            return response.json()
          })
          .then(json => {
@@ -71,5 +75,4 @@ const getOpenTasks = async (onSuccess) => {
 }
 
 // Execution
-//login();
-//getOpenTasks();
+login();
