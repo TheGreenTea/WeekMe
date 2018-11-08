@@ -35,6 +35,11 @@ $(function () {
         appendTo: 'body'
     });
 
+    $('.grid-stack').on('dropped', function(event, previousWidget, newWidget) {
+        console.log('Removed widget that was dragged out of grid:', previousWidget);
+        console.log('Added widget in dropped grid:', newWidget);
+    });
+
     function addOnRemoveAddNewTask(selector) {
       $(''+selector).on("remove", function () {
 

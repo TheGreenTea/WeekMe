@@ -75,7 +75,7 @@ function addTask(task) {
       let grid = $(this).data('gridstack');
 
       let item = document.createElement('div');
-
+      item.setAttribute('id', 'stack-item-' + task._id);
       let frame = eval(task.frame)
       let x = frame[0];
       let y = frame[1];
@@ -85,6 +85,7 @@ function addTask(task) {
 
       let itemContent = document.createElement('div');
       itemContent.setAttribute('class', 'grid-stack-item-content');
+      itemContent.setAttribute('id', 'stack-item-content-' + task._id);
       itemContent.appendChild(taskNode);
       item.appendChild(itemContent);
     })
@@ -101,8 +102,12 @@ let onSuccess = function (json) {
   addTasks(json['tasks'])
 }
 
-// Load from server:
-getOpenTasks(onSuccess);
+let onLogin = function (json, token) {
+  // Load from server:
+  api.getOpenTasks(onSuccess)
+}
+
+api.login(onLogin);
 
 //Load mocked:
 //let mockedJSONResponse = JSON.parse('{ "tasks": [ { "day": null, "done": false, "doneAt": null, "_id": "5bdb4d9087c3dd0015464588", "content": "CLOSED", "frame": "[4,4,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 }, { "day": 5, "done": false, "doneAt": null, "_id": "5bdb4dbe87c3dd0015464589", "content": "UPDATED BABY", "frame": "[1,2,2,2]", "_user": "5bdb20da7dd3e700154b6f22", "__v": 0 } ] }');
