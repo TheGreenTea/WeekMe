@@ -42,32 +42,32 @@ let api = (function () {
 
   let taskWrapper = (function (baseUrl) {
 
-    const openTasks = async (onSuccess) => {
-      task.profile(loadToken(), onSuccess);
+    const open = async (onSuccess) => {
+      task.open(loadToken(), onSuccess);
     }
-    const tasks = async (onSuccess) => {
-      task.tasks(loadToken(), onSuccess);
+    const all = async (onSuccess) => {
+      task.all(loadToken(), onSuccess);
     }
-    const createTask = async (taskNode, onSuccess) => {
-      task.createTask(loadToken(), taskNode, onSuccess);
+    const create = async (taskNode, onSuccess) => {
+      task.create(loadToken(), taskNode, onSuccess);
     }
-    const loadTask = async (id, onSuccess) => {
-      task.loadTask(loadToken(), id, onSuccess);
+    const load = async (id, onSuccess) => {
+      task.load(loadToken(), id, onSuccess);
     }
-    const updateTask = async (id, taskNode, onSuccess) => {
-      task.updateTask(loadToken(), id, taskNode, onSuccess);
+    const update = async (id, taskNode, onSuccess) => {
+      task.update(loadToken(), id, taskNode, onSuccess);
     }
-    const deleteTask = async (id, onSuccess) => {
-      task.deleteTask(loadToken(), id, onSuccess);
+    const delete = async (id, onSuccess) => {
+      task.delete(loadToken(), id, onSuccess);
     }
 
     return {
-      openTasks,
-      tasks,
-      createTask,
-      loadTask,
-      updateTask,
-      deleteTask
+      open,
+      all,
+      create,
+      load,
+      update,
+      delete
     };
   }(baseUrl));
 

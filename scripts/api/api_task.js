@@ -177,12 +177,12 @@ function initTask(baseUrl) {
            }
 
       return {
-        openTasks,
-        tasks,
-        createTask,
-        loadTask,
-        updateTask,
-        deleteTask
+        open: openTasks,
+        all: tasks,
+        create: createTask,
+        load: loadTask,
+        update: updateTask,
+        delete: deleteTask
       };
   }(baseUrl));
 }
