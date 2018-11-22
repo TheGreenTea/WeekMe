@@ -20,7 +20,7 @@ var DateFormatter = function() {
     const dateString = getDateString(dayDiff);
 
     if (dateString != null) {
-      let label = document.createElement('p')
+      let label = document.createElement('h6')
       label.setAttribute('class', 'date-label')
       label.appendChild(document.createTextNode(dateString));
       return label;
@@ -33,7 +33,7 @@ var DateFormatter = function() {
     const dayName = getDayName(dayDiff);
 
     if (dayName != null) {
-      let label = document.createElement('p')
+      let label = document.createElement('h6')
       label.setAttribute('class', 'day-label')
       label.appendChild(document.createTextNode(dayName));
       return label;

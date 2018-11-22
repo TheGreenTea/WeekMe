@@ -30,8 +30,13 @@ var MainController = function() {
       const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
 
-      $( dayLabel ).insertBefore($(this));
-      $( dateLabel ).insertBefore($(this));
+
+      let labelContainer = document.createElement('div');
+      labelContainer.setAttribute('class', 'label-container');
+      labelContainer.appendChild(dayLabel);
+      labelContainer.appendChild(dateLabel);
+
+      $( labelContainer ).insertBefore($(this));
 
 
     });
