@@ -93,6 +93,7 @@ function addTask(task) {
 }
 
 let addTasks = function (tasks) {
+  console.log("Loaded tasks")
   for (var i = 0; i < tasks.length; i++) {
     addTask(tasks[i]);
   }
@@ -103,12 +104,10 @@ let onSuccess = function (json) {
   onLogout();
 }
 
-let onLogin = function (json, token) {
-  // Load from server:
-  //api.getOpenTasks(onSuccess);
-  //api.logout();
+let onLogin = function (json) {
   console.log("Logged in");
-  api.user.profile(onProfile);
+  api.task.tasks(addTasks);
+  //api.user.profile(onProfile);
 }
 
 let onLogout = function () {

@@ -1,10 +1,9 @@
-function initUser(baseUrl) {
-  console.log("init user using " + baseUrl)
+function initUser(baseUrl, saveToken) {
   return user = (function (baseUrl) {
     const userBaseUrl = baseUrl + '/users';
     console.log(userBaseUrl)
 
-    // POST /users/login/
+    // POST /users/
     const registerUrl = userBaseUrl
     const register = async (email, password, onSuccess) => {
       const registerBody = { email: email, password: password };
@@ -26,7 +25,8 @@ function initUser(baseUrl) {
                return json;
              })
              .catch(e => {
-                 return e
+                console.log("error: " + e);
+                return e
              });
 
          return data
@@ -36,6 +36,7 @@ function initUser(baseUrl) {
     const loginUrl = userBaseUrl + '/login'
 
     const login = async (email, password, onSuccess) => {
+
       const loginBody = { email: email, password: password };
       const settings = {
             method: 'POST',
@@ -44,19 +45,20 @@ function initUser(baseUrl) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(loginBody)
-        };
+      };
 
-        const data = await fetch(loginUrl, settings)
+      const data = await fetch(loginUrl, settings)
              .then(response => {
-               xAuthToken = response.headers.get('X-Auth');
-               console.log(xAuthToken);
+               let token = response.headers.get('X-Auth');
+               saveToken(token)
                return response.json();
              })
              .then(json => {
-                 onSuccess(json, xAuthToken)
+                 onSuccess(json)
                  return json;
              })
              .catch(e => {
+                 console.log("error: " + e);
                  return e
              });
 
@@ -66,7 +68,7 @@ function initUser(baseUrl) {
     // DELETE /users/me/token
     const deleteTokenUrl = userBaseUrl + '/me/token';
 
-    const deleteToken = async (onSuccess) => {
+    const deleteToken = async (xAuthToken, onSuccess) => {
       const settings = {
             method: 'DELETE',
             headers: {
@@ -85,16 +87,17 @@ function initUser(baseUrl) {
                return json;
              })
              .catch(e => {
-                 return e
+               console.log("error: " + e);
+               return e
              });
 
-         return data
-    ;}
+         return data;
+       }
 
     // GET /users/me
     const profileUrl = userBaseUrl + '/me';
 
-    const profile = async (onSuccess) => {
+    const profile = async (xAuthToken, onSuccess) => {
       const settings = {
             method: 'GET',
             headers: {
@@ -113,7 +116,8 @@ function initUser(baseUrl) {
                return json;
              })
              .catch(e => {
-                 return e
+                console.log("error: " + e);
+                return e
              });
 
          return data
