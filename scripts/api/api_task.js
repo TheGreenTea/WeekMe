@@ -36,7 +36,6 @@ function initTask(baseUrl) {
       const tasksUrl = taskBaseUrl;
 
       const tasks = async (xAuthToken, onSuccess) => {
-        console.log(onSuccess);
         const settings = {
               method: 'GET',
               headers: {
