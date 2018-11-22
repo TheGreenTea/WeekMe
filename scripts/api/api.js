@@ -54,12 +54,16 @@ let api = (function () {
     const loadTask = async (id, onSuccess) => {
       task.loadTask(loadToken(), id, onSuccess);
     }
+    const updateTask = async (id, taskNode, onSuccess) => {
+      task.updateTask(loadToken(), id, taskNode, onSuccess);
+    }
 
     return {
       openTasks,
       tasks,
       createTask,
-      loadTask
+      loadTask,
+      updateTask
     };
   }(baseUrl));
 

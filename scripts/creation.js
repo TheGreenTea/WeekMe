@@ -109,7 +109,15 @@ function onTaskLoadSuccess(json) {
   console.log(json);
 }
 
+function onTaskUpdateSuccess(json) {
+  console.log("Updated task");
+  console.log(json);
+}
+
 let onLogin = function (json) {
+  //api.task.tasks(addTasks);
+  //api.user.profile(onProfile);
+
   /*
   console.log("Logged in");
   let task = {
@@ -122,9 +130,16 @@ let onLogin = function (json) {
 
   api.task.createTask(task, onCreationSuccess);
   */
-  api.task.loadTask("5bf6d5368dbe3d0015ae5215", onTaskLoadSuccess);
-  //api.task.tasks(addTasks);
-  //api.user.profile(onProfile);
+
+  let task = {
+    content: "Upgedateter viel Geilerer Content",
+    frame: "[10,1]",
+    dueAt: "1542891118031",
+    color: "4",
+    reoccuring: "true"
+  };
+
+  api.task.updateTask("5bf6d5368dbe3d0015ae5215", task, onTaskUpdateSuccess);
 }
 
 let onLogout = function () {

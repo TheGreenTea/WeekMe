@@ -90,8 +90,7 @@ function initTask(baseUrl) {
           return data;
         }
 
-
-        // GET /tasks
+        // GET /tasks/id
         const loadTask = async (xAuthToken, id, onSuccess) => {
           const loadTaskUrl = taskBaseUrl + "/" + id;
 
@@ -120,11 +119,41 @@ function initTask(baseUrl) {
            return data;
          }
 
+         // PATCH /tasks/id
+         const updateTask = async (xAuthToken, id, task, onSuccess) => {
+           const updateTaskUrl = taskBaseUrl + "/" + id;
+           const settings = {
+                 method: 'PATCH',
+                 headers: {
+                     Accept: 'application/json',
+                     'Content-Type': 'application/json',
+                     'x-auth': xAuthToken
+                 },
+                 body: JSON.stringify(task)
+           };
+
+           const data = await fetch(updateTaskUrl, settings)
+                .then(response => {
+                  return response.json()
+                })
+                .then(json => {
+                  onSuccess(json)
+                  return json;
+                })
+                .catch(e => {
+                    console.log("error: " + e);
+                    return e
+                });
+
+            return data;
+          }
+
       return {
         openTasks,
         tasks,
         createTask,
-        loadTask
+        loadTask,
+        updateTask
       };
   }(baseUrl));
 }
