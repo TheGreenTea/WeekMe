@@ -28,7 +28,7 @@ var MainController = function() {
       e.stopPropagation();
 
       if($("#card-selected").length){
-          moveCardToPositionOfOtherCard($("#card-selected"), this); 
+          moveCardToPositionOfOtherCard($("#card-selected"), this);
           $("#card-selected").attr("id", "");
       } else {
         $(this).attr("id", "card-selected");
