@@ -57,7 +57,7 @@ let api = (function () {
     const update = async (id, taskNode, onSuccess) => {
       task.update(loadToken(), id, taskNode, onSuccess);
     }
-    const delete = async (id, onSuccess) => {
+    const remove = async (id, onSuccess) => {
       task.delete(loadToken(), id, onSuccess);
     }
 
@@ -67,7 +67,7 @@ let api = (function () {
       create,
       load,
       update,
-      delete
+      remove
     };
   }(baseUrl));
 
