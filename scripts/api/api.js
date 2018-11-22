@@ -21,7 +21,6 @@ let api = (function () {
   }
 
   const user = initUser(baseUrl, saveToken);
-  const task = initTask(baseUrl);
 
   let userWrapper = (function (baseUrl) {
     const profile = async (onSuccess) => {
@@ -39,6 +38,7 @@ let api = (function () {
     };
   }(baseUrl));
 
+  const task = initTask(baseUrl);
 
   let taskWrapper = (function (baseUrl) {
 
@@ -48,10 +48,14 @@ let api = (function () {
     const tasks = async (onSuccess) => {
       task.tasks(loadToken(), onSuccess)
     }
+    const createTask = async (taskNode, onSuccess) => {
+      task.createTask(loadToken(), taskNode, onSuccess)
+    }
 
     return {
-      openTasks: openTasks,
-      tasks: tasks
+      openTasks,
+      tasks,
+      createTask
     };
   }(baseUrl));
 

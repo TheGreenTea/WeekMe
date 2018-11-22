@@ -61,9 +61,39 @@ function initTask(baseUrl) {
          return data;
        }
 
+       // POST /tasks
+       const createTaskUrl = taskBaseUrl;
+       const createTask = async (xAuthToken, task, onSuccess) => {   
+         const settings = {
+               method: 'POST',
+               headers: {
+                   Accept: 'application/json',
+                   'Content-Type': 'application/json',
+                   'x-auth': xAuthToken
+               },
+               body: JSON.stringify(task)
+         };
+
+         const data = await fetch(createTaskUrl, settings)
+              .then(response => {
+                return response.json()
+              })
+              .then(json => {
+                onSuccess(json)
+                return json;
+              })
+              .catch(e => {
+                  console.log("error: " + e);
+                  return e
+              });
+
+          return data;
+        }
+
       return {
         openTasks,
-        tasks
+        tasks,
+        createTask
       };
   }(baseUrl));
 }

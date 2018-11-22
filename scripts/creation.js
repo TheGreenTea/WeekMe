@@ -99,14 +99,23 @@ let addTasks = function (tasks) {
   }
 }
 
-let onSuccess = function (json) {
-  addTasks(json['tasks']);
-  onLogout();
+function onCreationSuccess(json) {
+  console.log("created")
+  console.log(json)
 }
 
 let onLogin = function (json) {
   console.log("Logged in");
-  api.task.tasks(addTasks);
+  let task = {
+    content: "Geiler Content!",
+    frame: "[1,1]",
+    dueAt: "1542891118231",
+    color: "2",
+    reoccuring: "false"
+  };
+
+  api.task.createTask(task, onCreationSuccess);
+  //api.task.tasks(addTasks);
   //api.user.profile(onProfile);
 }
 
