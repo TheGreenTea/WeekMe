@@ -148,12 +148,41 @@ function initTask(baseUrl) {
             return data;
           }
 
+          // DELETE /tasks/id
+          const deleteTask = async (xAuthToken, id, onSuccess) => {
+            const deleteTaskUrl = taskBaseUrl + "/" + id;
+            const settings = {
+                  method: 'DELETE',
+                  headers: {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                      'x-auth': xAuthToken
+                  }
+            };
+
+            const data = await fetch(deleteTaskUrl, settings)
+                 .then(response => {
+                   return response.json()
+                 })
+                 .then(json => {
+                   onSuccess();
+                   return json;
+                 })
+                 .catch(e => {
+                     console.log("error: " + e);
+                     return e
+                 });
+
+             return data;
+           }
+
       return {
         openTasks,
         tasks,
         createTask,
         loadTask,
-        updateTask
+        updateTask,
+        deleteTask
       };
   }(baseUrl));
 }

@@ -57,13 +57,17 @@ let api = (function () {
     const updateTask = async (id, taskNode, onSuccess) => {
       task.updateTask(loadToken(), id, taskNode, onSuccess);
     }
+    const deleteTask = async (id, onSuccess) => {
+      task.deleteTask(loadToken(), id, onSuccess);
+    }
 
     return {
       openTasks,
       tasks,
       createTask,
       loadTask,
-      updateTask
+      updateTask,
+      deleteTask
     };
   }(baseUrl));
 

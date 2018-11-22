@@ -114,6 +114,10 @@ function onTaskUpdateSuccess(json) {
   console.log(json);
 }
 
+function onTaskDeleteSuccess() {
+  console.log("Deleted task")
+}
+
 let onLogin = function (json) {
   //api.task.tasks(addTasks);
   //api.user.profile(onProfile);
@@ -131,6 +135,7 @@ let onLogin = function (json) {
   api.task.createTask(task, onCreationSuccess);
   */
 
+/*
   let task = {
     content: "Upgedateter viel Geilerer Content",
     frame: "[10,1]",
@@ -140,6 +145,8 @@ let onLogin = function (json) {
   };
 
   api.task.updateTask("5bf6d5368dbe3d0015ae5215", task, onTaskUpdateSuccess);
+  */
+  api.task.deleteTask("5bf6d5368dbe3d0015ae5215", onTaskDeleteSuccess);
 }
 
 let onLogout = function () {
