@@ -14,6 +14,12 @@ var MainController = function() {
     setupContainers();
     initEvents();
 
+    let onProfile = function(json) {
+      console.log("profile")
+      console.log(json)
+    }
+
+    api.user.profile(onProfile)
   }
 
   /* Private Methods */
