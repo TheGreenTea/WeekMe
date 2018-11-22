@@ -4,12 +4,12 @@ let api = (function () {
   var xAuthToken = '';
 
   // POST /users/login
-  const loginBody = { email:'DerTesterMann@example.org', password:'testerMannPW1!' };
   const loginUrl = baseUrl + '/users/login'
 
   console.log(loginUrl);
 
-  const login = async (onSuccess) => {
+  const login = async (email, password, onSuccess) => {
+    const loginBody = { email: email, password: password };
     const settings = {
           method: 'POST',
           headers: {
@@ -36,7 +36,7 @@ let api = (function () {
        return data;
   }
 
-  // POST /opentasks
+  // GET /opentasks
   const opentasksUrl = baseUrl + '/opentasks';
 
   const getOpenTasks = async (onSuccess) => {
@@ -64,9 +64,68 @@ let api = (function () {
        return data
 ;}
 
+// DELETE /users/me/token
+const deleteTokenUrl = baseUrl + '/users/me/token';
+
+const deleteToken = async (onSuccess) => {
+  const settings = {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'x-auth': xAuthToken
+        }
+    };
+
+    const data = await fetch(deleteTokenUrl, settings)
+         .then(response => {
+           return response.json()
+         })
+         .then(json => {
+           onSuccess()
+           return json;
+         })
+         .catch(e => {
+             return e
+         });
+
+     return data
+;}
+
+// POST /users/login/
+const registerUrl = baseUrl + '/users/';
+
+const register = async (email, password, onSuccess) => {
+  const registerBody = { email: email, password: password };
+  const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registerBody)
+    };
+
+    const data = await fetch(registerUrl, settings)
+         .then(response => {
+           return response.json()
+         })
+         .then(json => {
+           onSuccess(json)
+           return json;
+         })
+         .catch(e => {
+             return e
+         });
+
+     return data
+;}
+
 return {
   login: login,
-  getOpenTasks: getOpenTasks
+  getOpenTasks: getOpenTasks,
+  logout: deleteToken,
+  register: register
 };
 
 }());
