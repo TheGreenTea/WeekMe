@@ -43,19 +43,23 @@ let api = (function () {
   let taskWrapper = (function (baseUrl) {
 
     const openTasks = async (onSuccess) => {
-      task.profile(loadToken(), onSuccess)
+      task.profile(loadToken(), onSuccess);
     }
     const tasks = async (onSuccess) => {
-      task.tasks(loadToken(), onSuccess)
+      task.tasks(loadToken(), onSuccess);
     }
     const createTask = async (taskNode, onSuccess) => {
-      task.createTask(loadToken(), taskNode, onSuccess)
+      task.createTask(loadToken(), taskNode, onSuccess);
+    }
+    const loadTask = async (id, onSuccess) => {
+      task.loadTask(loadToken(), id, onSuccess);
     }
 
     return {
       openTasks,
       tasks,
-      createTask
+      createTask,
+      loadTask
     };
   }(baseUrl));
 
@@ -64,5 +68,4 @@ let api = (function () {
     user: userWrapper,
     task: taskWrapper
   };
-
 }());

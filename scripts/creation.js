@@ -100,11 +100,17 @@ let addTasks = function (tasks) {
 }
 
 function onCreationSuccess(json) {
-  console.log("created")
-  console.log(json)
+  console.log("created");
+  console.log(json);
+}
+
+function onTaskLoadSuccess(json) {
+  console.log("Loaded task by id");
+  console.log(json);
 }
 
 let onLogin = function (json) {
+  /*
   console.log("Logged in");
   let task = {
     content: "Geiler Content!",
@@ -115,6 +121,8 @@ let onLogin = function (json) {
   };
 
   api.task.createTask(task, onCreationSuccess);
+  */
+  api.task.loadTask("5bf6d5368dbe3d0015ae5215", onTaskLoadSuccess);
   //api.task.tasks(addTasks);
   //api.user.profile(onProfile);
 }

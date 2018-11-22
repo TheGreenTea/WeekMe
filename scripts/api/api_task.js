@@ -63,7 +63,7 @@ function initTask(baseUrl) {
 
        // POST /tasks
        const createTaskUrl = taskBaseUrl;
-       const createTask = async (xAuthToken, task, onSuccess) => {   
+       const createTask = async (xAuthToken, task, onSuccess) => {
          const settings = {
                method: 'POST',
                headers: {
@@ -90,10 +90,41 @@ function initTask(baseUrl) {
           return data;
         }
 
+
+        // GET /tasks
+        const loadTask = async (xAuthToken, id, onSuccess) => {
+          const loadTaskUrl = taskBaseUrl + "/" + id;
+
+          const settings = {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-auth': xAuthToken
+                },
+          };
+
+          const data = await fetch(loadTaskUrl, settings)
+               .then(response => {
+                 return response.json()
+               })
+               .then(json => {
+                 onSuccess(json)
+                 return json;
+               })
+               .catch(e => {
+                   console.log("error: " + e);
+                   return e
+               });
+
+           return data;
+         }
+
       return {
         openTasks,
         tasks,
-        createTask
+        createTask,
+        loadTask
       };
   }(baseUrl));
 }
