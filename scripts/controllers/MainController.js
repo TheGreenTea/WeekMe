@@ -26,9 +26,11 @@ var MainController = function() {
 
   function setupContainers(){
     setupLabels();
+    setupTasks();
   }
 
   function initEvents() {
+
     $(".card").click(function(e) {
 
       e.stopPropagation();
@@ -40,6 +42,16 @@ var MainController = function() {
         $(this).attr("id", "card-selected");
       }
 
+    });
+
+    $(".button-delete-task").click(function(e) {
+      e.stopPropagation();
+      $(this).parent().parent().parent().remove();
+    });
+
+    $(".button-edit-task").click(function(e) {
+      e.stopPropagation();
+      alert("Edit");
     });
 
     $(".day-row").click(function(e) {
@@ -70,6 +82,15 @@ var MainController = function() {
       labelContainer.appendChild(dateLabel);
       $( labelContainer ).insertBefore($(this));
     });
+  }
+
+  function setupTasks(){
+
+    const taskHtml = TemplateGenerator.getTaskCard("I am the text");
+
+    alert(taskHtml); 
+
+
   }
 
   /* Public Interface */
