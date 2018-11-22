@@ -107,11 +107,16 @@ let onLogin = function (json, token) {
   // Load from server:
   //api.getOpenTasks(onSuccess);
   //api.logout();
-  console.log("asdfasdf: " + xAuthToken)
+  console.log("Logged in");
+  api.user.profile(onProfile);
 }
 
 let onLogout = function () {
   console.log("Logged out");
+}
+
+function onProfile(json) {
+  console.log("profile: " + json)
 }
 
 function onRegister(json) {
@@ -119,8 +124,8 @@ function onRegister(json) {
   console.log(json);
 }
 
-api.user.register("fas@tesddt.com", "fancyPassword", onRegister);
-//api.user.login("dudesies@example.com", "abc123!", onLogin);
+//api.user.register("fas@tesddt.com", "fancyPassword", onRegister);
+api.user.login("dudesies@example.com", "abc123!", onLogin);
 
 
 //Load mocked:
