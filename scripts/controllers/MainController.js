@@ -14,6 +14,12 @@ var MainController = function() {
     setupContainers();
     initEvents();
 
+    let onProfile = function(json) {
+      console.log("profile")
+      console.log(json)
+    }
+
+    api.user.profile(onProfile)
   }
 
   /* Private Methods */
@@ -40,7 +46,7 @@ var MainController = function() {
 
   function setupLabels(){
     $("#content-main .row").each(function (index){
-      const dayLabel = DateFormatter.createDayLabel(index); 
+      const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
       let labelContainer = document.createElement('div');
       labelContainer.setAttribute('class', 'label-container');
