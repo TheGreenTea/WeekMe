@@ -2,7 +2,7 @@ Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
-}
+} 
 
 function getDateString(dayDiff) {
   let date = new Date()
@@ -50,23 +50,3 @@ function createDayLabel(dayName) {
   }
   return null;
 }
-
-function initDayContainer() {
-
-  for (var i = 0; i < 7; i++) {
-      let dayLabel = document.getElementById('day-label-' + i);
-      if (dayLabel != null) {
-        dayLabel.appendChild(document.createTextNode(getDayName(i)));
-      }
-
-      let dateLabel = document.getElementById('date-label-' + i);
-      if (dateLabel != null) {
-        dateLabel.appendChild(document.createTextNode(getDateString(i)));
-      }
-  }
-
-  let unassignedLabel = document.getElementById('unassigned-label')
-  unassignedLabel.appendChild(document.createTextNode("Unassigned"));
-}
-
-initDayContainer();
