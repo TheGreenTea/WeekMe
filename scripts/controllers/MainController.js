@@ -13,20 +13,13 @@ var MainController = function() {
   function init(){
     setupContainers();
     initEvents();
-
-    let onProfile = function(json) {
-      console.log("profile")
-      console.log(json)
-    }
-
-    api.user.profile(onProfile)
+    loadTasks();
   }
 
   /* Private Methods */
 
   function setupContainers(){
     setupLabels();
-    setupTasks();
   }
 
   function initEvents() {
@@ -84,11 +77,22 @@ var MainController = function() {
     });
   }
 
-  function setupTasks(){
+  function loadTasks() {
+    api.task.all(setupTasks)
+  }
 
-    const taskHtml = TemplateGenerator.getTaskCard("I am the text");
+  function setupTasks(tasksJson){
+    let tasks = tasksJson['tasks'];
+    tasks.forEach(function(task) {
+      let taskCard = TemplateGenerator.getTaskCard(task.content);
 
-    alert(taskHtml); 
+      let date = Date(taskCard.dueAt);
+      //TODO: calculate dateDiff from difference between today and dueAt
+      let dayDiff = 0
+      //TODO: consider position
+      $("#day-row-" + dayDiff).append(taskCard);
+    });
+    //alert(taskHtml);
 
 
   }
