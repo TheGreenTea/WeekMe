@@ -1,18 +1,55 @@
 out: ./styles/loginStyles.css, sourcemap: true, compress: true
 
+//Colors
 @corp_main: #02C39A;
 @corp_secondary: #F0F3BD;
 @corp_tertiary: #028090;
 
-body {
-  background-image: url('../background.jpg');
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:cover;
-  padding:10px;
+//Device sizes
+@xs-min: 480px;
+@sm-min: 768px;
+@md-min: 992px;
+@lg-min: 1200px;
+
+@xs-max: (@sm-min - 1);
+@sm-max: (@md-min - 1);
+@md-max: (@lg-min - 1);
+
+@phone:          ~"only screen and (min-width: @{xs-min})";
+@phone-strict:   ~"only screen and (min-width: @{xs-min}) and (max-width: @{xs-max})";
+@tablet:         ~"only screen and (min-width: @{sm-min})";
+@tablet-strict:  ~"only screen and (min-width: @{sm-min}) and (max-width: @{sm-max})";
+@desktop:        ~"only screen and (min-width: @{md-min})";
+@desktop-strict: ~"only screen and (min-width: @{md-min}) and (max-width: @{md-max})";
+@large:          ~"only screen and (min-width: @{lg-min})";
+
+
+html {
+  height: 100%;
 }
 
-h1{ color:#444444; font-size:22px; margin:0 0 8px 0;}
+body {
+  background-image: url('../background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 10px;
+}
+
+#login-headline {
+  color:#444400;
+  margin:0 0 8px 0;
+  font-size: 20px;
+  @media @phone {
+    font-size: 22px;
+  }
+  @media @tablet {
+    font-size: 24px;
+  }
+  @media @desktop, @large {
+    font-size: 26px;
+  }
+}
 
 .login-form .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
@@ -22,12 +59,20 @@ h1{ color:#444444; font-size:22px; margin:0 0 8px 0;}
   height: 50px;
   line-height: 50px;
 }
+
 .main-div {
   background: #ffffff none repeat scroll 0 0;
   border-radius: 2px;
   margin: 10px auto 30px;
-  max-width: 38%;
-  padding: 50px 70px 70px 71px;
+  max-width: 400px;
+  width: 92%;
+  padding: 30px 30px 30px 30px;
+  @media @tablet {
+    padding: 50px;
+  }
+  @media @desktop, @large {
+    padding: 50px 70px 50px 70px;
+  }
 }
 
 .login-form .form-group {
@@ -63,5 +108,12 @@ h1{ color:#444444; font-size:22px; margin:0 0 8px 0;}
   margin-bottom:30px;
 }
 
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}
+.back {
+  text-align: left;
+  margin-top:10px;
+}
+.back a {
+  color: #444444;
+  font-size: 13px;
+  text-decoration: none;
+}
