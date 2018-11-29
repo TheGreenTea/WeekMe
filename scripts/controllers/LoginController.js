@@ -16,24 +16,63 @@ var LoginController = function() {
 
   /* Private Methods */
 
+  function validateForm() {
+    let inputEmail = $("#input-email");
+    if (!inputEmail[0].checkValidity()) {
+      inputEmail.addClass('error-message-container')
+      showErrorMessage("Invalid email");
+
+      return false
+    }
+    inputEmail.removeClass('error-message-container')
+
+    let inputPassword = $("#input-password");
+    if (!inputPassword.val()) {
+      inputPassword.addClass('error-message-container')
+      showErrorMessage("Missing password");
+
+      return false
+    }
+
+    inputPassword.removeClass('error-message-container');
+    $(".message-container").hide();
+
+    return true
+  }
+
   function initEvents() {
+    $("#forgot-password-link").click(function(e) {
+        window.location = "./reset-password.html";
+    });
+
+    $("#signup-link").click(function(e) {
+        window.location = "./register.html";
+    });
+
     $("#login-button").click(function(e) {
-      let email = $("#input-email").val();
-      let password = $("#input-password").val();
-      console.log(email);
-      console.log(password);
 
-      let onLoginSuccess = function(json) {
-        console.log("logged in");
-        console.log(window);
-        window.location = "../index.html";
-        console.log("peter")
+      if (validateForm()) {
+        let email = $("#input-email").val();
+        let password = $("#input-password").val();
+
+        let onLoginSuccess = function(json) {
+          window.location = "./index.html";
+        }
+
+        api.user.login(email, password, onLoginSuccess)
       }
-
-      api.user.login(email, password, onLoginSuccess)
     });
   }
 
+
+  function showErrorMessage(message) {
+    let messageContainer = $(".message-container");
+    let messageBox = $("#messageBox");
+    messageContainer.show();
+    messageContainer.addClass('error-message-container');
+    messageBox.addClass('error-message');
+    messageBox.text(message);
+  }
   /* Public Interface */
 
   return {

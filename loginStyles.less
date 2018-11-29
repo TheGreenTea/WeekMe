@@ -4,6 +4,7 @@ out: ./styles/loginStyles.css, sourcemap: true, compress: true
 @corp_main: #02C39A;
 @corp_secondary: #F0F3BD;
 @corp_tertiary: #028090;
+@error_red: #fc8090;
 
 //Device sizes
 @xs-min: 480px;
@@ -81,8 +82,8 @@ body {
 .login-form {
   text-align:center;
 }
-.forgot a {
-  color: #777777;
+.login-form a {
+  color: @corp_tertiary;
   font-size: 14px;
   text-decoration: underline;
 }
@@ -97,23 +98,35 @@ body {
   padding: 0;
 }
 
+.message-container {
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+#signup-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.error-message {
+  color: @error_red ;
+}
+
+.error-message-container {
+  border-color: @error_red !important;
+  border: 2px solid;
+}
+
 .login-form .btn.btn-primary:active {
   background: @corp_tertiary none repeat scroll 0 0 !important;
   border-color: @corp_tertiary !important;
 }
 
-
 .forgot {
   text-align: left;
-  margin-bottom:30px;
-}
-
-.back {
-  text-align: left;
-  margin-top:10px;
-}
-.back a {
-  color: #444444;
-  font-size: 13px;
-  text-decoration: none;
+  margin-bottom: 20px;
 }
