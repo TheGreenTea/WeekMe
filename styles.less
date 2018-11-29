@@ -25,11 +25,11 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   -ms-filter: brightness(0.9);
 }
 
-#card-selected{
+.card-selected{
   background: #afbc18;
 }
 
-#card-selected .card-buttons{
+.card-selected .card-buttons{
   display: inline-block;
 }
 
@@ -58,9 +58,8 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 .button-edit-task {
   position: absolute;
   left: 0;
-  border: 1px solid black;
-  background: red; 
   background-image: url('../assets/img/edit.png');
+  background-size: 30px 30px;
   width: 30px;
   height: 30px;
 }
@@ -68,9 +67,8 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 .button-delete-task {
   position: absolute;
   right: 0;
-  border: 1px solid black;
-  background: red;
   background-image: url('../assets/img/check.png');
+  background-size: 30px 30px;
   width: 30px;
   height: 30px;
 }

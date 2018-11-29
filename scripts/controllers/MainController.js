@@ -23,39 +23,43 @@ var MainController = function() {
   }
 
   function initEvents() {
+    initRowEvents();
+    initCardEvents();
+  }
 
-    $(".card").click(function(e) {
+  function initRowEvents(){
+    $(".day-row").click(function(e) {
+      if($(".card-selected").length){
+        moveCardToRow($(".card-selected"), $(this));
+        $(".card-selected").removeClass("card-selected");
+      }
+    });
+  }
+
+  function initCardEvents(card = ".card"){
+
+    $(card).click(function(e) {
 
       e.stopPropagation();
 
-      if($("#card-selected").length){
-          moveCardToPositionOfOtherCard($("#card-selected"), this);
-          $("#card-selected").attr("id", "");
+      if($(".card-selected").length){
+          moveCardToPositionOfOtherCard($(".card-selected"), this);
+          $(".card-selected").removeClass("card-selected");
       } else {
-        $(this).attr("id", "card-selected");
+        $(this).addClass("card-selected");
       }
 
     });
 
-    $(".button-delete-task").click(function(e) {
+    $(card).find(".button-delete-task").click(function(e) {
       e.stopPropagation();
       $(this).parent().parent().parent().remove();
     });
 
-    $(".button-edit-task").click(function(e) {
+    $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
       alert("Edit");
     });
-
-    $(".day-row").click(function(e) {
-
-      if($("#card-selected").length){
-        moveCardToRow($("#card-selected"), $(this));
-        $("#card-selected").attr("id", "");
-      }
-
-    });
-
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
@@ -84,13 +88,16 @@ var MainController = function() {
   function setupTasks(tasksJson){
     let tasks = tasksJson['tasks'];
     tasks.forEach(function(task) {
-      let taskCard = TemplateGenerator.getTaskCard(task.content);
+      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
 
       let date = Date(taskCard.dueAt);
       //TODO: calculate dateDiff from difference between today and dueAt
       let dayDiff = 0
       //TODO: consider position
+
       $("#day-row-" + dayDiff).append(taskCard);
+      initCardEvents($(`#${task._id}`));
+      // initCardEvents();
     });
     //alert(taskHtml);
 
