@@ -23,8 +23,22 @@ var MainController = function() {
   }
 
   function initEvents() {
+    initRowEvents();
+    initCardEvents();
+  }
 
-    $(".card").click(function(e) {
+  function initRowEvents(){
+    $(".day-row").click(function(e) {
+      if($("#card-selected").length){
+        moveCardToRow($("#card-selected"), $(this));
+        $("#card-selected").attr("id", "");
+      }
+    });
+  }
+
+  function initCardEvents(card = ".card"){
+
+    $(card).click(function(e) {
 
       e.stopPropagation();
 
@@ -37,25 +51,15 @@ var MainController = function() {
 
     });
 
-    $(".button-delete-task").click(function(e) {
+    $(card).find(".button-delete-task").click(function(e) {
       e.stopPropagation();
       $(this).parent().parent().parent().remove();
     });
 
-    $(".button-edit-task").click(function(e) {
+    $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
       alert("Edit");
     });
-
-    $(".day-row").click(function(e) {
-
-      if($("#card-selected").length){
-        moveCardToRow($("#card-selected"), $(this));
-        $("#card-selected").attr("id", "");
-      }
-
-    });
-
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
@@ -90,7 +94,11 @@ var MainController = function() {
       //TODO: calculate dateDiff from difference between today and dueAt
       let dayDiff = 0
       //TODO: consider position
-      $("#day-row-" + dayDiff).append(taskCard);
+
+      var as = taskCard.childNodes[1].childNodes[0];
+
+      $("#day-row-" + dayDiff).append(as); 
+      initCardEvents(as);
     });
     //alert(taskHtml);
 

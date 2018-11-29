@@ -16,7 +16,8 @@ var TemplateGenerator = function() {
 
   function getTaskCard(text, color){
 
-    return `<div class="col-sm-6 col-lg-2">
+    const html=
+            `<div class="col-sm-6 col-lg-2">
               <div class="card">
                 <div class="card-buttons">
                   <a class="button-edit-task"></a>
@@ -28,7 +29,8 @@ var TemplateGenerator = function() {
               </div>
             </div>`;
 
-  } 
+    return new DOMParser().parseFromString(html, "text/html").childNodes[0]; 
+  }
 
 
   /* Private Methods */

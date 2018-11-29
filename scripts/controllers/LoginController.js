@@ -26,7 +26,7 @@ var LoginController = function() {
       let onLoginSuccess = function(json) {
         console.log("logged in");
         console.log(window);
-        window.location = "../index.html";
+        window.location = "./index.html"; 
         console.log("peter")
       }
 
