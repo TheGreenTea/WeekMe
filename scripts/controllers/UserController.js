@@ -153,7 +153,6 @@ var LoginController = function() {
 
   }
 
-
   function showErrorMessage(message) {
     let messageContainer = $(".message-container");
     let messageBox = $("#messageBox");

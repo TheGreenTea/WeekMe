@@ -33,6 +33,7 @@ let api = (function () {
     return {
       register: user.register,
       login: user.login,
+      requestPasswordReset: user.requestPasswordReset,
       logout: logout,
       profile: profile
     };
