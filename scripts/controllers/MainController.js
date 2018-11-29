@@ -1,3 +1,9 @@
+if(!api.user.loggedIn()) {
+  //window.location = "./login.html";
+} else {
+  console.log(api.user.loggedIn())
+}
+
 $(document).ready(() => {
   MainController.init();
 });
@@ -23,8 +29,20 @@ var MainController = function() {
   }
 
   function initEvents() {
+    initMenuEvents();
     initRowEvents();
     initCardEvents();
+  }
+
+  function initMenuEvents() {
+    $("#login-link").click(function(e) {
+      let onLogoutSuccess = function() {
+        window.location = "./login.html";
+      }
+
+      api.user.logout(onLogoutSuccess);
+    });
+    //TODO: initialise missing menu events
   }
 
   function initRowEvents(){

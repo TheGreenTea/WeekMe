@@ -5,6 +5,8 @@ out: ./styles/loginStyles.css, sourcemap: true, compress: true
 @corp_secondary: #F0F3BD;
 @corp_tertiary: #028090;
 
+@error_red: #fc8090;
+
 //Device sizes
 @xs-min: 480px;
 @sm-min: 768px;
@@ -36,7 +38,7 @@ body {
   padding: 10px;
 }
 
-#login-headline {
+.form-headline {
   color:#444400;
   margin:0 0 8px 0;
   font-size: 20px;
@@ -51,7 +53,7 @@ body {
   }
 }
 
-.login-form .form-control {
+.form-container .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
   border: 1px solid #d4d4d4;
   border-radius: 4px;
@@ -75,45 +77,58 @@ body {
   }
 }
 
-.login-form .form-group {
+.form-container .form-group {
   margin-bottom:10px;
 }
-.login-form {
+.form-container {
   text-align:center;
 }
-.forgot a {
-  color: #777777;
+.form-container a {
+  color: @corp_tertiary;
   font-size: 14px;
   text-decoration: underline;
 }
-.login-form .btn.btn-primary {
+.form-container .btn.btn-primary {
   background: @corp_main none repeat scroll 0 0;
   border-color: @corp_main;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 16px;
   width: 100%;
   height: 50px;
   line-height: 50px;
   padding: 0;
 }
 
-.login-form .btn.btn-primary:active {
+.message-container {
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.footer-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.error-message {
+  color: @error_red ;
+}
+
+.error-message-container {
+  border-color: @error_red !important;
+  border: 2px solid;
+}
+
+.form-container .btn.btn-primary:active {
   background: @corp_tertiary none repeat scroll 0 0 !important;
   border-color: @corp_tertiary !important;
 }
 
-
 .forgot {
   text-align: left;
-  margin-bottom:30px;
-}
-
-.back {
-  text-align: left;
-  margin-top:10px;
-}
-.back a {
-  color: #444444;
-  font-size: 13px;
-  text-decoration: none;
+  margin-bottom: 20px;
 }

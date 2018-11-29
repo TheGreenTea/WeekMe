@@ -18,6 +18,9 @@ function initUser(baseUrl, saveToken) {
 
         const data = await fetch(registerUrl, settings)
              .then(response => {
+               let token = response.headers.get('X-Auth');
+               saveToken(token)
+               //console.log("saved token: " + token + " -- on register")
                return response.json()
              })
              .then(json => {
@@ -29,8 +32,8 @@ function initUser(baseUrl, saveToken) {
                 return e
              });
 
-         return data
-    ;}
+         return data;
+    }
 
     // POST /users/login
     const loginUrl = userBaseUrl + '/login'
@@ -51,6 +54,7 @@ function initUser(baseUrl, saveToken) {
              .then(response => {
                let token = response.headers.get('X-Auth');
                saveToken(token)
+               //console.log("saved token: " + token + " -- on login")
                return response.json();
              })
              .then(json => {
@@ -80,11 +84,9 @@ function initUser(baseUrl, saveToken) {
 
         const data = await fetch(deleteTokenUrl, settings)
              .then(response => {
+               saveToken(null);
+               onSuccess();
                return response.json()
-             })
-             .then(json => {
-               onSuccess()
-               return json;
              })
              .catch(e => {
                console.log("error: " + e);
@@ -92,7 +94,7 @@ function initUser(baseUrl, saveToken) {
              });
 
          return data;
-       }
+    }
 
     // GET /users/me
     const profileUrl = userBaseUrl + '/me';
@@ -120,13 +122,45 @@ function initUser(baseUrl, saveToken) {
                 return e
              });
 
-         return data
-    ;}
+         return data;
+    }
+
+    // POST /users/resetpassword
+    const resetUrl = userBaseUrl + '/resetpassword';
+
+    const reset = async (email, onSuccess) => {
+      const resetBody = { email: email };
+      const settings = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(resetBody)
+        };
+
+        const data = await fetch(resetUrl, settings)
+             .then(response => {
+               return response.json()
+             })
+             .then(json => {
+               onSuccess(json)
+               return json;
+             })
+             .catch(e => {
+                console.log("error: " + e);
+                return e
+             });
+
+         return data;
+    }
+
     return {
       login,
       logout: deleteToken,
       register,
-      profile
+      profile,
+      requestPasswordReset: reset
     };
   }(baseUrl));
 
