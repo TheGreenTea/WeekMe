@@ -1,3 +1,9 @@
+if(!api.user.loggedIn()) {
+  window.location = "./login.html";
+} else {
+  console.log(api.user.loggedIn())
+}
+
 $(document).ready(() => {
   MainController.init();
 });
@@ -11,10 +17,6 @@ var MainController = function() {
   /* Public Methods */
 
   function init(){
-
-    if(!api.user.loggedIn()) {
-      window.location = "./login.html";
-    }
     setupContainers();
     initEvents();
     loadTasks();

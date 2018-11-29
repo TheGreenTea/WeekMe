@@ -1,6 +1,6 @@
 let api = (function () {
-  const baseUrl = 'http://192.168.178.20:3000/weekme'
-  //const baseUrl = 'https://weekme.herokuapp.com';
+  //const baseUrl = 'https://192.168.178.20:3000/weekme'
+  const baseUrl = 'https://weekme.herokuapp.com';
   //const baseUrl = 'http://localhost:3000';
 
   const tokenName = "token"
@@ -32,12 +32,14 @@ let api = (function () {
       user.profile(loadToken(), onSuccess)
     }
     const logout = async (onSuccess) => {
+      saveToken(null);
       user.logout(loadToken(), onSuccess)
     }
     const loggedIn = () => {
       let token = loadToken()
       console.log(token);
-      return loadToken() != null;
+      
+      return token != null;
     }
 
     return {
