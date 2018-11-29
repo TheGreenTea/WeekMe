@@ -17,7 +17,7 @@ var TemplateGenerator = function() {
   function getTaskCard(text, _id, color){
 
     return  `<div class="col-sm-6 col-lg-2">
-              <div class="card" id="${_id}"> 
+              <div class="card" id="${_id}">  
                 <div class="card-buttons">
                   <a class="button-edit-task"></a>
                   <a class="button-delete-task"></a>

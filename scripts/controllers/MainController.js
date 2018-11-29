@@ -29,9 +29,9 @@ var MainController = function() {
 
   function initRowEvents(){
     $(".day-row").click(function(e) {
-      if($("#card-selected").length){
-        moveCardToRow($("#card-selected"), $(this));
-        $("#card-selected").attr("id", "");
+      if($(".card-selected").length){
+        moveCardToRow($(".card-selected"), $(this));
+        $(".card-selected").removeClass("card-selected");
       }
     });
   }
@@ -42,11 +42,11 @@ var MainController = function() {
 
       e.stopPropagation();
 
-      if($("#card-selected").length){
-          moveCardToPositionOfOtherCard($("#card-selected"), this);
-          $("#card-selected").attr("id", "");
+      if($(".card-selected").length){
+          moveCardToPositionOfOtherCard($(".card-selected"), this);
+          $(".card-selected").removeClass("card-selected");
       } else {
-        $(this).attr("id", "card-selected");
+        $(this).addClass("card-selected");
       }
 
     });
