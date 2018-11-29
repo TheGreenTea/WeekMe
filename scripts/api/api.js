@@ -1,12 +1,17 @@
 let api = (function () {
-  const baseUrl = 'https://weekme.herokuapp.com';
+  const baseUrl = 'http://192.168.178.20:3000/weekme'
+  //const baseUrl = 'https://weekme.herokuapp.com';
   //const baseUrl = 'http://localhost:3000';
 
   const tokenName = "token"
 
   let saveToken = function (token) {
     const tokenName = "token"
-    document.cookie = tokenName + "=" + token + ";"  // + "secure=true"
+    if (token == null) {
+      document.cookie = tokenName + "=;"  // + "secure=true"
+    } else {
+      document.cookie = tokenName + "=" + token + ";"  // + "secure=true"
+    }
   }
 
   let loadToken = function () {
@@ -26,8 +31,13 @@ let api = (function () {
     const profile = async (onSuccess) => {
       user.profile(loadToken(), onSuccess)
     }
-    const logout =  async (onSuccess) => {
+    const logout = async (onSuccess) => {
       user.logout(loadToken(), onSuccess)
+    }
+    const loggedIn = () => {
+      let token = loadToken()
+      console.log(token);
+      return loadToken() != null;
     }
 
     return {
@@ -35,7 +45,8 @@ let api = (function () {
       login: user.login,
       requestPasswordReset: user.requestPasswordReset,
       logout: logout,
-      profile: profile
+      profile: profile,
+      loggedIn: loggedIn
     };
   }(baseUrl));
 
@@ -61,6 +72,8 @@ let api = (function () {
     const remove = async (id, onSuccess) => {
       task.delete(loadToken(), id, onSuccess);
     }
+
+
 
     return {
       open,

@@ -1,5 +1,12 @@
 out: ./styles/styles.css, sourcemap: true, compress: true
 
+//Colors
+//TODO: remove duplicate (loginStyles.less)
+@corp_main: #02C39A;
+@corp_secondary: #F0F3BD;
+@corp_tertiary: #028090;
+
+
 @menu-background: #e1e1e1;
 @text-color: #1A237E;
 @task-menu-bar-height: 40px;
@@ -71,4 +78,27 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   background-size: 30px 30px;
   width: 30px;
   height: 30px;
+}
+
+
+//navbar
+
+/* change the background color */
+.navbar-custom {
+    background-color: @corp_main;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,1);
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.75);
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
 }

@@ -87,6 +87,7 @@ function initUser(baseUrl, saveToken) {
                return response.json()
              })
              .then(json => {
+               saveToken(null);
                onSuccess()
                return json;
              })
