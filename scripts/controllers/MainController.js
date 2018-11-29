@@ -88,17 +88,16 @@ var MainController = function() {
   function setupTasks(tasksJson){
     let tasks = tasksJson['tasks'];
     tasks.forEach(function(task) {
-      let taskCard = TemplateGenerator.getTaskCard(task.content);
+      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
 
       let date = Date(taskCard.dueAt);
       //TODO: calculate dateDiff from difference between today and dueAt
       let dayDiff = 0
       //TODO: consider position
 
-      var as = taskCard.childNodes[1].childNodes[0];
-
-      $("#day-row-" + dayDiff).append(as); 
-      initCardEvents(as);
+      $("#day-row-" + dayDiff).append(taskCard);
+      initCardEvents($(`#${task._id}`));
+      // initCardEvents();
     });
     //alert(taskHtml);
 
