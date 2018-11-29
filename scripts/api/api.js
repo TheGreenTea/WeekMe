@@ -6,7 +6,7 @@ let api = (function () {
 
   let saveToken = function (token) {
     const tokenName = "token"
-    document.cookie = tokenName + "=" + token + ";" + ";path=/" // + ";"  + "secure=true"
+    document.cookie = tokenName + "=" + token + ";"  // + "secure=true"
   }
 
   let loadToken = function () {

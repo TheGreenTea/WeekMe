@@ -18,6 +18,9 @@ function initUser(baseUrl, saveToken) {
 
         const data = await fetch(registerUrl, settings)
              .then(response => {
+               let token = response.headers.get('X-Auth');
+               saveToken(token)
+               //console.log("saved token: " + token + " -- on register")
                return response.json()
              })
              .then(json => {
@@ -51,6 +54,7 @@ function initUser(baseUrl, saveToken) {
              .then(response => {
                let token = response.headers.get('X-Auth');
                saveToken(token)
+               //console.log("saved token: " + token + " -- on login")
                return response.json();
              })
              .then(json => {
