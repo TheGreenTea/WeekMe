@@ -84,12 +84,9 @@ function initUser(baseUrl, saveToken) {
 
         const data = await fetch(deleteTokenUrl, settings)
              .then(response => {
-               return response.json()
-             })
-             .then(json => {
                saveToken(null);
-               onSuccess()
-               return json;
+               onSuccess();
+               return response.json()
              })
              .catch(e => {
                console.log("error: " + e);

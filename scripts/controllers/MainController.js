@@ -1,5 +1,5 @@
 if(!api.user.loggedIn()) {
-  window.location = "./login.html";
+  //window.location = "./login.html";
 } else {
   console.log(api.user.loggedIn())
 }

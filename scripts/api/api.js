@@ -6,7 +6,6 @@ let api = (function () {
   const tokenName = "token"
 
   let saveToken = function (token) {
-    const tokenName = "token"
     if (token == null) {
       document.cookie = tokenName + "=;"  // + "secure=true"
     } else {
@@ -19,7 +18,7 @@ let api = (function () {
     var properties = decodedCookie.split(';');
 
     for(var i = 0; i < properties.length; i++) {
-      if (properties[i].indexOf(tokenName) == 0) {
+      if (properties[i].trim().indexOf(tokenName) == 0) {
         return properties[i].replace(tokenName + "=", '');
       }
     }
@@ -32,13 +31,12 @@ let api = (function () {
       user.profile(loadToken(), onSuccess)
     }
     const logout = async (onSuccess) => {
-      saveToken(null);
       user.logout(loadToken(), onSuccess)
     }
     const loggedIn = () => {
       let token = loadToken()
       console.log(token);
-      
+
       return token != null;
     }
 
