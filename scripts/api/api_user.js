@@ -1,7 +1,6 @@
 function initUser(baseUrl, saveToken) {
   return user = (function (baseUrl) {
     const userBaseUrl = baseUrl + '/users';
-    console.log(userBaseUrl)
 
     // POST /users/
     const registerUrl = userBaseUrl

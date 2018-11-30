@@ -37,7 +37,7 @@ let api = (function () {
       let token = loadToken()
       console.log(token);
 
-      return token != null;
+      return token ? true: false;
     }
 
     return {

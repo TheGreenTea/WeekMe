@@ -1,7 +1,5 @@
 if(!api.user.loggedIn()) {
-  //window.location = "./login.html";
-} else {
-  console.log(api.user.loggedIn())
+  window.location = "./login.html";
 }
 
 $(document).ready(() => {
