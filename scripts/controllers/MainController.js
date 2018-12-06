@@ -44,10 +44,10 @@ var MainController = function() {
   }
 
   function initRowEvents(){
-    $(".day-row").click(function(e) {
+    $(".task-row").click(function(e) {
       if($(".card-selected").length){
         moveCardToRow($(".card-selected"), $(this));
-        $(".card-selected").removeClass("card-selected");
+        $(".card-selected").removeClass("card-selected"); 
       }
     });
   }
@@ -86,7 +86,7 @@ var MainController = function() {
   }
 
   function setupLabels(){
-    $("#content-main .row").each(function (index){
+    $("#content-main .day-row").each(function (index){
       const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
       let labelContainer = document.createElement('div');
