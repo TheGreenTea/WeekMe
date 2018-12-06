@@ -47,7 +47,7 @@ var MainController = function() {
     $(".task-row").click(function(e) {
       if($(".card-selected").length){
         moveCardToRow($(".card-selected"), $(this));
-        $(".card-selected").removeClass("card-selected"); 
+        $(".card-selected").removeClass("card-selected");
       }
     });
   }
@@ -69,7 +69,13 @@ var MainController = function() {
 
     $(card).find(".button-delete-task").click(function(e) {
       e.stopPropagation();
-      $(this).parent().parent().parent().remove();
+      const taskContainer= $(this).parent().parent().parent();
+      const taskId = $(this).parent().parent().attr("id");
+
+      api.task.remove(taskId, () => {
+        $(taskContainer).remove();
+      });   
+
     });
 
     $(card).find(".button-edit-task").click(function(e) {
