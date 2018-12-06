@@ -129,11 +129,16 @@ var MainController = function() {
     tasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
 
-      let utcDateStamp = new Date(task.dueAt);
-      let dayDiff = DateFormatter.getDayDiff(utcDateStamp)
       //TODO: consider position
+      console.log(task.dueAt)
+      if (task.dueAt === null) {
+        $("#stack-row").append(taskCard);
+      } else {
+        let utcDateStamp = new Date(task.dueAt);
+        let dayDiff = DateFormatter.getDayDiff(utcDateStamp)
+        $("#day-row-" + dayDiff).append(taskCard);
+      }
 
-      $("#day-row-" + dayDiff).append(taskCard);
       initCardEvents($(`#${task._id}`));
       // initCardEvents();
     });
