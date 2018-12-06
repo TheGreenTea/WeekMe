@@ -1,0 +1,77 @@
+@import "compass/css3";
+
+// Entypo
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+[class*="entypo-"]:before {
+  font: 1.4em 'entypo', sans-serif;
+}
+
+// Styles
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.picker-container {
+    /* margin: 5em auto 0; */
+    width: 100%;
+}
+
+.select-wrapper {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    color: #aaa;
+    cursor: pointer;
+    float: left;
+    overflow: hidden;
+    padding-right: 3em;
+    position: relative;
+    width: 100%;
+}
+
+.select {
+    -webkit-appearance: none;
+    background-color: #eee;
+    border-width: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 1em 1em;
+    width: 100%;
+    width: calc(100% + 2em);
+    &:focus {
+        outline: none;
+    }
+}
+
+.select-icon {
+    position: absolute;
+    top: .8em;
+    right: 1em;
+}
+
+.new-task-textarea {
+  width: 100%
+}
+
+.hiddenElement{
+    display: none;
+    /* visibility: hidden; */
+    /* background-color: blue; */
+}
+
+.visibleElement{
+    display: block;
+    /* visibility: visible; */
+    /* background-color: red; */
+}
+
+#btnChangeColor{
+  margin-left: auto;
+}
