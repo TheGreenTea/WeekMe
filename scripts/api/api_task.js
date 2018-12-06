@@ -160,6 +160,7 @@ function initTask(baseUrl) {
                   }
             };
 
+
             const data = await fetch(deleteTaskUrl, settings)
                  .then(response => {
                    return response.json()
