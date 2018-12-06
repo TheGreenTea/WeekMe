@@ -65,11 +65,11 @@
             <button type="button" id="btnToday" class="btn btn-primary">
               today
             </button>
-            <button type="button" id="btnDay" class="btn btn-primary">
-              Day
-            </button>
             <button type="button" id="btnPickDay" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
               another day
+            </button>
+            <button type="button" id="btnDone" class="btn btn-primary">
+              Done
             </button>
           </div>
 
@@ -90,17 +90,49 @@
 
         <!-- Modal body -->
         <div class="modal-body" id="pickerPopup">
-
+          <!-- Hier wird der Day Picker generiert -->
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="btnBackToEditTask" data-toggle="modal" data-target="#newTaskStepOne">
+          <button type="button" class="btn btn-secondary btn-third" id="btnBackToEditTask" data-toggle="modal" data-target="#newTaskStepOne">
             back
           </button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
-          <button type="button" id="btnConfirmTask" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
-            confirm task
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button> -->
+          <button type="button" id="btnConfirmTask" class="btn btn-primary btn-first">
+            Done
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- New task color picker -->
+  <div class="modal fade" id="newTaskColorPicker">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 id="modalHeadlineColorPicker" class="modal-title">Choose the a color for your task</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <button type="button" class="btn btn-color-picker btn-white" id="btnColorWhite"></button>
+          <button type="button" class="btn btn-color-picker btn-yellow" id="btnColorYellow"></button>
+          <button type="button" class="btn btn-color-picker btn-red" id="btnColorRed"></button>
+          <button type="button" class="btn btn-color-picker btn-purple" id="btnColorPurple"></button>
+          <button type="button" class="btn btn-color-picker btn-blue" id="btnColorBlue"></button>
+          <button type="button" class="btn btn-color-picker btn-green" id="btnColorGreen"></button>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btnBackColorPicker" data-toggle="modal" data-target="#newTaskStepOne">
+            back
           </button>
         </div>
 
