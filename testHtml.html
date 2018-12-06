@@ -27,9 +27,15 @@
 </head>
 <body>
 
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepOne">
+  <!-- Button to Open the Modal  data-toggle="modal" data-target="#newTaskStepOne" -->
+  <button id="btnNewTask" type="button" class="btn btn-primary">
     New task
+  </button>
+  <button id="btnNewTaskDay" type="button" class="btn btn-primary">
+    New task at day
+  </button>
+  <button id="btnEditTaskDay" type="button" class="btn btn-primary">
+    Edit task at day
   </button>
 
   <!-- New task step 1 -->
@@ -39,25 +45,28 @@
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create new task</h4>
+            <h4 id="modalHeadlineStepOne" class="modal-title">Create new task</h4>
+            <button type="button" id="btnChangeColor" class="btn btn-secondary">
+              change color
+            </button>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
           <!-- Modal body -->
           <div class="modal-body">
-            <textarea rows="4" cols="50" class="new-task-textarea">Task description...</textarea>
+            <textarea rows="4" cols="50" class="new-task-textarea" placeholder="Task description..."></textarea>
           </div>
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" id="btnChangeColor" class="btn btn-secondary">
-              change color
-            </button>
             <button type="button" id="btnStack" class="btn btn-tertiary">
               stack
             </button>
             <button type="button" id="btnToday" class="btn btn-primary">
               today
+            </button>
+            <button type="button" id="btnDay" class="btn btn-primary">
+              Day
             </button>
             <button type="button" id="btnPickDay" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
               another day
@@ -75,7 +84,7 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Choose the stack or a day for your task</h4>
+          <h4 id="modalHeadlineStepTwo" class="modal-title">Choose the stack or a day for your task</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -90,7 +99,7 @@
             back
           </button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
-          <button type="button" id="btnConfirmNewTask" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
+          <button type="button" id="btnConfirmTask" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
             confirm task
           </button>
         </div>

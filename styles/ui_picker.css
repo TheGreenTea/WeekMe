@@ -71,3 +71,7 @@ body {
     /* visibility: visible; */
     /* background-color: red; */
 }
+
+#btnChangeColor{
+  margin-left: auto;
+}
