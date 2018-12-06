@@ -45,11 +45,21 @@ var MainController = function() {
 
   function initRowEvents(){
     $(".task-row").click(function(e) {
-      if($(".card-selected").length){
-        moveCardToRow($(".card-selected"), $(this));
-        $(".card-selected").removeClass("card-selected");
-      }
+      moveSelectedCardToRow($(this));
     });
+
+    $(".label-container").click(function(e) {
+      const index = $("#content-main").find(".label-container").index(this);
+      const row = $("#content-main").find(`.row:eq(${index})`);
+      moveSelectedCardToRow($(row)); 
+    });
+  }
+
+  function moveSelectedCardToRow(row){
+    if($(".card-selected").length){
+      moveCardToRow($(".card-selected"), $(row));
+      $(".card-selected").removeClass("card-selected");
+    }
   }
 
   function initCardEvents(card = ".card"){
