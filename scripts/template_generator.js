@@ -10,7 +10,7 @@ var TemplateGenerator = function() {
 
   /* Public Methods */
 
-  function init(){
+  function init(){ 
 
   }
 
