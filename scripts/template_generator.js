@@ -10,17 +10,8 @@ var TemplateGenerator = function() {
 
   /* Public Methods */
 
-  function init(){ 
+  function init(){
 
-  }
-
-  function getAddButton(id, size, color) {
-    return `<div class="add-day-button">
-              <span id="${id}", class="add-day-icon fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
-              </span>
-            </div>`;
   }
 
   function getTaskCard(text, _id, color) {
@@ -48,8 +39,7 @@ var TemplateGenerator = function() {
 
   return {
     init,
-    getTaskCard,
-    getAddButton
+    getTaskCard
   }
 
 }();
