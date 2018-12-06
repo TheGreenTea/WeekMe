@@ -48,8 +48,8 @@ var MainController = function() {
       moveSelectedCardToRow($(this));
     });
 
-    $(".label-container").click(function(e) {
-      const index = $("#content-main").find(".label-container").index(this);
+    $(".day-header").click(function(e) {
+      const index = $("#content-main").find(".day-header").index(this);
       const row = $("#content-main").find(`.row:eq(${index})`);
       moveSelectedCardToRow($(row));
     });
@@ -123,8 +123,9 @@ var MainController = function() {
       const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
       const addToDayButton = TemplateGenerator.getAddButton();
-      let labelContainer = document.createElement('div');
-      labelContainer.setAttribute('class', 'label-container');
+
+      let labelContainer = document.querySelectorAll(".day-header")[index];
+
       labelContainer.appendChild(dayLabel);
       labelContainer.appendChild(dateLabel);
       console.log(addToDayButton);
