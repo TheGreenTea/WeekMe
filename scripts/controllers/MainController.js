@@ -74,7 +74,7 @@ var MainController = function() {
 
       api.task.remove(taskId, () => {
         $(taskContainer).remove();
-      });   
+      });
 
     });
 
@@ -85,8 +85,25 @@ var MainController = function() {
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
+
+    if(doCardsHaveSameRow(card, otherCard)){
+
+      const mutalRow = $(card).parent().parent();
+      const cardIndex = $(mutalRow).find(".card").index(card);
+      const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+
+      if(cardIndex < otherCardIndex){
+        $(card).parent().insertAfter($(otherCard).parent());
+        return;
+      }
+    }
     $(card).parent().insertBefore($(otherCard).parent());
   }
+
+  function doCardsHaveSameRow(card, otherCard){
+    return $(card).parent().parent().is($(otherCard).parent().parent());
+  }
+
   function moveCardToRow(card, row){
     $(row).append($(card).parent());
   }
