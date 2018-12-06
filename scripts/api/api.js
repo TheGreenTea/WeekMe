@@ -44,6 +44,7 @@ let api = (function () {
       register: user.register,
       login: user.login,
       requestPasswordReset: user.requestPasswordReset,
+      reset: user.reset,
       logout: logout,
       profile: profile,
       loggedIn: loggedIn
@@ -72,8 +73,6 @@ let api = (function () {
     const remove = async (id, onSuccess) => {
       task.delete(loadToken(), id, onSuccess);
     }
-
-
 
     return {
       open,

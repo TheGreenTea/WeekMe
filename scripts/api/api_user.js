@@ -125,10 +125,37 @@ function initUser(baseUrl, saveToken) {
     }
 
     // POST /users/resetpassword
-    const resetUrl = userBaseUrl + '/resetpassword';
+    const requestResetUrl = userBaseUrl + '/resetpassword';
 
-    const reset = async (email, onSuccess) => {
-      const resetBody = { email: email };
+    const requestReset = async (email, onSuccess) => {
+      const requestResetBody = { email: email };
+      const settings = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestResetBody)
+        };
+
+        const data = await fetch(requestResetUrl, settings)
+             .then(response => {
+               onSuccess();
+               return response.json()
+             })
+             .catch(e => {
+               console.log("error: " + e);
+               return e
+             });
+
+         return data;
+    }
+
+    // POST /users/me/resetpassword
+    const resetUrl = userBaseUrl + '/newpassword';
+
+    const reset = async (resetcode, password, onSuccess) => {
+      const resetBody = { password: password, resetcode: resetcode };
       const settings = {
             method: 'POST',
             headers: {
@@ -140,15 +167,12 @@ function initUser(baseUrl, saveToken) {
 
         const data = await fetch(resetUrl, settings)
              .then(response => {
+               onSuccess();
                return response.json()
              })
-             .then(json => {
-               onSuccess(json)
-               return json;
-             })
              .catch(e => {
-                console.log("error: " + e);
-                return e
+               console.log("error: " + e);
+               return e
              });
 
          return data;
@@ -159,7 +183,8 @@ function initUser(baseUrl, saveToken) {
       logout: deleteToken,
       register,
       profile,
-      requestPasswordReset: reset
+      requestPasswordReset: requestReset,
+      reset: reset
     };
   }(baseUrl));
 
