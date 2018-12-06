@@ -60,18 +60,57 @@ body {
   width: 100%
 }
 
-.hiddenElement{
-    display: none;
-    /* visibility: hidden; */
-    /* background-color: blue; */
+.btn-first {
+  background-color: #02C39A;
+  border-color: black;
 }
 
-.visibleElement{
-    display: block;
-    /* visibility: visible; */
-    /* background-color: red; */
+.btn-second {
+  background-color: #F0F3BD;
+  border-color: black;
+}
+
+.btn-third {
+  background-color: #028090;
+  border-color: black;
 }
 
 #btnChangeColor{
   margin-left: auto;
+}
+
+textarea {
+   resize: none;
+}
+
+.btn-color-picker{
+  height: 4em;
+  width: 4em;
+  border-style: solid;
+  border-color: black;
+  border-radius: 1em;
+}
+
+#btnColorWhite, .white{
+  background-color: white;
+}
+
+#btnColorYellow, .yellow{
+  background-color: #eeff7f;
+}
+
+#btnColorRed, .red{
+  background-color: #ff7f7f;
+}
+
+#btnColorPurple, .purple{
+  background-color: #f27fff;
+}
+
+#btnColorBlue, .blue{
+  background-color: #857fff;
+}
+
+#btnColorGreen, .green{
+  background-color: #7fff85;
 }
