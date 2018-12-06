@@ -51,7 +51,7 @@ var MainController = function() {
     $(".label-container").click(function(e) {
       const index = $("#content-main").find(".label-container").index(this);
       const row = $("#content-main").find(`.row:eq(${index})`);
-      moveSelectedCardToRow($(row)); 
+      moveSelectedCardToRow($(row));
     });
   }
 
@@ -136,25 +136,29 @@ var MainController = function() {
 
   function setupTasks(tasksJson){
     let tasks = tasksJson['tasks'];
-    tasks.forEach(function(task) {
+
+    //Add stack tasksJson
+    let stackTasks = tasks.filter(task => task.dueAt == null);
+    let sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
+    sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
-
-      //TODO: consider position
-      console.log(task.dueAt)
-      if (task.dueAt === null) {
-        $("#stack-row").append(taskCard);
-      } else {
-        let utcDateStamp = new Date(task.dueAt);
-        let dayDiff = DateFormatter.getDayDiff(utcDateStamp)
-        $("#day-row-" + dayDiff).append(taskCard);
-      }
-
-      initCardEvents($(`#${task._id}`));
-      // initCardEvents();
+      $("#stack-row").append(taskCard);
     });
-    //alert(taskHtml);
 
+    //Add day-row tasks
+    for (i = 0; i < 7; i++) {
+      let filteredTasks = tasks.filter(task => DateFormatter.getDayDiff(new Date(task.dueAt)) == i);
+      let sortedTasks = filteredTasks.sort(function(a, b){return a.position - b.position});
 
+      sortedTasks.forEach(function(task) {
+        let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
+        let utcDateStamp = new Date(task.dueAt);
+        let dayDiff = DateFormatter.getDayDiff(utcDateStamp);
+        $("#day-row-" + dayDiff).append(taskCard);
+
+        initCardEvents($(`#${task._id}`));
+      });
+    }
   }
 
   /* Public Interface */
