@@ -122,15 +122,11 @@ var MainController = function() {
     $("#content-main .day-row").each(function (index){
       const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
-      const addToDayButton = TemplateGenerator.getAddButton();
+      let dayHeader = document.querySelectorAll(".day-header")[index];
 
-      let labelContainer = document.querySelectorAll(".day-header")[index];
-
-      labelContainer.appendChild(dayLabel);
-      labelContainer.appendChild(dateLabel);
-      console.log(addToDayButton);
-      $( labelContainer ).append(addToDayButton);
-      $( labelContainer ).insertBefore($(this));
+      dayHeader.appendChild(dayLabel);
+      dayHeader.appendChild(dateLabel); 
+      $( dayHeader ).insertBefore($(this));
     });
   }
 
