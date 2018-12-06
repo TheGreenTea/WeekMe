@@ -44,7 +44,7 @@ var MainController = function() {
   }
 
   function initRowEvents(){
-    $(".day-row").click(function(e) {
+    $(".task-row").click(function(e) {
       if($(".card-selected").length){
         moveCardToRow($(".card-selected"), $(this));
         $(".card-selected").removeClass("card-selected");
@@ -69,7 +69,13 @@ var MainController = function() {
 
     $(card).find(".button-delete-task").click(function(e) {
       e.stopPropagation();
-      $(this).parent().parent().parent().remove();
+      const taskContainer= $(this).parent().parent().parent();
+      const taskId = $(this).parent().parent().attr("id");
+
+      api.task.remove(taskId, () => {
+        $(taskContainer).remove();
+      });
+
     });
 
     $(card).find(".button-edit-task").click(function(e) {
@@ -79,14 +85,31 @@ var MainController = function() {
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
+
+    if(doCardsHaveSameRow(card, otherCard)){
+
+      const mutalRow = $(card).parent().parent();
+      const cardIndex = $(mutalRow).find(".card").index(card);
+      const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+
+      if(cardIndex < otherCardIndex){
+        $(card).parent().insertAfter($(otherCard).parent());
+        return;
+      }
+    }
     $(card).parent().insertBefore($(otherCard).parent());
   }
+
+  function doCardsHaveSameRow(card, otherCard){
+    return $(card).parent().parent().is($(otherCard).parent().parent());
+  }
+
   function moveCardToRow(card, row){
     $(row).append($(card).parent());
   }
 
   function setupLabels(){
-    $("#content-main .row").each(function (index){
+    $("#content-main .day-row").each(function (index){
       const dayLabel = DateFormatter.createDayLabel(index);
       const dateLabel = DateFormatter.createDateLabel(index);
       let labelContainer = document.createElement('div');
