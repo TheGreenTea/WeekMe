@@ -83,6 +83,39 @@ var LoginController = function() {
   }
 
   function validateResetForm() {
+    let inputPassword = $("#input-password");
+    if (!inputPassword.val()) {
+      inputPassword.addClass('error-message-container')
+      showErrorMessage("Missing password");
+
+      return false
+    }
+    inputPassword.removeClass('error-message-container');
+
+    let repeatPassword = $("#input-repeat-password");
+    if (!repeatPassword.val()) {
+      repeatPassword.addClass('error-message-container')
+      showErrorMessage("Missing password");
+
+      return false
+    }
+
+    if (repeatPassword.val() != inputPassword.val()) {
+      inputPassword.addClass('error-message-container')
+      repeatPassword.addClass('error-message-container')
+      showErrorMessage("Passwords don't match");
+
+      return false
+    }
+    inputPassword.removeClass('error-message-container');
+    repeatPassword.removeClass('error-message-container');
+
+    $(".message-container").hide();
+
+    return true
+  }
+
+  function validateRequestResetForm() {
     let inputEmail = $("#input-email");
     if (!inputEmail[0].checkValidity()) {
       inputEmail.addClass('error-message-container')
@@ -99,7 +132,7 @@ var LoginController = function() {
 
   function initEvents() {
     $("#forgot-password-link").click(function(e) {
-        window.location = "./reset-password.html";
+        window.location = "./request-reset.html";
     });
 
     $("#login-link").click(function(e) {
@@ -138,16 +171,35 @@ var LoginController = function() {
       }
     });
 
-    $("#reset-button").click(function(e) {
+    $("#request-reset-button").click(function(e) {
 
-      if (validateResetForm()) {
+      if (validateRequestResetForm()) {
         let email = $("#input-email").val();
 
-        let onResetSuccess = function(json) {
+        let onRequestResetSuccess = function(json) {
           showInfoMessage("An email was sent");
         }
 
-        api.user.requestPasswordReset(email, onResetSuccess);
+        api.user.requestPasswordReset(email, onRequestResetSuccess);
+      }
+    });
+
+    $("#reset-password-button").click(function(e) {
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const resetCode = urlParams.get('resetcode');
+      if (!resetCode) {
+        showErrorMessage("Missing code - invalid link")
+      }
+
+      if (validateResetForm()) {
+        let password = $("#input-password").val();
+
+        let onResetSuccess = function(json) {
+          showInfoMessage("Password was reset!");
+        }
+
+        api.user.reset(resetCode, password, onResetSuccess);
       }
     });
 

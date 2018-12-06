@@ -16,7 +16,7 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 
 #content-main{
   background: #bbd2f7;
-  padding: 5px 5px 0px 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .card {
@@ -43,21 +43,21 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 
 .day-row, .stack-row {
   background: #eaedf2;
-  margin-top: 7px;
   min-height: 82px;
 }
 
-.label-container {
+.day-header {
   height: 40px;
-  // padding: 8px, 5px, 0px, 5px;
 }
 
 .day-label {
  float: left;
+ margin-top: 10px;
 }
 
 .date-label {
   float: right;
+  margin-top: 10px;
 }
 
 .card-buttons {
@@ -80,6 +80,15 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   background-size: 30px 30px;
   width: 30px;
   height: 30px;
+}
+
+.add-day-icon {
+  color: @corp_main;
+  font-size: 10px;
+  height: 40px;
+  width: 76%;
+  position: absolute; 
+  left: 12%;
 }
 
 
