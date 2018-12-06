@@ -71,12 +71,32 @@ var DateFormatter = function() {
   }
 
 
+  function getTimeStamp(dayDiff) {
+      let now = new Date;
+      let utcOriginal = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(),
+        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+      let utcAdapted = utcOriginal.addDays(dayDiff);
+      let utcDayTime = Date.UTC(utcAdapted.getUTCFullYear(),utcAdapted.getUTCMonth(), utcAdapted.getUTCDate(), 0, 0, 0, 0);
+
+      return utcDayTime
+  }
+
+  function getDayDiff(utcTimestamp) {
+    let utcDay = new Date(utcTimestamp).getUTCDate()
+    let dayDiff = utcDay - new Date().getUTCDate()
+
+    return dayDiff
+  }
+
   /* Public Interface */
 
   return {
     init,
     createDayLabel,
-    createDateLabel
+    createDateLabel,
+    getTimeStamp,
+    getDayDiff
   }
 
 }();
