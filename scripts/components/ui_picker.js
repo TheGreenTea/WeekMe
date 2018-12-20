@@ -210,6 +210,7 @@ var PickerGenerator = function() {
 
   function createNewTaskAtDay(day, dayString){
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
+    disableButtonToConfirmTask();
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
@@ -226,6 +227,24 @@ var PickerGenerator = function() {
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
+  }
+
+  function disableButtonToConfirmTask(){
+    if($(".new-task-textarea").val() === ""){
+      $('#btnDone').prop('disabled', true);
+      $('#btnPickDay').prop('disabled', true);
+      $('#btnStack').prop('disabled', true);
+      $('#btnToday').prop('disabled', true);
+    }
+  }
+
+  function enableButtonToConfirmTask(){
+    if($(".new-task-textarea").val() != ""){
+      $('#btnDone').prop('disabled', false);
+      $('#btnPickDay').prop('disabled', false);
+      $('#btnStack').prop('disabled', false);
+      $('#btnToday').prop('disabled', false);
+    }
   }
 
   function inkTaskInColor(color){
@@ -327,6 +346,11 @@ var PickerGenerator = function() {
     $("#btnPickDay").click(() => {
       $("#newTaskStepOne").modal("hide");
       $("#newTaskStepTwo").modal({backdrop: 'static'}, "show");
+    });
+
+    $(".new-task-textarea").on("change", () => {
+      enableButtonToConfirmTask();
+      disableButtonToConfirmTask();
     });
 
 // Step 2
