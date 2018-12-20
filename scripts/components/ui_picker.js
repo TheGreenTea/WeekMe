@@ -22,7 +22,7 @@ var PickerGenerator = function() {
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 id="modalHeadlineStepOne" class="modal-title">Create new task</h4>
-              <button type="button" id="btnChangeColor" class="btn btn-secondary">
+              <button type="button" id="btnChangeColor" class="btn btn-secondary btn-third">
                 change color
               </button>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -30,21 +30,21 @@ var PickerGenerator = function() {
 
             <!-- Modal body -->
             <div class="modal-body">
-              <textarea rows="4" cols="50" class="new-task-textarea" placeholder="Task description..."></textarea>
+              <textarea rows="4" cols="50" maxlength="80" class="new-task-textarea" placeholder="Task description..."></textarea>
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" id="btnStack" class="btn btn-tertiary">
+              <button type="button" id="btnStack" class="btn btn-primary btn-first">
                 stack
               </button>
-              <button type="button" id="btnToday" class="btn btn-primary">
+              <button type="button" id="btnToday" class="btn btn-primary btn-first">
                 today
               </button>
-              <button type="button" id="btnPickDay" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
+              <button type="button" id="btnPickDay" class="btn btn-secondary btn-third" data-toggle="modal" data-target="#newTaskStepTwo">
                 another day
               </button>
-              <button type="button" id="btnDone" class="btn btn-primary">
+              <button type="button" id="btnDone" class="btn btn-primary btn-first">
                 Done
               </button>
             </div>
@@ -92,7 +92,6 @@ var PickerGenerator = function() {
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 id="modalHeadlineColorPicker" class="modal-title">Choose the a color for your task</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
           <!-- Modal body -->
@@ -107,7 +106,7 @@ var PickerGenerator = function() {
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="btnBackColorPicker" data-toggle="modal" data-target="#newTaskStepOne">
+            <button type="button" class="btn btn-secondary btn-third" id="btnBackColorPicker" data-toggle="modal" data-target="#newTaskStepOne">
               back
             </button>
           </div>
@@ -146,8 +145,7 @@ var PickerGenerator = function() {
     var day = new Date().getDay();
     let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let options = ["Stack"];
-    // If Today: 4 (Thursday)
-    // --> options: Stack / Today / 5 / 6 / 0 / 1 / 2 / 3 /
+
     for(let i = day, counter = 0; counter < 7; i=(i+1)%7, counter++){
       if(i === day){
         options.push("Today");
@@ -158,68 +156,85 @@ var PickerGenerator = function() {
     return options;
   }
 
+  function getSelectedDay(dayDiff){
+    let selected = "";
+    if(dayDiff === null){
+      selected = 0;
+    } else if(dayDiff >= 0 && dayDiff < 7){
+      selected = dayDiff + 1;
+    } else {
+      selected = 2;
+    }
+    return selected;
+  }
+
   function insertModal(){
     let newModal = createModal();
     $('body').append(newModal);
   }
 
-  function insertPicker(){
+  function insertPicker(dayDiff){
     let options = createOptions();
-    let newPicker = createPicker(2, options);
+    let selected = getSelectedDay(dayDiff);
+    let newPicker = createPicker(selected, options);
     $("#pickerPopup").append(newPicker);
   }
 
-  function showPicker(day, task){
-    console.log("day", day, "task", task); 
+  function showPicker(dayDiff, task){
     insertModal();
-    insertPicker();
+    insertPicker(dayDiff);
     bindListeners();
-    if(!day && !task){
+    let dayString = DateFormatter.getDayName(dayDiff);
+
+    if(dayDiff === null && !task){
       createNewTaskOnStack();
-    } else if(!task && day){
-      createNewTaskAtDay(day);
-    } else if(day && task){
-      editExistingTask(day, task);
+    } else if(!task && dayDiff){
+      createNewTaskAtDay(dayDiff, dayString);
+    } else if((dayDiff >= 0 && dayDiff < 7) && task){
+      editExistingTask(dayDiff, dayString, task);
     } else {
       createNewTask();
     }
   }
 
   function createNewTaskOnStack(){
-    $("#newTaskStepOne").modal("show");
+    $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
     $('#modalHeadlineStepOne').html("Create new task on stack");
   }
 
-  function createNewTaskAtDay(day){
-    $("#newTaskStepOne").modal("show");
+  function createNewTaskAtDay(day, dayString){
+    $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
-    $('#modalHeadlineStepOne').html("Create new task at day");
+    $('#modalHeadlineStepOne').html("Create new task at " + dayString);
   }
 
-  function editExistingTask(day, task){
-    $("#newTaskStepOne").modal("show");
+  function editExistingTask(day, dayString, task){
+    $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(task.content);
-    $('#modalHeadlineStepOne').html("Edit existing task");
+    $('#modalHeadlineStepOne').html("Edit task at " + dayString);
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
   }
 
   function createNewTask(){
-    $("#newTaskStepOne").modal("show");
+    $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('#btnToday').show();
     $('#btnStack').show();
     $('#btnDone').hide();
     $('#modalHeadlineStepOne').html("Create new task");
   }
 
-  function confirmTask($element, content, day, color){
-    console.log("Text: " + content + " - At day: " + day);
+  function confirmTask(content, day, color){
+    if(!color){
+      color = 0;
+    }
+    console.log("Text: " + content + " - At day: " + day + " - with color: " + color);
   }
 
   function resetDayPicker(){
@@ -229,15 +244,12 @@ var PickerGenerator = function() {
 
   function closeColorPicker(taskContent){
     $("#newTaskColorPicker").modal("hide");
-    $("#newTaskStepOne").modal("show");
+    $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(taskContent);
   }
 
   function checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown){
     if(!isStepOneShown && !isStepTwoShown && !isColorPickerShown){
-      /*var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content');*/
       removeModal();
     }
   }
@@ -271,39 +283,38 @@ var PickerGenerator = function() {
     $("#btnToday").click(() => {
       $("#newTaskStepOne").modal("hide");
       var content = $('.new-task-textarea').val();
-      confirmTask("", content, 0,"");
+      confirmTask(content, 0, taskColor);
     });
 
     $("#btnStack").click(() => {
       $("#newTaskStepOne").modal("hide");
       var content = $('.new-task-textarea').val();
-      confirmTask("", content, "Stack","");
+      confirmTask(content, "Stack", taskColor);
     });
 
     $("#btnDone").click(() => {
       $("#newTaskStepOne").modal("hide");
       var content = $('.new-task-textarea').val();
-      let day = 1; // hier muss der vom Klick übergebene Tag eingefügt werden (jenachdem in welchem Tag der Task angeklickt wurde)
-      confirmTask("", content, day,"");
+      let day = $("select option:selected").val();
+      confirmTask(content, day, taskColor);
     });
 
     $("#btnPickDay").click(() => {
       $("#newTaskStepOne").modal("hide");
-      $("#newTaskStepTwo").modal("show");
+      $("#newTaskStepTwo").modal({backdrop: 'static'}, "show");
     });
-
 
 // Step 2
     $("#btnBackToEditTask").click(() => {
       $("#newTaskStepTwo").modal("hide");
-      $("#newTaskStepOne").modal("show");
+      $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
       $('.new-task-textarea').val(taskContent);
     });
 
     $("#btnConfirmTask").click(() => {
       $("#newTaskStepTwo").modal("hide");
       let day = $("select option:selected").val();
-      confirmTask("", taskContent, day,"");
+      confirmTask(taskContent, day, taskColor);
     });
 
     $("#newTaskStepTwo").on('show.bs.modal', function () {
@@ -316,11 +327,10 @@ var PickerGenerator = function() {
       checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
     });
 
-
 // Color Picker >>
     $("#btnChangeColor").click(() => {
       $("#newTaskStepOne").modal("hide");
-      $("#newTaskColorPicker").modal("show");
+      $("#newTaskColorPicker").modal({backdrop: 'static'}, "show");
       taskContent = $('.new-task-textarea').val();
     });
 
