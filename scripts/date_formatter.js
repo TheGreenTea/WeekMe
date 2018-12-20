@@ -51,8 +51,10 @@ var DateFormatter = function() {
     return dateString.split("-").reverse().join('.');
   }
 
-  function getDayName(dayDiff) {
-    var date = new Date();
+  function getDayName(dayDiffRaw) {
+    const dayDiff = parseInt(dayDiffRaw);
+
+    var date = new Date();  
     if (dayDiff != null) {
       date = date.addDays(dayDiff)
     }

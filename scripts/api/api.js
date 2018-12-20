@@ -55,23 +55,23 @@ let api = (function () {
 
   let taskWrapper = (function (baseUrl) {
 
-    const open = async (onSuccess) => {
-      task.open(loadToken(), onSuccess);
+    const open = async (onSuccess, onFailure) => {
+      task.open(loadToken(), onSuccess, onFailure);
     }
-    const all = async (onSuccess) => {
-      task.all(loadToken(), onSuccess);
+    const all = async (onSuccess, onFailure) => {
+      task.all(loadToken(), onSuccess, onFailure);
     }
-    const create = async (taskNode, onSuccess) => {
-      task.create(loadToken(), taskNode, onSuccess);
+    const create = async (taskNode, onSuccess, onFailure) => {
+      task.create(loadToken(), taskNode, onSuccess, onFailure);
     }
-    const load = async (id, onSuccess) => {
-      task.load(loadToken(), id, onSuccess);
+    const load = async (id, onSuccess, onFailure) => {
+      task.load(loadToken(), id, onSuccess, onFailure);
     }
-    const update = async (id, taskNode, onSuccess) => {
-      task.update(loadToken(), id, taskNode, onSuccess);
+    const update = async (id, taskNode, onSuccess, onFailure) => {
+      task.update(loadToken(), id, taskNode, onSuccess, onFailure);
     }
-    const remove = async (id, onSuccess) => {
-      task.delete(loadToken(), id, onSuccess);
+    const remove = async (id, onSuccess, onFailure) => {
+      task.delete(loadToken(), id, onSuccess, onFailure);
     }
     const updatePosition = async (id, dueAt, position, onSuccess, onFailure) => {
       task.updatePosition(loadToken(), id, dueAt, position, onSuccess, onFailure);

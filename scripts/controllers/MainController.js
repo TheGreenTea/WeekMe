@@ -55,8 +55,14 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
+      const headerId = $(this).parent().attr('id');
+      let dayDiff = headerId.substring(headerId.length-1, headerId.length);
+      if(dayDiff === "r"){
+        dayDiff = null;
+      }
+      PickerGenerator.showPicker(dayDiff, null, () => {
 
-      PickerGenerator.showPicker(2, {content: "sample text...", color: 3});
+      });
     });
 
   }
@@ -90,13 +96,34 @@ var MainController = function() {
 
       api.task.remove(taskId, () => {
         $(taskContainer).remove();
+      }, (statusCode) => {
+        console.log("Unable to remove task: ", statusCode);
       });
 
     });
 
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
-      alert("Edit");
+      const dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
+      const content = card.find(".card-body").html().trim();
+
+      PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
+
+        const taskId = $(this).parent().parent().attr("id");
+        const task = {
+          content: taskData.content,
+          color: taskData.color,
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff)
+        }
+
+        api.task.update(taskId, task, (json) => {
+          alert("GUT");
+          console.log("JSON", json);
+        }, (statusCode) => {
+          alert(statusCode);
+        });
+      });
+
     });
   }
 
@@ -158,7 +185,9 @@ var MainController = function() {
   }
 
   function loadTasks() {
-    api.task.all(setupTasks)
+    api.task.all(setupTasks, (statusCode) => {
+      console.log("Could not load tasks: ", statusCode);
+    })
   }
 
   function setupTasks(tasksJson){
