@@ -54,14 +54,23 @@ var PickerGenerator = function() {
     return options;
   }
 
+
+  function showPicker(day = null, task = {}){
+    
+  }
+
+
   function insertPicker($element){
 
     let options = createOptions();
     let newPicker = PickerGenerator.createPicker(2, options);
 
-    if($element.children().length === 0){
-      $element.append(newPicker);
-    }
+
+
+    $element.append(newPicker);
+
+
+    createNewTaskAtDay(1);
   }
 
   function createNewTask(){
@@ -113,6 +122,8 @@ var PickerGenerator = function() {
   }
 
   $(document).ready(() => {
+
+    return;
 
     var taskDescription = "";
     var taskColor = "";
@@ -276,7 +287,8 @@ var PickerGenerator = function() {
 
   return {
     init,
-    createPicker
+    createPicker,
+    insertPicker
   }
 
 }();

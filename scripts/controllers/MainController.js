@@ -53,6 +53,11 @@ var MainController = function() {
       const row = $("#content-main").find(`.row:eq(${index})`);
       moveSelectedCardToRow($(row));
     });
+
+    $(".add-day-icon").click(function(){
+        PickerGenerator.insertPicker($("body"));   
+    });
+
   }
 
   function moveSelectedCardToRow(row){
@@ -125,7 +130,7 @@ var MainController = function() {
       let dayHeader = document.querySelectorAll(".day-header")[index];
 
       dayHeader.appendChild(dayLabel);
-      dayHeader.appendChild(dateLabel); 
+      dayHeader.appendChild(dateLabel);
       $( dayHeader ).insertBefore($(this));
     });
   }
