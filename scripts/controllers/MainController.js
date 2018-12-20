@@ -5,12 +5,14 @@ if(!api.user.loggedIn()) {
 $(document).ready(() => {
   MainController.init();
 
-    console.log("bin hier");
-    let onSuccess = function(json) {
-      console.log(json);
+    let onSuccess = function() {
+      console.log("Successfully update position");
     }
-    api.user.profile(onSuccess);
 
+    let onFailure = function(statusCode) {
+      console.log("Oooops - ", statusCode, "position was not updated")
+    }
+    api.task.updatePosition("5c1b7cdd65b96a0015de10fd", DateFormatter.getTimeStamp(5), 5, onSuccess, onFailure);
 });
 
 var MainController = function() {
