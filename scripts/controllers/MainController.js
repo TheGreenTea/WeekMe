@@ -60,9 +60,26 @@ var MainController = function() {
       if(dayDiff === "r"){
         dayDiff = null;
       }
-      PickerGenerator.showPicker(dayDiff, null, () => {
 
+      PickerGenerator.showPicker(dayDiff, null, (taskData) => {
+
+        // const positionOfNewTask =   
+
+        const task = {
+          content: taskData.content,
+          color: taskData.color,
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff),
+          position: 10
+        }
+
+        api.task.create(task, (json) => {
+          alert("GUT");
+          console.log("JSON", json);
+        }, (statusCode) => {
+          alert(statusCode);
+        });
       });
+
     });
 
   }
@@ -118,7 +135,7 @@ var MainController = function() {
 
         api.task.update(taskId, task, (json) => {
           alert("GUT");
-          console.log("JSON", json);  
+          console.log("JSON", json);
         }, (statusCode) => {
           alert(statusCode);
         });
