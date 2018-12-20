@@ -60,6 +60,11 @@ var MainController = function() {
       const row = $("#content-main").find(`.row:eq(${index})`);
       moveSelectedCardToRow($(row));
     });
+
+    $(".add-day-icon").click(function(){
+        PickerGenerator.showPicker();
+    });
+
   }
 
   function moveSelectedCardToRow(row){
