@@ -142,12 +142,8 @@ var MainController = function() {
     const dayDiff = row.attr("id").replace("day-row-", "");
     const newPositionOfCard = row.find(".card").length;
 
-    console.log("cardId", cardId);
-    console.log("dayDiff", dayDiff);
-    console.log("newPositionOfCard", newPositionOfCard);
-
     api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
-      $(row).append($(card).parent()); 
+      $(row).append($(card).parent());
     }, () => {
         console.log("ERROR!");
     });
@@ -178,6 +174,7 @@ var MainController = function() {
     sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
       $("#stack-row").append(taskCard);
+      initCardEvents($(`#${task._id}`)); 
     });
 
     //Add day-row tasks
