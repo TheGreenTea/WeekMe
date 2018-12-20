@@ -3,6 +3,7 @@ let api = (function () {
   const baseUrl = 'https://weekme.herokuapp.com';
   // const baseUrl = 'http://localhost:3000';
 
+  const common = initCommon();
   const tokenName = "token"
 
   let saveToken = function (token) {
@@ -26,11 +27,11 @@ let api = (function () {
   const user = initUser(baseUrl, saveToken);
 
   let userWrapper = (function (baseUrl) {
-    const profile = async (onSuccess) => {
-      user.profile(loadToken(), onSuccess)
+    const profile = async (onSuccess, onFailure) => {
+      user.profile(loadToken(), onSuccess, onFailure)
     }
-    const logout = async (onSuccess) => {
-      user.logout(loadToken(), onSuccess)
+    const logout = async (onSuccess, onFailure) => {
+      user.logout(loadToken(), onSuccess, onFailure)
     }
     const loggedIn = () => {
       let token = loadToken()
