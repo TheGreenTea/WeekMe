@@ -79,13 +79,12 @@ var MainController = function() {
 
       PickerGenerator.showPicker(dayDiff, null, (taskData) => {
 
-        // const positionOfNewTask =   
+        // const positionOfNewTask =
 
         const task = {
           content: taskData.content,
           color: taskData.color,
-          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff),
-          position: 10
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff) 
         }
 
         api.task.create(task, (json) => {
