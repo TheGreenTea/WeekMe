@@ -76,7 +76,9 @@ var MainController = function() {
       if(dayDiff === "r"){
         dayDiff = null;
       }
-      PickerGenerator.showPicker(dayDiff);
+      PickerGenerator.showPicker(dayDiff, null, () => {
+
+      });
     });
 
   }
@@ -118,7 +120,26 @@ var MainController = function() {
 
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
-      alert("Edit");
+      const dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
+      const content = card.find(".card-body").html().trim();
+
+      PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
+
+        const taskId = $(this).parent().parent().attr("id");
+        const task = {
+          content: taskData.content,
+          color: taskData.color,
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff)
+        }
+
+        api.task.update(taskId, task, (json) => {
+          alert("GUT");
+          console.log("JSON", json);
+        }, (statusCode) => {
+          alert(statusCode);
+        });
+      });
+
     });
   }
 

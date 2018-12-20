@@ -161,7 +161,7 @@ var PickerGenerator = function() {
     if(dayDiff === null){
       selected = 0;
     } else if(dayDiff >= 0 && dayDiff < 7){
-      selected = dayDiff + 1;
+      selected = 1 + parseInt(dayDiff);
     } else {
       selected = 2;
     }
@@ -180,7 +180,10 @@ var PickerGenerator = function() {
     $("#pickerPopup").append(newPicker);
   }
 
-  function showPicker(dayDiff, task){
+  function showPicker(dayDiff, task, onDone){
+
+    PickerGenerator.onDone = onDone;
+
     insertModal();
     insertPicker(dayDiff);
     bindListeners();
@@ -217,9 +220,28 @@ var PickerGenerator = function() {
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(task.content);
     $('#modalHeadlineStepOne').html("Edit task at " + dayString);
+    if(task.color){
+      inkTaskInColor(task.color);
+    }
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
+  }
+
+  function inkTaskInColor(color){
+    if(color === 0){
+      $("#btnColorWhite").trigger("click");
+    } else if(color === 1) {
+      $("#btnColorYellow").trigger("click");
+    } else if(color === 2) {
+      $("#btnColorRed").trigger("click");
+    } else if(color === 3) {
+      $("#btnColorPurple").trigger("click");
+    } else if(color === 4) {
+      $("#btnColorBlue").trigger("click");
+    } else if(color === 5) {
+      $("#btnColorGreen").trigger("click");
+    }
   }
 
   function createNewTask(){
@@ -230,11 +252,14 @@ var PickerGenerator = function() {
     $('#modalHeadlineStepOne').html("Create new task");
   }
 
-  function confirmTask(content, day, color){
+  function confirmTask(content, dayDiff, color){
     if(!color){
       color = 0;
     }
-    console.log("Text: " + content + " - At day: " + day + " - with color: " + color);
+    console.log("Text: " + content + " - At day: " + dayDiff + " - with color: " + color);
+
+    PickerGenerator.onDone({content, dayDiff, color});
+
   }
 
   function resetDayPicker(){
