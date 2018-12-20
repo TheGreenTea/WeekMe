@@ -12,6 +12,111 @@ var PickerGenerator = function() {
 
   }
 
+  function createModal(){
+
+    return `<!-- New task step 1 -->
+    <div class="modal fade" id="newTaskStepOne">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 id="modalHeadlineStepOne" class="modal-title">Create new task</h4>
+              <button type="button" id="btnChangeColor" class="btn btn-secondary">
+                change color
+              </button>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <textarea rows="4" cols="50" class="new-task-textarea" placeholder="Task description..."></textarea>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" id="btnStack" class="btn btn-tertiary">
+                stack
+              </button>
+              <button type="button" id="btnToday" class="btn btn-primary">
+                today
+              </button>
+              <button type="button" id="btnPickDay" class="btn btn-primary" data-toggle="modal" data-target="#newTaskStepTwo">
+                another day
+              </button>
+              <button type="button" id="btnDone" class="btn btn-primary">
+                Done
+              </button>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- New task step 2 -->
+    <div class="modal fade" id="newTaskStepTwo">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 id="modalHeadlineStepTwo" class="modal-title">Choose the stack or a day for your task</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body" id="pickerPopup">
+            <!-- Hier wird der Day Picker generiert -->
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-third" id="btnBackToEditTask" data-toggle="modal" data-target="#newTaskStepOne">
+              back
+            </button>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button> -->
+            <button type="button" id="btnConfirmTask" class="btn btn-primary btn-first">
+              Done
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- New task color picker -->
+    <div class="modal fade" id="newTaskColorPicker">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 id="modalHeadlineColorPicker" class="modal-title">Choose the a color for your task</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <button type="button" class="btn btn-color-picker btn-white" id="btnColorWhite"></button>
+            <button type="button" class="btn btn-color-picker btn-yellow" id="btnColorYellow"></button>
+            <button type="button" class="btn btn-color-picker btn-red" id="btnColorRed"></button>
+            <button type="button" class="btn btn-color-picker btn-purple" id="btnColorPurple"></button>
+            <button type="button" class="btn btn-color-picker btn-blue" id="btnColorBlue"></button>
+            <button type="button" class="btn btn-color-picker btn-green" id="btnColorGreen"></button>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnBackColorPicker" data-toggle="modal" data-target="#newTaskStepOne">
+              back
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>`;
+  }
+
   function createPicker(selected, options){
 
     let selectables = "";
@@ -37,7 +142,6 @@ var PickerGenerator = function() {
   }
 
   /* Private Methods */
-
   function createOptions(){
     var day = new Date().getDay();
     let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -54,23 +158,55 @@ var PickerGenerator = function() {
     return options;
   }
 
-
-  function showPicker(day = null, task = {}){
-    
+  function insertModal(){
+    let newModal = createModal();
+    $('body').append(newModal);
   }
 
-
-  function insertPicker($element){
-
+  function insertPicker(){
     let options = createOptions();
-    let newPicker = PickerGenerator.createPicker(2, options);
+    let newPicker = createPicker(2, options);
+    $("#pickerPopup").append(newPicker);
+  }
 
+  function showPicker(day, task){
+    insertModal();
+    insertPicker();
+    bindListeners();
+    if(!day && !task){
+      createNewTaskOnStack();
+    } else if(!task && day){
+      createNewTaskAtDay(day);
+    } else if(day && task){
+      editExistingTask(day, task);
+    } else {
+      createNewTask();
+    }
+  }
 
+  function createNewTaskOnStack(){
+    $("#newTaskStepOne").modal("show");
+    $('#btnToday').hide();
+    $('#btnStack').hide();
+    $('#btnDone').show();
+    $('#modalHeadlineStepOne').html("Create new task on stack");
+  }
 
-    $element.append(newPicker);
+  function createNewTaskAtDay(day){
+    $("#newTaskStepOne").modal("show");
+    $('#btnToday').hide();
+    $('#btnStack').hide();
+    $('#btnDone').show();
+    $('#modalHeadlineStepOne').html("Create new task at day");
+  }
 
-
-    createNewTaskAtDay(1);
+  function editExistingTask(day, task){
+    $("#newTaskStepOne").modal("show");
+    $('.new-task-textarea').val(task.content);
+    $('#modalHeadlineStepOne').html("Edit existing task");
+    $('#btnToday').hide();
+    $('#btnStack').hide();
+    $('#btnDone').show();
   }
 
   function createNewTask(){
@@ -81,25 +217,8 @@ var PickerGenerator = function() {
     $('#modalHeadlineStepOne').html("Create new task");
   }
 
-  function createNewTaskAtDay(day){
-    $("#newTaskStepOne").modal("show");
-    $('#btnToday').hide();
-    $('#btnStack').hide();
-    $('#btnDone').show();
-    $('#modalHeadlineStepOne').html("Create new task");
-  }
-
-  function editTask($element, description, day, color){
-    $("#newTaskStepOne").modal("show");
-    $('.new-task-textarea').val(description);
-    $('#modalHeadlineStepOne').html("Edit existing task");
-    $('#btnToday').hide();
-    $('#btnStack').hide();
-    $('#btnDone').show();
-  }
-
-  function confirmTask($element, description, day, color){
-    console.log("Text: " + description + " - At day: " + day);
+  function confirmTask($element, content, day, color){
+    console.log("Text: " + content + " - At day: " + day);
   }
 
   function resetDayPicker(){
@@ -107,50 +226,34 @@ var PickerGenerator = function() {
     insertPicker($("#pickerPopup"));
   }
 
-  function closeColorPicker(taskDescription){
+  function closeColorPicker(taskContent){
     $("#newTaskColorPicker").modal("hide");
     $("#newTaskStepOne").modal("show");
-    $('.new-task-textarea').val(taskDescription);
+    $('.new-task-textarea').val(taskContent);
   }
 
-  function checkIfColorShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown){
+  function checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown){
     if(!isStepOneShown && !isStepTwoShown && !isColorPickerShown){
-      var modals = $(".modal-content");
+      /*var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content');
+      modals.addClass('modal-content');*/
+      removeModal();
     }
   }
 
-  $(document).ready(() => {
+  function removeModal(){
+    $('#newTaskStepOne').remove();
+    $('#newTaskStepTwo').remove();
+    $('#newTaskColorPicker').remove();
+  }
 
-    return;
+  function bindListeners(){
 
-    var taskDescription = "";
+    var taskContent = "";
     var taskColor = "";
     var isStepOneShown = false;
     var isStepTwoShown = false;
     var isColorPickerShown = false;
-
-    insertPicker($("#pickerPopup"));
-
-// Button zum öffnen des Popup >>
-    $("#btnNewTask").click(() => {
-      createNewTask();
-    });
-
-    $("#btnNewTaskDay").click(() => {
-      let day = 4;
-      createNewTaskAtDay(day);
-    });
-
-    $("#btnEditTaskDay").click(() => {
-      let $element = "";
-      let text = "Schon existierender Task, der editiert werden kann";
-      let day = 4;
-      let color = 5;
-      editTask($element, text, day, color);
-    });
-
 
 // Step 1
     $("#newTaskStepOne").on('show.bs.modal', function () {
@@ -158,29 +261,29 @@ var PickerGenerator = function() {
     });
 
     $("#newTaskStepOne").on('hidden.bs.modal', function () {
-      taskDescription = $('.new-task-textarea').val();
+      taskContent = $('.new-task-textarea').val();
       $('.new-task-textarea').val("");
       isStepOneShown = false;
-      checkIfColorShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
+      checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
     });
 
     $("#btnToday").click(() => {
       $("#newTaskStepOne").modal("hide");
-      var description = $('.new-task-textarea').val();
-      confirmTask("", description, 0,"");
+      var content = $('.new-task-textarea').val();
+      confirmTask("", content, 0,"");
     });
 
     $("#btnStack").click(() => {
       $("#newTaskStepOne").modal("hide");
-      var description = $('.new-task-textarea').val();
-      confirmTask("", description, "Stack","");
+      var content = $('.new-task-textarea').val();
+      confirmTask("", content, "Stack","");
     });
 
     $("#btnDone").click(() => {
       $("#newTaskStepOne").modal("hide");
-      var description = $('.new-task-textarea').val();
+      var content = $('.new-task-textarea').val();
       let day = 1; // hier muss der vom Klick übergebene Tag eingefügt werden (jenachdem in welchem Tag der Task angeklickt wurde)
-      confirmTask("", description, day,"");
+      confirmTask("", content, day,"");
     });
 
     $("#btnPickDay").click(() => {
@@ -193,13 +296,13 @@ var PickerGenerator = function() {
     $("#btnBackToEditTask").click(() => {
       $("#newTaskStepTwo").modal("hide");
       $("#newTaskStepOne").modal("show");
-      $('.new-task-textarea').val(taskDescription);
+      $('.new-task-textarea').val(taskContent);
     });
 
     $("#btnConfirmTask").click(() => {
       $("#newTaskStepTwo").modal("hide");
       let day = $("select option:selected").val();
-      confirmTask("", taskDescription, day,"");
+      confirmTask("", taskContent, day,"");
     });
 
     $("#newTaskStepTwo").on('show.bs.modal', function () {
@@ -209,7 +312,7 @@ var PickerGenerator = function() {
     $("#newTaskStepTwo").on('hidden.bs.modal', function () {
       resetDayPicker();
       isStepTwoShown = false;
-      checkIfColorShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
+      checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
     });
 
 
@@ -217,15 +320,15 @@ var PickerGenerator = function() {
     $("#btnChangeColor").click(() => {
       $("#newTaskStepOne").modal("hide");
       $("#newTaskColorPicker").modal("show");
-      taskDescription = $('.new-task-textarea').val();
+      taskContent = $('.new-task-textarea').val();
     });
 
     $("#btnBackColorPicker").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
     });
 
     $("#btnColorWhite").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 0;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -233,7 +336,7 @@ var PickerGenerator = function() {
     });
 
     $("#btnColorYellow").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 1;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -241,7 +344,7 @@ var PickerGenerator = function() {
     });
 
     $("#btnColorRed").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 2;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -249,7 +352,7 @@ var PickerGenerator = function() {
     });
 
     $("#btnColorPurple").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 3;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -257,7 +360,7 @@ var PickerGenerator = function() {
     });
 
     $("#btnColorBlue").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 4;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -265,7 +368,7 @@ var PickerGenerator = function() {
     });
 
     $("#btnColorGreen").click(() => {
-      closeColorPicker(taskDescription);
+      closeColorPicker(taskContent);
       taskColor = 5;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
@@ -278,17 +381,16 @@ var PickerGenerator = function() {
 
     $("#newTaskColorPicker").on('hidden.bs.modal', function () {
       isColorPickerShown = false;
-      checkIfColorShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
+      checkIfModalShouldBeResetted(isStepOneShown, isStepTwoShown, isColorPickerShown);
     });
 
-  });
+  }
 
   /* Public Interface */
 
   return {
     init,
-    createPicker,
-    insertPicker
+    showPicker
   }
 
 }();
