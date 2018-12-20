@@ -161,7 +161,7 @@ var PickerGenerator = function() {
     if(dayDiff === null){
       selected = 0;
     } else if(dayDiff >= 0 && dayDiff < 7){
-      selected = 1 + parseInt(dayDiff);   
+      selected = 1 + parseInt(dayDiff);
     } else {
       selected = 2;
     }
@@ -180,7 +180,10 @@ var PickerGenerator = function() {
     $("#pickerPopup").append(newPicker);
   }
 
-  function showPicker(dayDiff, task){
+  function showPicker(dayDiff, task, onDone){
+
+    PickerGenerator.onDone = onDone;
+
     insertModal();
     insertPicker(dayDiff);
     bindListeners();
@@ -230,11 +233,14 @@ var PickerGenerator = function() {
     $('#modalHeadlineStepOne').html("Create new task");
   }
 
-  function confirmTask(content, day, color){
+  function confirmTask(content, dayDiff, color){
     if(!color){
       color = 0;
     }
-    console.log("Text: " + content + " - At day: " + day + " - with color: " + color);
+    console.log("Text: " + content + " - At day: " + dayDiff + " - with color: " + color);
+
+    PickerGenerator.onDone({content, dayDiff, color});
+
   }
 
   function resetDayPicker(){
