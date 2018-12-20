@@ -39,6 +39,22 @@ var MainController = function() {
       }, (statusCode) => {
         console.log("Failed. Unable to logout! - " + statusCode);
       });
+      $(".nav").find(".active").removeClass("active");
+    });
+
+    $("#home-link").click(function(e) {
+      $("#content-account").hide();
+      $("#content-main").show();
+
+      $(".navbar").find(".active").removeClass("active");
+    });
+
+    $("#account-link").click(function(e) {
+      $("#content-main").hide();
+      $("#content-account").show();
+
+      $(".navbar").find(".active").removeClass("active");
+      $(this).addClass("active");
     });
     //TODO: initialise missing menu events
   }
@@ -60,9 +76,25 @@ var MainController = function() {
       if(dayDiff === "r"){
         dayDiff = null;
       }
-      PickerGenerator.showPicker(dayDiff, null, () => {
 
+      PickerGenerator.showPicker(dayDiff, null, (taskData) => {
+
+        // const positionOfNewTask =
+
+        const task = {
+          content: taskData.content,
+          color: taskData.color,
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff)
+        }
+
+        api.task.create(task, (json) => {
+          alert("GUT");
+          console.log("JSON", json);
+        }, (statusCode) => {
+          alert(statusCode);
+        });
       });
+
     });
 
   }
@@ -197,7 +229,7 @@ var MainController = function() {
     let stackTasks = tasks.filter(task => task.dueAt == null);
     let sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
     sortedStackTasks.forEach(function(task) {
-      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
+      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
       $("#stack-row").append(taskCard);
       initCardEvents($(`#${task._id}`));
     });
@@ -208,7 +240,7 @@ var MainController = function() {
       let sortedTasks = filteredTasks.sort(function(a, b){return a.position - b.position});
 
       sortedTasks.forEach(function(task) {
-        let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
+        let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
         let utcDateStamp = new Date(task.dueAt);
         let dayDiff = DateFormatter.getDayDiff(utcDateStamp);
         $("#day-row-" + dayDiff).append(taskCard);
