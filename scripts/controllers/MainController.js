@@ -4,8 +4,6 @@ if(!api.user.loggedIn()) {
 
 $(document).ready(() => {
   MainController.init();
-
-  console.log(DateFormatter.getTimeStamp(1))
 });
 
 var MainController = function() {
@@ -42,7 +40,7 @@ var MainController = function() {
         console.log("Failed. Unable to logout! - " + statusCode);
       });
     });
-    
+
     //TODO: initialise missing menu events
   }
 
@@ -114,8 +112,14 @@ var MainController = function() {
         $(card).parent().insertAfter($(otherCard).parent());
         return;
       }
-    }
-    $(card).parent().insertBefore($(otherCard).parent());
+      $(card).parent().insertBefore($(otherCard).parent());
+
+    }, () => {
+
+      console.log("ERROR!");
+
+    });
+
   }
 
   function doCardsHaveSameRow(card, otherCard){
@@ -123,7 +127,15 @@ var MainController = function() {
   }
 
   function moveCardToRow(card, row){
-    $(row).append($(card).parent());
+    const cardId = card.attr("id");
+    const dayDiff = row.attr("id").replace("day-row-", "");
+    const newPositionOfCard = row.find(".card").length;
+
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
+      $(row).append($(card).parent());
+    }, () => {
+        console.log("ERROR!");
+    });
   }
 
   function setupLabels(){
@@ -151,6 +163,7 @@ var MainController = function() {
     sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
       $("#stack-row").append(taskCard);
+      initCardEvents($(`#${task._id}`));
     });
 
     //Add day-row tasks
