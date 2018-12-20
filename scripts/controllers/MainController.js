@@ -4,6 +4,13 @@ if(!api.user.loggedIn()) {
 
 $(document).ready(() => {
   MainController.init();
+
+    console.log("bin hier");
+    let onSuccess = function(json) {
+      console.log(json);
+    }
+    api.user.profile(onSuccess);
+
 });
 
 var MainController = function() {
@@ -55,12 +62,12 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
-
       const headerId = $(this).parent().attr('id');
-      const dayDiff = headerId.substring(headerId.length-1, headerId.length);
-      alert(dayDiff);
-
-      PickerGenerator.insertPicker($("body"));
+      let dayDiff = headerId.substring(headerId.length-1, headerId.length);
+      if(dayDiff === "r"){
+        dayDiff = null;
+      }
+      PickerGenerator.showPicker(dayDiff); 
     });
 
   }

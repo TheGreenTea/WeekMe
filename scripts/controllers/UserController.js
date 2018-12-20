@@ -150,10 +150,14 @@ var LoginController = function() {
         let password = $("#input-password").val();
 
         let onLoginSuccess = function(json) {
-          window.location = "./index.html";
+          //window.location = "./index.html";
         }
 
-        api.user.login(email, password, onLoginSuccess)
+        let onLoginFailure = function(json) {
+          showErrorMessage("Verkackt, du lappen!");
+        }
+
+        api.user.login(email, password, onLoginSuccess, onLoginFailure)
       }
     });
 
@@ -185,7 +189,7 @@ var LoginController = function() {
     });
 
     $("#reset-password-button").click(function(e) {
-      
+
       const urlParams = new URLSearchParams(window.location.search);
       const resetCode = urlParams.get('resetcode');
       if (!resetCode) {
