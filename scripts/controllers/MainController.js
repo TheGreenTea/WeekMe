@@ -55,7 +55,12 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
-        PickerGenerator.insertPicker($("body"));   
+
+      const headerId = $(this).parent().attr('id');
+      const dayDiff = headerId.substring(headerId.length-1, headerId.length);
+      alert(dayDiff);
+
+      PickerGenerator.insertPicker($("body"));
     });
 
   }
