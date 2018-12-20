@@ -12,7 +12,6 @@ var DateFormatter = function() {
 
   function init(){
 
-
   }
 
   function createDateLabel(dayDiff) {
@@ -71,12 +70,13 @@ var DateFormatter = function() {
   }
 
 
-  function getTimeStamp(dayDiff) {
+  function getTimeStamp(dayDiffRaw) {
+      let dayDiff = parseInt(dayDiffRaw)
       let now = new Date;
       let utcOriginal = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(),
         now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
 
-      let utcAdapted = utcOriginal.addDays(dayDiff);
+      let utcAdapted = new Date(utcOriginal).addDays(dayDiff);
       let utcDayTime = Date.UTC(utcAdapted.getUTCFullYear(),utcAdapted.getUTCMonth(), utcAdapted.getUTCDate(), 0, 0, 0, 0);
 
       return utcDayTime
@@ -101,9 +101,6 @@ var DateFormatter = function() {
   }
 
 }();
-
-
-
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());

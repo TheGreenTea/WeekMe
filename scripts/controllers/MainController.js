@@ -33,12 +33,12 @@ var MainController = function() {
   }
 
   function initMenuEvents() {
-    $("#login-link").click(function(e) {
-      let onLogoutSuccess = function() {
+    $("#logout-link").click(function(e) {
+      api.user.logout(() => {
         window.location = "./login.html";
-      }
-
-      api.user.logout(onLogoutSuccess);
+      }, (statusCode) => {
+        console.log("Failed. Unable to logout! - " + statusCode);
+      });
     });
     //TODO: initialise missing menu events
   }
@@ -55,7 +55,16 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
+<<<<<<< HEAD
       PickerGenerator.showPicker(2, {content: "sample text..."});
+=======
+      const headerId = $(this).parent().attr('id');
+      let dayDiff = headerId.substring(headerId.length-1, headerId.length);
+      if(dayDiff === "r"){
+        dayDiff = null;
+      }
+      PickerGenerator.showPicker(dayDiff);
+>>>>>>> 052fdabbdded00b3b429a67539f50b7fc08208e7
     });
 
   }
@@ -74,7 +83,7 @@ var MainController = function() {
       e.stopPropagation();
 
       if($(".card-selected").length){
-          moveCardToPositionOfOtherCard($(".card-selected"), this);
+          moveCardToPositionOfOtherCard($(".card-selected"), $(this));
           $(".card-selected").removeClass("card-selected");
       } else {
         $(this).addClass("card-selected");
@@ -101,18 +110,31 @@ var MainController = function() {
 
   function moveCardToPositionOfOtherCard(card, otherCard){
 
-    if(doCardsHaveSameRow(card, otherCard)){
+    const cardId = card.attr("id");
+    const dayDiff = otherCard.parent().parent().attr("id").replace("day-row-", "");
+    const newPositionOfCard = otherCard.parent().parent().find(".card").index(otherCard);
 
-      const mutalRow = $(card).parent().parent();
-      const cardIndex = $(mutalRow).find(".card").index(card);
-      const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
 
-      if(cardIndex < otherCardIndex){
-        $(card).parent().insertAfter($(otherCard).parent());
-        return;
+      if(doCardsHaveSameRow(card, otherCard)){
+
+        const mutalRow = $(card).parent().parent();
+        const cardIndex = $(mutalRow).find(".card").index(card);
+        const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+
+        if(cardIndex < otherCardIndex){
+          $(card).parent().insertAfter($(otherCard).parent());
+          return;
+        }
       }
-    }
-    $(card).parent().insertBefore($(otherCard).parent());
+      $(card).parent().insertBefore($(otherCard).parent());
+
+    }, () => {
+
+      console.log("ERROR!");
+
+    });
+
   }
 
   function doCardsHaveSameRow(card, otherCard){
@@ -120,7 +142,15 @@ var MainController = function() {
   }
 
   function moveCardToRow(card, row){
-    $(row).append($(card).parent());
+    const cardId = card.attr("id");
+    const dayDiff = row.attr("id").replace("day-row-", "");
+    const newPositionOfCard = row.find(".card").length;
+
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
+      $(row).append($(card).parent());
+    }, () => {
+        console.log("ERROR!");
+    });
   }
 
   function setupLabels(){
@@ -148,6 +178,7 @@ var MainController = function() {
     sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
       $("#stack-row").append(taskCard);
+      initCardEvents($(`#${task._id}`));
     });
 
     //Add day-row tasks

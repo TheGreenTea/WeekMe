@@ -149,11 +149,11 @@ var LoginController = function() {
         let email = $("#input-email").val();
         let password = $("#input-password").val();
 
-        let onLoginSuccess = function(json) {
+        api.user.login(email, password, (json) => {
           window.location = "./index.html";
-        }
-
-        api.user.login(email, password, onLoginSuccess)
+        }, (statusCode) => {
+          showErrorMessage("Login failed");
+        });
       }
     });
 
@@ -163,11 +163,13 @@ var LoginController = function() {
         let email = $("#input-email").val();
         let password = $("#input-password").val();
 
-        let onRegisterSuccess = function(json) {
+        api.user.register(email, password, (json) => {
+          console.log("register success:", json);
           window.location = "./index.html";
-        }
-
-        api.user.register(email, password, onRegisterSuccess)
+        }, (statusCode) => {
+          console.log("register failed:", statusCode);
+          showErrorMessage("Register failed");
+        });
       }
     });
 
@@ -185,7 +187,7 @@ var LoginController = function() {
     });
 
     $("#reset-password-button").click(function(e) {
-      
+
       const urlParams = new URLSearchParams(window.location.search);
       const resetCode = urlParams.get('resetcode');
       if (!resetCode) {

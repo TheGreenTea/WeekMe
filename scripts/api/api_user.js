@@ -1,77 +1,51 @@
 function initUser(baseUrl, saveToken) {
   return user = (function (baseUrl) {
     const userBaseUrl = baseUrl + '/users';
+    let saveTokenFromHeader = function(data) {
+      let token = data.headers.get('X-Auth');
+      saveToken(token)
+    }
+    let deleteTokenFunc = function() {
+      saveToken(null);
+    }
 
     // POST /users/
     const registerUrl = userBaseUrl
-    const register = async (email, password, onSuccess) => {
-      const registerBody = { email: email, password: password };
+    const register = async (email, password, onSuccess, onFailure) => {
+      const body = { email: email, password: password };
       const settings = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(registerBody)
+            body: JSON.stringify(body)
         };
 
-        const data = await fetch(registerUrl, settings)
-             .then(response => {
-               let token = response.headers.get('X-Auth');
-               saveToken(token)
-               //console.log("saved token: " + token + " -- on register")
-               return response.json()
-             })
-             .then(json => {
-               onSuccess(json)
-               return json;
-             })
-             .catch(e => {
-                console.log("error: " + e);
-                return e
-             });
-
-         return data;
+        common.expectJsonCall(registerUrl, settings, saveTokenFromHeader, onSuccess, onFailure)
     }
 
     // POST /users/login
     const loginUrl = userBaseUrl + '/login'
 
-    const login = async (email, password, onSuccess) => {
+    const login = async (email, password, onSuccess, onFailure) => {
 
-      const loginBody = { email: email, password: password };
+      const body = { email: email, password: password };
       const settings = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(loginBody)
+            body: JSON.stringify(body)
       };
 
-      const data = await fetch(loginUrl, settings)
-             .then(response => {
-               let token = response.headers.get('X-Auth');
-               saveToken(token)
-               //console.log("saved token: " + token + " -- on login")
-               return response.json();
-             })
-             .then(json => {
-                 onSuccess(json)
-                 return json;
-             })
-             .catch(e => {
-                 console.log("error: " + e);
-                 return e
-             });
-
-         return data;
+      common.expectJsonCall(loginUrl, settings, saveTokenFromHeader, onSuccess, onFailure)
     }
-
     // DELETE /users/me/token
     const deleteTokenUrl = userBaseUrl + '/me/token';
 
-    const deleteToken = async (xAuthToken, onSuccess) => {
+    const deleteToken = async (xAuthToken, onSuccess, onFailure) => {
       const settings = {
             method: 'DELETE',
             headers: {
@@ -81,101 +55,56 @@ function initUser(baseUrl, saveToken) {
             }
         };
 
-        const data = await fetch(deleteTokenUrl, settings)
-             .then(response => {
-               saveToken(null);
-               onSuccess();
-               return response.json()
-             })
-             .catch(e => {
-               console.log("error: " + e);
-               return e
-             });
-
-         return data;
+        common.expectEmptyResponseCall(deleteTokenUrl, settings, deleteTokenFunc, onSuccess, onFailure);
     }
 
     // GET /users/me
     const profileUrl = userBaseUrl + '/me';
 
-    const profile = async (xAuthToken, onSuccess) => {
+    const profile = async (xAuthToken, onSuccess, onFailure) => {
       const settings = {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'x-auth': xAuthToken
+                'Content-Type': 'application/json'
             }
         };
 
-        const data = await fetch(profileUrl, settings)
-             .then(response => {
-               return response.json()
-             })
-             .then(json => {
-               onSuccess(json)
-               return json;
-             })
-             .catch(e => {
-                console.log("error: " + e);
-                return e
-             });
-
-         return data;
+      common.expectJsonCall(profileUrl, settings, null, onSuccess, onFailure)
     }
 
     // POST /users/resetpassword
     const requestResetUrl = userBaseUrl + '/resetpassword';
 
-    const requestReset = async (email, onSuccess) => {
-      const requestResetBody = { email: email };
+    const requestReset = async (email, onSuccess, onFailure) => {
+      const body = { email: email };
       const settings = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(requestResetBody)
+            body: JSON.stringify(body)
         };
 
-        const data = await fetch(requestResetUrl, settings)
-             .then(response => {
-               onSuccess();
-               return response.json()
-             })
-             .catch(e => {
-               console.log("error: " + e);
-               return e
-             });
-
-         return data;
+        common.expectEmptyResponseCall(requestResetUrl, settings, null, onSuccess, onFailure);
     }
 
     // POST /users/me/resetpassword
     const resetUrl = userBaseUrl + '/newpassword';
 
-    const reset = async (resetcode, password, onSuccess) => {
-      const resetBody = { password: password, resetcode: resetcode };
+    const reset = async (resetcode, password, onSuccess, onFailure) => {
+      const body = { password: password, resetcode: resetcode };
       const settings = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(resetBody)
+            body: JSON.stringify(body)
         };
 
-        const data = await fetch(resetUrl, settings)
-             .then(response => {
-               onSuccess();
-               return response.json()
-             })
-             .catch(e => {
-               console.log("error: " + e);
-               return e
-             });
-
-         return data;
+        common.expectEmptyResponseCall(resetUrl, settings, null, onSuccess, onFailure);
     }
 
     return {
@@ -187,5 +116,4 @@ function initUser(baseUrl, saveToken) {
       reset: reset
     };
   }(baseUrl));
-
 }
