@@ -110,7 +110,7 @@ var MainController = function() {
     const dayDiff = otherCard.parent().parent().attr("id").replace("day-row-", "");
     const newPositionOfCard = otherCard.parent().parent().find(".card").index(otherCard);
 
-    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => { 
 
       if(doCardsHaveSameRow(card, otherCard)){
 
