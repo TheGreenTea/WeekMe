@@ -55,7 +55,7 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
-        PickerGenerator.showPicker();
+      PickerGenerator.showPicker(2, {content: "sample text..."});
     });
 
   }

@@ -96,7 +96,8 @@ var DateFormatter = function() {
     createDayLabel,
     createDateLabel,
     getTimeStamp,
-    getDayDiff
+    getDayDiff,
+    getDayName
   }
 
 }();
