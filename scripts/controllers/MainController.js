@@ -94,6 +94,8 @@ var MainController = function() {
 
       api.task.remove(taskId, () => {
         $(taskContainer).remove();
+      }, (statusCode) => {
+        console.log("Unable to remove task: ", statusCode);
       });
 
     });
@@ -164,7 +166,9 @@ var MainController = function() {
   }
 
   function loadTasks() {
-    api.task.all(setupTasks)
+    api.task.all(setupTasks, (statusCode) => {
+      console.log("Could not load tasks: ", statusCode);
+    })
   }
 
   function setupTasks(tasksJson){
