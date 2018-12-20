@@ -12,7 +12,7 @@ let api = (function () {
       document.cookie = tokenName + "=" + token + ";"  // + "secure=true"
     }
   }
-
+  
   let loadToken = function () {
     let decodedCookie = decodeURIComponent(document.cookie);
     var properties = decodedCookie.split(';');
@@ -23,7 +23,6 @@ let api = (function () {
       }
     }
   }
-
   const user = initUser(baseUrl, saveToken);
 
   let userWrapper = (function (baseUrl) {
@@ -83,7 +82,6 @@ let api = (function () {
       remove
     };
   }(baseUrl));
-
 
   return {
     user: userWrapper,

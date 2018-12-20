@@ -4,6 +4,13 @@ if(!api.user.loggedIn()) {
 
 $(document).ready(() => {
   MainController.init();
+
+    console.log("bin hier");
+    let onSuccess = function(json) {
+      console.log(json);
+    }
+    api.user.profile(onSuccess);
+
 });
 
 var MainController = function() {
@@ -125,7 +132,7 @@ var MainController = function() {
       let dayHeader = document.querySelectorAll(".day-header")[index];
 
       dayHeader.appendChild(dayLabel);
-      dayHeader.appendChild(dateLabel); 
+      dayHeader.appendChild(dateLabel);
       $( dayHeader ).insertBefore($(this));
     });
   }

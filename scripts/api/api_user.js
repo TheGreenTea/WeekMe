@@ -1,6 +1,11 @@
 function initUser(baseUrl, saveToken) {
   return user = (function (baseUrl) {
     const userBaseUrl = baseUrl + '/users';
+    const common = initCommon();
+    let saveTokenFromHeader = function(data) {
+      let token = data.headers.get('X-Auth');
+      saveToken(token)
+    }
 
     // POST /users/
     const registerUrl = userBaseUrl
@@ -37,7 +42,7 @@ function initUser(baseUrl, saveToken) {
     // POST /users/login
     const loginUrl = userBaseUrl + '/login'
 
-    const login = async (email, password, onSuccess) => {
+    const login = async (email, password, onSuccess, onFailure) => {
 
       const loginBody = { email: email, password: password };
       const settings = {
@@ -49,25 +54,8 @@ function initUser(baseUrl, saveToken) {
             body: JSON.stringify(loginBody)
       };
 
-      const data = await fetch(loginUrl, settings)
-             .then(response => {
-               let token = response.headers.get('X-Auth');
-               saveToken(token)
-               //console.log("saved token: " + token + " -- on login")
-               return response.json();
-             })
-             .then(json => {
-                 onSuccess(json)
-                 return json;
-             })
-             .catch(e => {
-                 console.log("error: " + e);
-                 return e
-             });
-
-         return data;
+      common.expectJsonCall(loginUrl, settings, saveTokenFromHeader, onSuccess, onFailure)
     }
-
     // DELETE /users/me/token
     const deleteTokenUrl = userBaseUrl + '/me/token';
 
@@ -95,6 +83,7 @@ function initUser(baseUrl, saveToken) {
          return data;
     }
 
+/*
     // GET /users/me
     const profileUrl = userBaseUrl + '/me';
 
@@ -122,6 +111,34 @@ function initUser(baseUrl, saveToken) {
              });
 
          return data;
+    }
+*/
+
+    // GET /users/me
+    const profileUrl = userBaseUrl + '/me';
+
+    const profile = async (xAuthToken, onSuccess) => {
+      const settings = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+          const data = await fetch(profileUrl, settings);
+          if(data.status == 200) {
+            let json = await data.json();
+            onSuccess(json);
+          } else {
+            console.log("Error status:", data.status)
+            console.log(data);
+          }
+        }
+        catch (e){
+          console.log("error:", e);
+        }
     }
 
     // POST /users/resetpassword
@@ -187,5 +204,4 @@ function initUser(baseUrl, saveToken) {
       reset: reset
     };
   }(baseUrl));
-
 }
