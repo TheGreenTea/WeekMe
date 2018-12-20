@@ -84,7 +84,7 @@ var MainController = function() {
         const task = {
           content: taskData.content,
           color: taskData.color,
-          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff) 
+          dueAt: DateFormatter.getTimeStamp(taskData.dayDiff)
         }
 
         api.task.create(task, (json) => {
@@ -229,7 +229,7 @@ var MainController = function() {
     let stackTasks = tasks.filter(task => task.dueAt == null);
     let sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
     sortedStackTasks.forEach(function(task) {
-      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
+      let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
       $("#stack-row").append(taskCard);
       initCardEvents($(`#${task._id}`));
     });
@@ -240,7 +240,7 @@ var MainController = function() {
       let sortedTasks = filteredTasks.sort(function(a, b){return a.position - b.position});
 
       sortedTasks.forEach(function(task) {
-        let taskCard = TemplateGenerator.getTaskCard(task.content, task._id);
+        let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
         let utcDateStamp = new Date(task.dueAt);
         let dayDiff = DateFormatter.getDayDiff(utcDateStamp);
         $("#day-row-" + dayDiff).append(taskCard);
