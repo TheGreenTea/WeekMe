@@ -100,7 +100,9 @@ var MainController = function() {
 
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
-      alert("Edit");
+      const dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
+      const content = card.find(".card-body").html().trim();
+      PickerGenerator.showPicker(dayDiff, {content}); 
     });
   }
 

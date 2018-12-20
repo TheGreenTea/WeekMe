@@ -161,7 +161,7 @@ var PickerGenerator = function() {
     if(dayDiff === null){
       selected = 0;
     } else if(dayDiff >= 0 && dayDiff < 7){
-      selected = dayDiff + 1;
+      selected = 1 + parseInt(dayDiff);   
     } else {
       selected = 2;
     }
