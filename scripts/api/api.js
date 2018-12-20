@@ -12,7 +12,7 @@ let api = (function () {
       document.cookie = tokenName + "=" + token + ";"  // + "secure=true"
     }
   }
-  
+
   let loadToken = function () {
     let decodedCookie = decodeURIComponent(document.cookie);
     var properties = decodedCookie.split(';');
@@ -72,6 +72,9 @@ let api = (function () {
     const remove = async (id, onSuccess) => {
       task.delete(loadToken(), id, onSuccess);
     }
+    const updatePosition = async (id, dueAt, position, onSuccess, onFailure) => {
+      task.updatePosition(loadToken(), id, dueAt, position, onSuccess, onFailure);
+    }
 
     return {
       open,
@@ -79,7 +82,8 @@ let api = (function () {
       create,
       load,
       update,
-      remove
+      remove,
+      updatePosition
     };
   }(baseUrl));
 

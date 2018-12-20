@@ -150,7 +150,7 @@ var LoginController = function() {
         let password = $("#input-password").val();
 
         let onLoginSuccess = function(json) {
-          //window.location = "./index.html";
+          window.location = "./index.html";
         }
 
         let onLoginFailure = function(json) {

@@ -177,13 +177,32 @@ function initTask(baseUrl) {
              return data;
            }
 
+         // PATCH /taskposition
+         const taskPositionUrl = baseUrl + '/taskposition'
+
+         const updatePosition = async (xAuthToken, id, dueAt, position, onSuccess, onFailure) => {
+           const body = { id: id, dueAt: dueAt, position: position};
+           const settings = {
+                 method: 'PATCH',
+                 headers: {
+                     Accept: 'application/json',
+                     'Content-Type': 'application/json',
+                     'x-auth': xAuthToken
+                 },
+                 body: JSON.stringify(body)
+           };
+
+           common.expectEmptyResponseCall(taskPositionUrl, settings, null, onSuccess, onFailure)
+         }
+
       return {
         open: openTasks,
         all: tasks,
         create: createTask,
         load: loadTask,
         update: updateTask,
-        delete: deleteTask
+        delete: deleteTask,
+        updatePosition: updatePosition
       };
   }(baseUrl));
 }
