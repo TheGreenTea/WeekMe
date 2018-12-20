@@ -110,7 +110,7 @@ var MainController = function() {
     const dayDiff = otherCard.parent().parent().attr("id").replace("day-row-", "");
     const newPositionOfCard = otherCard.parent().parent().find(".card").index(otherCard);
 
-    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => { 
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
 
       if(doCardsHaveSameRow(card, otherCard)){
 
@@ -127,7 +127,7 @@ var MainController = function() {
 
     }, () => {
 
-      console.log("YOU SUCK YOU ERROR!");
+      console.log("ERROR!");
 
     });
 
@@ -138,7 +138,19 @@ var MainController = function() {
   }
 
   function moveCardToRow(card, row){
-    $(row).append($(card).parent());
+    const cardId = card.attr("id");
+    const dayDiff = row.attr("id").replace("day-row-", "");
+    const newPositionOfCard = row.find(".card").length;
+
+    console.log("cardId", cardId);
+    console.log("dayDiff", dayDiff);
+    console.log("newPositionOfCard", newPositionOfCard);
+
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
+      $(row).append($(card).parent()); 
+    }, () => {
+        console.log("ERROR!");
+    });
   }
 
   function setupLabels(){
