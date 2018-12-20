@@ -6,7 +6,7 @@ function initTask(baseUrl) {
      // GET /opentasks
      const openTasksUrl = baseUrl + '/opentasks';
 
-     const openTasks = async (xAuthToken, onSuccess) => {
+     const openTasks = async (xAuthToken, onSuccess, onFailure) => {
        const settings = {
              method: 'GET',
              headers: {
@@ -16,26 +16,13 @@ function initTask(baseUrl) {
              }
        };
 
-       const data = await fetch(openTasksUrl, settings)
-            .then(response => {
-              return response.json()
-            })
-            .then(json => {
-              onSuccess(json)
-              return json;
-            })
-            .catch(e => {
-                console.log("error: " + e);
-                return e
-            });
-
-        return data;
+       common.expectJsonCall(openTasksUrl, settings, null, onSuccess, onFailure);
       }
 
       // GET /tasks
       const tasksUrl = taskBaseUrl;
 
-      const tasks = async (xAuthToken, onSuccess) => {
+      const tasks = async (xAuthToken, onSuccess, onFailure) => {
         const settings = {
               method: 'GET',
               headers: {
@@ -45,25 +32,12 @@ function initTask(baseUrl) {
               }
         };
 
-        const data = await fetch(tasksUrl, settings)
-             .then(response => {
-               return response.json()
-             })
-             .then(json => {
-               onSuccess(json)
-               return json;
-             })
-             .catch(e => {
-                 console.log("error: " + e);
-                 return e
-             });
-
-         return data;
+        common.expectJsonCall(tasksUrl, settings, null, onSuccess, onFailure);
        }
 
        // POST /tasks
        const createTaskUrl = taskBaseUrl;
-       const createTask = async (xAuthToken, task, onSuccess) => {
+       const createTask = async (xAuthToken, task, onSuccess, onFailure) => {
          const settings = {
                method: 'POST',
                headers: {
@@ -74,24 +48,11 @@ function initTask(baseUrl) {
                body: JSON.stringify(task)
          };
 
-         const data = await fetch(createTaskUrl, settings)
-              .then(response => {
-                return response.json()
-              })
-              .then(json => {
-                onSuccess(json)
-                return json;
-              })
-              .catch(e => {
-                  console.log("error: " + e);
-                  return e
-              });
-
-          return data;
+         common.expectJsonCall(createTaskUrl, settings, null, onSuccess, onFailure);
         }
 
         // GET /tasks/id
-        const loadTask = async (xAuthToken, id, onSuccess) => {
+        const loadTask = async (xAuthToken, id, onSuccess, onFailure) => {
           const loadTaskUrl = taskBaseUrl + "/" + id;
 
           const settings = {
@@ -103,24 +64,11 @@ function initTask(baseUrl) {
                 },
           };
 
-          const data = await fetch(loadTaskUrl, settings)
-               .then(response => {
-                 return response.json()
-               })
-               .then(json => {
-                 onSuccess(json)
-                 return json;
-               })
-               .catch(e => {
-                   console.log("error: " + e);
-                   return e
-               });
-
-           return data;
+          common.expectJsonCall(loadTaskUrl, settings, null, onSuccess, onFailure);
          }
 
          // PATCH /tasks/id
-         const updateTask = async (xAuthToken, id, task, onSuccess) => {
+         const updateTask = async (xAuthToken, id, task, onSuccess, onFailure) => {
            const updateTaskUrl = taskBaseUrl + "/" + id;
            const settings = {
                  method: 'PATCH',
@@ -132,24 +80,11 @@ function initTask(baseUrl) {
                  body: JSON.stringify(task)
            };
 
-           const data = await fetch(updateTaskUrl, settings)
-                .then(response => {
-                  return response.json()
-                })
-                .then(json => {
-                  onSuccess(json)
-                  return json;
-                })
-                .catch(e => {
-                    console.log("error: " + e);
-                    return e
-                });
-
-            return data;
-          }
+           common.expectJsonCall(updateTaskUrl, settings, null, onSuccess, onFailure);
+         }
 
           // DELETE /tasks/id
-          const deleteTask = async (xAuthToken, id, onSuccess) => {
+          const deleteTask = async (xAuthToken, id, onSuccess, onFailure) => {
             const deleteTaskUrl = taskBaseUrl + "/" + id;
             const settings = {
                   method: 'DELETE',
@@ -160,22 +95,8 @@ function initTask(baseUrl) {
                   }
             };
 
-
-            const data = await fetch(deleteTaskUrl, settings)
-                 .then(response => {
-                   return response.json()
-                 })
-                 .then(json => {
-                   onSuccess();
-                   return json;
-                 })
-                 .catch(e => {
-                     console.log("error: " + e);
-                     return e
-                 });
-
-             return data;
-           }
+            common.expectEmptyResponseCall(deleteTaskUrl, settings, null, onSuccess, onFailure);
+          }
 
          // PATCH /taskposition
          const taskPositionUrl = baseUrl + '/taskposition'
@@ -192,7 +113,7 @@ function initTask(baseUrl) {
                  body: JSON.stringify(body)
            };
 
-           common.expectEmptyResponseCall(taskPositionUrl, settings, null, onSuccess, onFailure)
+           common.expectEmptyResponseCall(taskPositionUrl, settings, null, onSuccess, onFailure);
          }
 
       return {
