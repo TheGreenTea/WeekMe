@@ -170,6 +170,7 @@ var PickerGenerator = function() {
   }
 
   function showPicker(day, task){
+    console.log("day", day, "task", task); 
     insertModal();
     insertPicker();
     bindListeners();

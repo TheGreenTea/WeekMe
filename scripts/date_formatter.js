@@ -79,7 +79,6 @@ var DateFormatter = function() {
       let utcAdapted = new Date(utcOriginal).addDays(dayDiff);
       let utcDayTime = Date.UTC(utcAdapted.getUTCFullYear(),utcAdapted.getUTCMonth(), utcAdapted.getUTCDate(), 0, 0, 0, 0);
 
-      let newDAte = new Date(utcDayTime);
       return utcDayTime
   }
 
