@@ -217,9 +217,26 @@ var PickerGenerator = function() {
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(task.content);
     $('#modalHeadlineStepOne').html("Edit task at " + dayString);
+    inkTaskInColor(task.color);
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
+  }
+
+  function inkTaskInColor(color){
+    if(color === 0){
+      $("#btnColorWhite").trigger("click");
+    } else if(color === 1) {
+      $("#btnColorYellow").trigger("click");
+    } else if(color === 2) {
+      $("#btnColorRed").trigger("click");
+    } else if(color === 3) {
+      $("#btnColorPurple").trigger("click");
+    } else if(color === 4) {
+      $("#btnColorBlue").trigger("click");
+    } else if(color === 5) {
+      $("#btnColorGreen").trigger("click");
+    }
   }
 
   function createNewTask(){

@@ -55,16 +55,8 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
-<<<<<<< HEAD
-      PickerGenerator.showPicker(2, {content: "sample text..."});
-=======
-      const headerId = $(this).parent().attr('id');
-      let dayDiff = headerId.substring(headerId.length-1, headerId.length);
-      if(dayDiff === "r"){
-        dayDiff = null;
-      }
-      PickerGenerator.showPicker(dayDiff);
->>>>>>> 052fdabbdded00b3b429a67539f50b7fc08208e7
+
+      PickerGenerator.showPicker(2, {content: "sample text...", color: 3});
     });
 
   }
