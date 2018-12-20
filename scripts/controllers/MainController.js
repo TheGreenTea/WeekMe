@@ -12,7 +12,7 @@ $(document).ready(() => {
     let onFailure = function(statusCode) {
       console.log("Oooops - ", statusCode, "position was not updated")
     }
-    api.task.updatePosition("5c1b7cdd65b96a0015de10fd", DateFormatter.getTimeStamp(5), 5, onSuccess, onFailure);
+    api.task.updatePosition("5c1b7cdd65b96a0015de10fd", DateFormatter.getTimeStamp("3"), 5, onSuccess, onFailure);
 });
 
 var MainController = function() {

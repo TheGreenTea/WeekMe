@@ -70,7 +70,8 @@ var DateFormatter = function() {
   }
 
 
-  function getTimeStamp(dayDiff) {
+  function getTimeStamp(dayDiffRaw) {
+      let dayDiff = parseInt(dayDiffRaw)
       let now = new Date;
       let utcOriginal = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(),
         now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
@@ -78,6 +79,7 @@ var DateFormatter = function() {
       let utcAdapted = new Date(utcOriginal).addDays(dayDiff);
       let utcDayTime = Date.UTC(utcAdapted.getUTCFullYear(),utcAdapted.getUTCMonth(), utcAdapted.getUTCDate(), 0, 0, 0, 0);
 
+      let newDAte = new Date(utcDayTime);
       return utcDayTime
   }
 
