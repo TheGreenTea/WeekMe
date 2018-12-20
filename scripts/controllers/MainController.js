@@ -40,7 +40,6 @@ var MainController = function() {
         console.log("Failed. Unable to logout! - " + statusCode);
       });
     });
-
     //TODO: initialise missing menu events
   }
 
@@ -56,7 +55,12 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
-        PickerGenerator.showPicker();
+      const headerId = $(this).parent().attr('id');
+      let dayDiff = headerId.substring(headerId.length-1, headerId.length);
+      if(dayDiff === "r"){
+        dayDiff = null;
+      }
+      PickerGenerator.showPicker(dayDiff);
     });
 
   }
@@ -75,7 +79,7 @@ var MainController = function() {
       e.stopPropagation();
 
       if($(".card-selected").length){
-          moveCardToPositionOfOtherCard($(".card-selected"), this);
+          moveCardToPositionOfOtherCard($(".card-selected"), $(this));
           $(".card-selected").removeClass("card-selected");
       } else {
         $(this).addClass("card-selected");
@@ -102,15 +106,22 @@ var MainController = function() {
 
   function moveCardToPositionOfOtherCard(card, otherCard){
 
-    if(doCardsHaveSameRow(card, otherCard)){
+    const cardId = card.attr("id");
+    const dayDiff = otherCard.parent().parent().attr("id").replace("day-row-", "");
+    const newPositionOfCard = otherCard.parent().parent().find(".card").index(otherCard);
 
-      const mutalRow = $(card).parent().parent();
-      const cardIndex = $(mutalRow).find(".card").index(card);
-      const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+    api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
 
-      if(cardIndex < otherCardIndex){
-        $(card).parent().insertAfter($(otherCard).parent());
-        return;
+      if(doCardsHaveSameRow(card, otherCard)){
+
+        const mutalRow = $(card).parent().parent();
+        const cardIndex = $(mutalRow).find(".card").index(card);
+        const otherCardIndex = $(mutalRow).find(".card").index(otherCard);
+
+        if(cardIndex < otherCardIndex){
+          $(card).parent().insertAfter($(otherCard).parent());
+          return;
+        }
       }
       $(card).parent().insertBefore($(otherCard).parent());
 
