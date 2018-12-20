@@ -39,6 +39,22 @@ var MainController = function() {
       }, (statusCode) => {
         console.log("Failed. Unable to logout! - " + statusCode);
       });
+      $(".nav").find(".active").removeClass("active");
+    });
+
+    $("#home-link").click(function(e) {
+      $("#content-account").hide();
+      $("#content-main").show();
+
+      $(".navbar").find(".active").removeClass("active");
+    });
+
+    $("#account-link").click(function(e) {
+      $("#content-main").hide();
+      $("#content-account").show();
+
+      $(".navbar").find(".active").removeClass("active");
+      $(this).addClass("active");
     });
     //TODO: initialise missing menu events
   }
