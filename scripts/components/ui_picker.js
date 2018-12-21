@@ -182,6 +182,9 @@ var PickerGenerator = function() {
 
   function showPicker(dayDiff, task, onDone){
 
+
+    console.log(task); 
+
     PickerGenerator.onDone = onDone;
 
     insertModal();
@@ -192,7 +195,7 @@ var PickerGenerator = function() {
     if(dayDiff === null && !task){
       createNewTaskOnStack();
     } else if (!dayDiff && task){
-      editExistingTask(dayDiff, "Stack", task);  
+      editExistingTask(dayDiff, "Stack", task);
     } else if(!task && dayDiff){
       createNewTaskAtDay(dayDiff, dayString);
     } else if((dayDiff >= 0 && dayDiff < 7) && task){

@@ -147,7 +147,8 @@ var MainController = function() {
       let dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
       const content = card.find(".card-body").html().trim();
 
-      dayDiff = null;
+      if(dayDiff === "stack-row") dayDiff = null;
+
 
       PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
 
