@@ -153,6 +153,10 @@ var MainController = function() {
 
         api.task.update(taskId, task, (json) => {
           console.log("JSON", json);
+          $(card).find(".card-body").html(taskData.content);
+          $(card).removeClass(); 
+          $(card).addClass(`color-${taskData.color}`);
+          $(card).addClass(`card`);
           const row = $(`#day-row-${taskData.dayDiff}`);
           $(row).append($(card).parent());
           $(".card-selected").removeClass("card-selected");
