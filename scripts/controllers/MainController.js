@@ -149,8 +149,10 @@ var MainController = function() {
         }
 
         api.task.update(taskId, task, (json) => {
-          alert("GUT");
           console.log("JSON", json);
+          const row = $(`#day-row-${taskData.dayDiff}`);
+          $(row).append($(card).parent());
+          $(".card-selected").removeClass("card-selected"); 
         }, (statusCode) => {
           alert(statusCode);
         });
