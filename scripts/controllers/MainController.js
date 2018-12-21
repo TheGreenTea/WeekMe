@@ -71,6 +71,9 @@ var MainController = function() {
     });
 
     $(".add-day-icon").click(function(){
+
+      if($(".card-selected").length > 0) return;
+
       const headerId = $(this).parent().attr('id');
       let dayDiff = headerId.substring(headerId.length-1, headerId.length);
       if(dayDiff === "r"){
@@ -152,7 +155,7 @@ var MainController = function() {
           console.log("JSON", json);
           const row = $(`#day-row-${taskData.dayDiff}`);
           $(row).append($(card).parent());
-          $(".card-selected").removeClass("card-selected"); 
+          $(".card-selected").removeClass("card-selected");
         }, (statusCode) => {
           alert(statusCode);
         });
