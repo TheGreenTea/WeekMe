@@ -145,12 +145,12 @@ var MainController = function() {
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
       let dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
-      const content = card.find(".card-body").html().trim();
-
       if(dayDiff === "stack-row") dayDiff = null;
 
+      const content = card.find(".card-body").html().trim();
+      const color = getColorOfCard(card);
 
-      PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
+      PickerGenerator.showPicker(dayDiff, {content, color}, (taskData) => {
 
         const taskId = $(this).parent().parent().attr("id");
         const task = {
@@ -265,6 +265,16 @@ var MainController = function() {
         initCardEvents($(`#${task._id}`));
       });
     }
+  }
+
+  function getColorOfCard(card){
+    if(card.hasClass("color-0")) return 0;
+    if(card.hasClass("color-1")) return 1;
+    if(card.hasClass("color-2")) return 2;
+    if(card.hasClass("color-3")) return 3;
+    if(card.hasClass("color-4")) return 4;
+    if(card.hasClass("color-5")) return 5;
+    return 0;
   }
 
   /* Public Interface */

@@ -183,7 +183,7 @@ var PickerGenerator = function() {
   function showPicker(dayDiff, task, onDone){
 
 
-    console.log(task); 
+    console.log(task);
 
     PickerGenerator.onDone = onDone;
 
@@ -226,9 +226,11 @@ var PickerGenerator = function() {
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(task.content);
     $('#modalHeadlineStepOne').html("Edit task at " + dayString);
+
     if(task.color){
       inkTaskInColor(task.color);
     }
+
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
@@ -310,6 +312,9 @@ var PickerGenerator = function() {
   }
 
   function bindListeners(){
+
+    //TODO WHY are taskContent and taskColor empty?? 
+
 
     var taskContent = "";
     var taskColor = "";
