@@ -265,6 +265,8 @@ var MainController = function() {
         initCardEvents($(`#${task._id}`));
       });
     }
+
+    //TODO add all unfinished tasks from the PAST to the stack
   }
 
   function getColorOfCard(card){
