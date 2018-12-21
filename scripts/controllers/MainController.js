@@ -91,8 +91,13 @@ var MainController = function() {
         }
 
         api.task.create(task, (json) => {
-          alert("GUT");
           console.log("JSON", json);
+          let taskCard = TemplateGenerator.getTaskCard(taskData.content, json._id, taskData.color);
+          if(taskData.dayDiff === "stack"){
+            $(`#stack-row`).append(taskCard);
+          } else {
+            $(`#day-row-${taskData.dayDiff}`).append(taskCard);
+          }
         }, (statusCode) => {
           alert(statusCode);
         });
@@ -143,7 +148,7 @@ var MainController = function() {
       const content = card.find(".card-body").html().trim();
 
       dayDiff = null;
- 
+
       PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
 
         const taskId = $(this).parent().parent().attr("id");
