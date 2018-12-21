@@ -139,9 +139,11 @@ var MainController = function() {
 
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
-      const dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
+      let dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
       const content = card.find(".card-body").html().trim();
 
+      dayDiff = null;
+ 
       PickerGenerator.showPicker(dayDiff, {content}, (taskData) => {
 
         const taskId = $(this).parent().parent().attr("id");
@@ -154,7 +156,7 @@ var MainController = function() {
         api.task.update(taskId, task, (json) => {
           console.log("JSON", json);
           $(card).find(".card-body").html(taskData.content);
-          $(card).removeClass(); 
+          $(card).removeClass();
           $(card).addClass(`color-${taskData.color}`);
           $(card).addClass(`card`);
           const row = $(`#day-row-${taskData.dayDiff}`);

@@ -191,6 +191,8 @@ var PickerGenerator = function() {
 
     if(dayDiff === null && !task){
       createNewTaskOnStack();
+    } else if (!dayDiff && task){
+      editExistingTask(dayDiff, "Stack", task);  
     } else if(!task && dayDiff){
       createNewTaskAtDay(dayDiff, dayString);
     } else if((dayDiff >= 0 && dayDiff < 7) && task){
