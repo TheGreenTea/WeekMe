@@ -150,13 +150,18 @@ var MainController = function() {
       const content = card.find(".card-body").html().trim();
       const color = getColorOfCard(card);
 
-      PickerGenerator.showPicker(dayDiff, {content, color}, (taskData) => {
+      PickerGenerator.showPicker(dayDiff, {content, color}, async (taskData) => {
 
         const taskId = $(this).parent().parent().attr("id");
-        const task = {
+        let task = {
           content: taskData.content,
           color: taskData.color,
           dueAt: DateFormatter.getTimeStamp(taskData.dayDiff)
+        }
+
+        if(taskData.dayDiff != dayDiff){
+          const newPosition = $(`#day-row-${taskData.dayDiff}`).find(".card").length;
+          await api.task.updatePosition(taskId, DateFormatter.getTimeStamp(taskData.dayDiff), newPosition, () => {});
         }
 
         api.task.update(taskId, task, (json) => {
@@ -166,7 +171,11 @@ var MainController = function() {
           $(card).addClass(`color-${taskData.color}`);
           $(card).addClass(`card`);
           const row = $(`#day-row-${taskData.dayDiff}`);
-          $(row).append($(card).parent());
+
+          if(taskData.dayDiff != dayDiff) $(row).append($(card).parent()); //Move to new row if the day has changed
+
+
+
           $(".card-selected").removeClass("card-selected");
         }, (statusCode) => {
           alert(statusCode);
