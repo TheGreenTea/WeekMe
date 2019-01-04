@@ -18,6 +18,7 @@ var MainController = function() {
     setupContainers();
     initEvents();
     loadTasks();
+    loadAccountDetails();
   }
 
   /* Private Methods */
@@ -286,6 +287,15 @@ var MainController = function() {
     if(card.hasClass("color-4")) return 4;
     if(card.hasClass("color-5")) return 5;
     return 0;
+  }
+
+  function loadAccountDetails(){
+
+    //TODO get Email via API (DAVID!!)
+
+
+    const email = "kuchent@gmx.de";
+    $('#account-mail').html("Email: " + email);
   }
 
   /* Public Interface */
