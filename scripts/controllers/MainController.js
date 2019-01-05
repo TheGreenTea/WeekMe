@@ -253,13 +253,16 @@ var MainController = function() {
     let tasks = tasksJson['tasks'];
 
     //Add stack tasksJson
+    let overdueTasks = tasks.filter(task => task.dueAt < new Date())
     let stackTasks = tasks.filter(task => task.dueAt == null);
-    let sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
+    var sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
+    sortedStackTasks = sortedStackTasks.concat(overdueTasks);
     sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
       $("#stack-row").append(taskCard);
       initCardEvents($(`#${task._id}`));
     });
+
 
     //Add day-row tasks
     for (i = 0; i < 7; i++) {
