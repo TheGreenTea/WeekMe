@@ -31,9 +31,6 @@ var PickerGenerator = function() {
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 id="modalHeadlineStepOne" class="modal-title">Create new task</h4>
-              <button type="button" id="btnChangeColor" class="btn btn-secondary btn-third">
-                change color
-              </button>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -44,6 +41,8 @@ var PickerGenerator = function() {
 
             <!-- Modal footer -->
             <div class="modal-footer">
+              <button type="button" id="btnChangeColor" class="color-0"></button>
+
               <button type="button" id="btnStack" class="btn btn-primary btn-first">
                 stack
               </button>
@@ -237,9 +236,9 @@ var PickerGenerator = function() {
     $('#modalHeadlineStepOne').html("Edit task on " + dayString);
 
     taskColor = task.color;
-    var modals = $(".modal-content");
-    $(".modal-content").removeClass();
-    modals.addClass(`modal-content color-${task.color}`);
+
+    $("#btnChangeColor").removeClass();
+    $("#btnChangeColor").addClass(`color-${task.color}`);
 
     $('#btnToday').hide();
     $('#btnStack').hide();
@@ -380,49 +379,43 @@ var PickerGenerator = function() {
     $("#btnColor0").click(() => {
       closeColorPicker(taskContent);
       taskColor = 0;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content color-0');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#btnColor1").click(() => {
       closeColorPicker(taskContent);
       taskColor = 1;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content yellow color-1');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#btnColor2").click(() => {
       closeColorPicker(taskContent);
       taskColor = 2;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content color-2');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#btnColor3").click(() => {
       closeColorPicker(taskContent);
       taskColor = 3;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content color-3');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#btnColor4").click(() => {
       closeColorPicker(taskContent);
       taskColor = 4;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content color-4');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#btnColor5").click(() => {
       closeColorPicker(taskContent);
       taskColor = 5;
-      var modals = $(".modal-content");
-      $(".modal-content").removeClass();
-      modals.addClass('modal-content color-5');
+      $("#btnChangeColor").removeClass();
+      $("#btnChangeColor").addClass(`color-${taskColor}`);
     });
 
     $("#newTaskColorPicker").on('show.bs.modal', function () {

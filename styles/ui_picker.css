@@ -91,26 +91,10 @@ textarea {
   border-radius: 1em;
 }
 
-/* #btnColorWhite, .white{
-  background-color: white;
+#btnChangeColor {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  left: 16px;
+  border-radius: 5px;
 }
-
-#btnColorYellow, .yellow{
-  background-color: #eeff7f;
-}
-
-#btnColorRed, .red{
-  background-color: #ff7f7f;
-}
-
-#btnColorPurple, .purple{
-  background-color: #f27fff;
-}
-
-#btnColorBlue, .blue{
-  background-color: #857fff;
-}
-
-#btnColorGreen, .green{
-  background-color: #7fff85;
-} */  
