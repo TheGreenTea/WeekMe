@@ -293,12 +293,12 @@ var MainController = function() {
   }
 
   function loadAccountDetails(){
-
-    //TODO get Email via API (DAVID!!)
-
-
-    const email = "kuchent@gmx.de";
-    $('#account-mail').html("Email: " + email);
+    api.user.profile((json) => {
+      const email = "kuchent@gmx.de";
+      $('#account-mail').html("Email: " + json.email);
+    }, (statusCode) => {
+      console.log("Unable to load profile: ", statusCode);
+    });
   }
 
   /* Public Interface */
