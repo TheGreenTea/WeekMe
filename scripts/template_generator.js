@@ -26,7 +26,7 @@ var TemplateGenerator = function() {
                   <a class="button-edit-task"></a>
                   <a class="button-delete-task"></a>
                 </div>
-                <div class="card-body">
+                <div class="card-body align-items-center d-flex justify-content-center"> 
                   ${text}
                 </div>
               </div>
