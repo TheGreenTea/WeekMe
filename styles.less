@@ -32,11 +32,14 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 }
 
 .card {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 2px !important;
   text-align: center;
   height: 62px;
   overflow: hidden;
+}
+
+.card-body {
+  padding: 2px;
 }
 
 .color-0 {
@@ -80,18 +83,23 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 .card-selected .card-buttons{
   display: inline-block;
   position: sticky;
-  top: 0; 
+  top: 0;
 }
 
 .day-row, .stack-row {
   background: #eaedf2;
-  min-height: 82px;
+  min-height: 62px; 
 }
 
 .row {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+}
+
+.col-weekme {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .day-header {
