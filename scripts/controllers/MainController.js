@@ -99,6 +99,9 @@ var MainController = function() {
           } else {
             $(`#day-row-${taskData.dayDiff}`).append(taskCard);
           }
+
+          initCardEvents(`#${json._id}`);
+
         }, (statusCode) => {
           alert(statusCode);
         });
@@ -145,11 +148,11 @@ var MainController = function() {
 
     $(card).find(".button-edit-task").click(function(e) {
       e.stopPropagation();
-      let dayDiff = card.parent().parent().attr("id").replace("day-row-", "");
+      let dayDiff = $(card).parent().parent().attr("id").replace("day-row-", "");
       if(dayDiff === "stack-row") dayDiff = null;
 
-      const content = card.find(".card-body").html().trim();
-      const color = getColorOfCard(card);
+      const content = $(card).find(".card-body").html().trim();
+      const color = getColorOfCard($(card));
 
       PickerGenerator.showPicker(dayDiff, {content, color}, async (taskData) => {
 
