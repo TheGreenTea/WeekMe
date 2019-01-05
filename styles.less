@@ -35,8 +35,8 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   margin-top: 8px;
   margin-bottom: 8px;
   text-align: center;
-  height: 82px;
-  overflow: scroll; 
+  height: 62px;
+  overflow: hidden;
 }
 
 .color-0 {
@@ -65,6 +65,7 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 
 .card-selected{
   background: white;
+  overflow: scroll;
 }
 
 
@@ -78,6 +79,8 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 
 .card-selected .card-buttons{
   display: inline-block;
+  position: sticky;
+  top: 0; 
 }
 
 .day-row, .stack-row {
