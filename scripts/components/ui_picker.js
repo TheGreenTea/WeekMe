@@ -183,7 +183,7 @@ var PickerGenerator = function() {
   function showPicker(dayDiff, task, onDone){
 
 
-    console.log(task);
+    console.log("task", task);
 
     PickerGenerator.onDone = onDone;
 
@@ -219,17 +219,17 @@ var PickerGenerator = function() {
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
-    $('#modalHeadlineStepOne').html("Create new task at " + dayString);
+    $('#modalHeadlineStepOne').html("Create new task on " + dayString);
   }
 
   function editExistingTask(day, dayString, task){
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('.new-task-textarea').val(task.content);
-    $('#modalHeadlineStepOne').html("Edit task at " + dayString);
+    $('#modalHeadlineStepOne').html("Edit task on " + dayString);
 
-    if(task.color){
-      inkTaskInColor(task.color);
-    }
+
+    inkTaskInColor(task.color); 
+
 
     $('#btnToday').hide();
     $('#btnStack').hide();
@@ -237,7 +237,7 @@ var PickerGenerator = function() {
   }
 
   function disableButtonToConfirmTask(){
-    if($(".new-task-textarea").val() === ""){
+    if($(".new-task-textarea").val().trim() === ""){
       $('#btnDone').prop('disabled', true);
       $('#btnPickDay').prop('disabled', true);
       $('#btnStack').prop('disabled', true);
@@ -246,7 +246,7 @@ var PickerGenerator = function() {
   }
 
   function enableButtonToConfirmTask(){
-    if($(".new-task-textarea").val() != ""){
+    if($(".new-task-textarea").val().trim() !== ""){
       $('#btnDone').prop('disabled', false);
       $('#btnPickDay').prop('disabled', false);
       $('#btnStack').prop('disabled', false);
@@ -358,7 +358,7 @@ var PickerGenerator = function() {
       $("#newTaskStepTwo").modal({backdrop: 'static'}, "show");
     });
 
-    $(".new-task-textarea").on("change", () => {
+    $(".new-task-textarea").on("keyup", () => {
       enableButtonToConfirmTask();
       disableButtonToConfirmTask();
     });
@@ -402,7 +402,7 @@ var PickerGenerator = function() {
       taskColor = 0;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content white');
+      modals.addClass('modal-content color-0');
     });
 
     $("#btnColor1").click(() => {
@@ -410,7 +410,7 @@ var PickerGenerator = function() {
       taskColor = 1;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content yellow');
+      modals.addClass('modal-content yellow color-1');
     });
 
     $("#btnColor2").click(() => {
@@ -418,7 +418,7 @@ var PickerGenerator = function() {
       taskColor = 2;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content red');
+      modals.addClass('modal-content color-2');
     });
 
     $("#btnColor3").click(() => {
@@ -426,7 +426,7 @@ var PickerGenerator = function() {
       taskColor = 3;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content purple');
+      modals.addClass('modal-content color-3');
     });
 
     $("#btnColor4").click(() => {
@@ -434,7 +434,7 @@ var PickerGenerator = function() {
       taskColor = 4;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content blue');
+      modals.addClass('modal-content color-4');
     });
 
     $("#btnColor5").click(() => {
@@ -442,7 +442,7 @@ var PickerGenerator = function() {
       taskColor = 5;
       var modals = $(".modal-content");
       $(".modal-content").removeClass();
-      modals.addClass('modal-content green');
+      modals.addClass('modal-content color-5');
     });
 
     $("#newTaskColorPicker").on('show.bs.modal', function () {
