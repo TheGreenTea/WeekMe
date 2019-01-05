@@ -96,12 +96,12 @@ var PickerGenerator = function() {
 
           <!-- Modal body -->
           <div class="modal-body">
-            <button type="button" class="btn btn-color-picker btn-white" id="btnColorWhite"></button>
-            <button type="button" class="btn btn-color-picker btn-yellow" id="btnColorYellow"></button>
-            <button type="button" class="btn btn-color-picker btn-red" id="btnColorRed"></button>
-            <button type="button" class="btn btn-color-picker btn-purple" id="btnColorPurple"></button>
-            <button type="button" class="btn btn-color-picker btn-blue" id="btnColorBlue"></button>
-            <button type="button" class="btn btn-color-picker btn-green" id="btnColorGreen"></button>
+            <button type="button" class="btn btn-color-picker color-0" id="btnColor0"></button>
+            <button type="button" class="btn btn-color-picker color-1" id="btnColor1"></button>
+            <button type="button" class="btn btn-color-picker color-2" id="btnColor2"></button>
+            <button type="button" class="btn btn-color-picker color-3" id="btnColor3"></button>
+            <button type="button" class="btn btn-color-picker color-4" id="btnColor4"></button>
+            <button type="button" class="btn btn-color-picker color-5" id="btnColor5"></button>
           </div>
 
           <!-- Modal footer -->
@@ -256,17 +256,17 @@ var PickerGenerator = function() {
 
   function inkTaskInColor(color){
     if(color === 0){
-      $("#btnColorWhite").trigger("click");
+      $("#btnColor0").trigger("click");
     } else if(color === 1) {
-      $("#btnColorYellow").trigger("click");
+      $("#btnColor1").trigger("click");
     } else if(color === 2) {
-      $("#btnColorRed").trigger("click");
+      $("#btnColor2").trigger("click");
     } else if(color === 3) {
-      $("#btnColorPurple").trigger("click");
+      $("#btnColor3").trigger("click");
     } else if(color === 4) {
-      $("#btnColorBlue").trigger("click");
+      $("#btnColor4").trigger("click");
     } else if(color === 5) {
-      $("#btnColorGreen").trigger("click");
+      $("#btnColor5").trigger("click");
     }
   }
 
@@ -313,7 +313,7 @@ var PickerGenerator = function() {
 
   function bindListeners(){
 
-    //TODO WHY are taskContent and taskColor empty?? 
+    //TODO WHY are taskContent and taskColor empty??
 
 
     var taskContent = "";
@@ -397,7 +397,7 @@ var PickerGenerator = function() {
       closeColorPicker(taskContent);
     });
 
-    $("#btnColorWhite").click(() => {
+    $("#btnColor0").click(() => {
       closeColorPicker(taskContent);
       taskColor = 0;
       var modals = $(".modal-content");
@@ -405,7 +405,7 @@ var PickerGenerator = function() {
       modals.addClass('modal-content white');
     });
 
-    $("#btnColorYellow").click(() => {
+    $("#btnColor1").click(() => {
       closeColorPicker(taskContent);
       taskColor = 1;
       var modals = $(".modal-content");
@@ -413,7 +413,7 @@ var PickerGenerator = function() {
       modals.addClass('modal-content yellow');
     });
 
-    $("#btnColorRed").click(() => {
+    $("#btnColor2").click(() => {
       closeColorPicker(taskContent);
       taskColor = 2;
       var modals = $(".modal-content");
@@ -421,7 +421,7 @@ var PickerGenerator = function() {
       modals.addClass('modal-content red');
     });
 
-    $("#btnColorPurple").click(() => {
+    $("#btnColor3").click(() => {
       closeColorPicker(taskContent);
       taskColor = 3;
       var modals = $(".modal-content");
@@ -429,7 +429,7 @@ var PickerGenerator = function() {
       modals.addClass('modal-content purple');
     });
 
-    $("#btnColorBlue").click(() => {
+    $("#btnColor4").click(() => {
       closeColorPicker(taskContent);
       taskColor = 4;
       var modals = $(".modal-content");
@@ -437,7 +437,7 @@ var PickerGenerator = function() {
       modals.addClass('modal-content blue');
     });
 
-    $("#btnColorGreen").click(() => {
+    $("#btnColor5").click(() => {
       closeColorPicker(taskContent);
       taskColor = 5;
       var modals = $(".modal-content");
