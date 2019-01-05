@@ -93,7 +93,7 @@ var MainController = function() {
 
         api.task.create(task, (json) => {
           console.log("JSON", json);
-          let taskCard = TemplateGenerator.getTaskCard(taskData.content, json._id, taskData.color); 
+          let taskCard = TemplateGenerator.getTaskCard(taskData.content, json._id, taskData.color);
           if(taskData.dayDiff === "stack"){
             $(`#stack-row`).append(taskCard);
           } else {
@@ -290,12 +290,12 @@ var MainController = function() {
   }
 
   function loadAccountDetails(){
-
-    //TODO get Email via API (DAVID!!)
-
-
-    const email = "kuchent@gmx.de";
-    $('#account-mail').html("Email: " + email);
+    api.user.profile((json) => {
+      const email = "kuchent@gmx.de";
+      $('#account-mail').html("Email: " + json.email);
+    }, (statusCode) => {
+      console.log("Unable to load profile: ", statusCode);
+    });
   }
 
   /* Public Interface */

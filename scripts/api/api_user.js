@@ -66,7 +66,8 @@ function initUser(baseUrl, saveToken) {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-auth': xAuthToken
             }
         };
 
