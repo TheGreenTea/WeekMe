@@ -93,7 +93,7 @@ var MainController = function() {
 
         api.task.create(task, (json) => {
           console.log("JSON", json);
-          let taskCard = TemplateGenerator.getTaskCard(taskData.content, json._id, taskData.color);
+          let taskCard = TemplateGenerator.getTaskCard(taskData.content, json._id, taskData.color); 
           if(taskData.dayDiff === "stack"){
             $(`#stack-row`).append(taskCard);
           } else {

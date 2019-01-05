@@ -6,6 +6,15 @@ var PickerGenerator = function() {
 
   /* Configuration */
 
+
+  var taskContent = "";
+  var taskColor = "";
+  var isStepOneShown = false;
+  var isStepTwoShown = false;
+  var isColorPickerShown = false;
+
+
+
   /* Public Methods */
 
   function init(){
@@ -227,9 +236,10 @@ var PickerGenerator = function() {
     $('.new-task-textarea').val(task.content);
     $('#modalHeadlineStepOne').html("Edit task on " + dayString);
 
-
-    inkTaskInColor(task.color); 
-
+    taskColor = task.color;
+    var modals = $(".modal-content");
+    $(".modal-content").removeClass();
+    modals.addClass(`modal-content color-${task.color}`);
 
     $('#btnToday').hide();
     $('#btnStack').hide();
@@ -254,22 +264,6 @@ var PickerGenerator = function() {
     }
   }
 
-  function inkTaskInColor(color){
-    if(color === 0){
-      $("#btnColor0").trigger("click");
-    } else if(color === 1) {
-      $("#btnColor1").trigger("click");
-    } else if(color === 2) {
-      $("#btnColor2").trigger("click");
-    } else if(color === 3) {
-      $("#btnColor3").trigger("click");
-    } else if(color === 4) {
-      $("#btnColor4").trigger("click");
-    } else if(color === 5) {
-      $("#btnColor5").trigger("click");
-    }
-  }
-
   function createNewTask(){
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('#btnToday').show();
@@ -279,13 +273,8 @@ var PickerGenerator = function() {
   }
 
   function confirmTask(content, dayDiff, color){
-    if(!color){
-      color = 0;
-    }
-    console.log("Text: " + content + " - At day: " + dayDiff + " - with color: " + color);
-
+    // console.log("Text: " + content + " - At day: " + dayDiff + " - with color: " + color);
     PickerGenerator.onDone({content, dayDiff, color});
-
   }
 
   function resetDayPicker(){
@@ -312,15 +301,6 @@ var PickerGenerator = function() {
   }
 
   function bindListeners(){
-
-    //TODO WHY are taskContent and taskColor empty??
-
-
-    var taskContent = "";
-    var taskColor = "";
-    var isStepOneShown = false;
-    var isStepTwoShown = false;
-    var isColorPickerShown = false;
 
 // Step 1
     $("#newTaskStepOne").on('show.bs.modal', function () {
