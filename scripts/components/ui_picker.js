@@ -214,6 +214,7 @@ var PickerGenerator = function() {
   }
 
   function createNewTaskOnStack(){
+    taskColor = 0;
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     $('#btnToday').hide();
     $('#btnStack').hide();
@@ -222,6 +223,7 @@ var PickerGenerator = function() {
   }
 
   function createNewTaskAtDay(day, dayString){
+    taskColor = 0;
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
     disableButtonToConfirmTask();
     $('#btnToday').hide();
