@@ -196,12 +196,11 @@ var LoginController = function() {
 
       if (validateResetForm()) {
         let password = $("#input-password").val();
-
-        let onResetSuccess = function(json) {
+        api.user.reset(resetCode, password, (json) => {
           showInfoMessage("Password was reset!");
-        }
-
-        api.user.reset(resetCode, password, onResetSuccess);
+        }, (statusCode) => {
+          showErrorMessage("Password reset failed: " + statusCode);
+        });
       }
     });
 
