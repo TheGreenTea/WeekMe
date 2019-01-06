@@ -178,11 +178,11 @@ var LoginController = function() {
       if (validateRequestResetForm()) {
         let email = $("#input-email").val();
 
-        let onRequestResetSuccess = function(json) {
+        api.user.requestPasswordReset(email, (json) => {
           showInfoMessage("An email was sent");
-        }
-
-        api.user.requestPasswordReset(email, onRequestResetSuccess);
+        }, (statusCode) => {
+          showErrorMessage("Reset request failed: " + statusCode);
+        });
       }
     });
 

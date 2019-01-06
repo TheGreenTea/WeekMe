@@ -29,7 +29,7 @@ function initCommon() {
       let statusCode = data.status
       if(statusCode == 200) {
         if(beforeSuccess) {
-          beforeSuccess();
+          beforeSuccess(data);
         }
         onSuccess();
       } else {

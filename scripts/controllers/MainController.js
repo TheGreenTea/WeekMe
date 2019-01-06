@@ -18,7 +18,7 @@ var MainController = function() {
     setupContainers();
     initEvents();
     loadTasks();
-    loadAccountDetails();
+    setupAccountDetails();
   }
 
   /* Private Methods */
@@ -281,8 +281,6 @@ var MainController = function() {
         initCardEvents($(`#${task._id}`));
       });
     }
-
-    //TODO add all unfinished tasks from the PAST to the stack
   }
 
   function getColorOfCard(card){
@@ -295,13 +293,128 @@ var MainController = function() {
     return 0;
   }
 
-  function loadAccountDetails(){
+
+  //MARK: Account
+  function showAccountAlert(style, title, message) {
+    //show
+    $("#account-alert").addClass("in");
+    $('#account-alert').css("visibility", "visible");
+    //remove existing style
+    $("#account-alert").removeClass("alert-success");
+    $("#account-alert").removeClass("alert-info");
+    $("#account-alert").removeClass("alert-warning");
+    $("#account-alert").removeClass("alert-danger");
+    //set
+    $('#account-alert-title').text(title);
+    $('#account-alert-message').text(message);
+    $("#account-alert").addClass(style);
+  }
+
+  function validateChangePasswordInput() {
+    let currentPassword = $('#input-cp-currentpassword').val();
+    let newPassword = $('#input-cp-password').val();
+    let repeatNewPassword = $('#input-cp-repeatpassword').val();
+
+    if(!currentPassword) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to enter your current password");
+      return false;
+    }
+    if(!newPassword) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to provide a new password");
+      return false;
+    }
+    if(!repeatNewPassword) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to repeat the new password you want to set");
+      return false;
+    }
+    if(newPassword != repeatNewPassword) {
+      showAccountAlert("alert-warning", "Invalid input", "The passwords do not match");
+      return false;
+    }
+    if(newPassword.length < 6) {
+      showAccountAlert("alert-warning", "Invalid input", "Your new password needs to consist of at least 6 characters");
+      return false;
+    }
+
+    return true
+  }
+
+  function validateChangeEmailInput() {
+    let password = $('#input-ce-password').val();
+    let email = $('#input-ce-email').val();
+    let repeatEmail = $('#input-ce-repeatemail').val();
+
+    if(!password) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to enter your current password");
+      return false;
+    }
+    if(!email) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to provide a new email");
+      return false;
+    }
+    if(!$('#input-ce-email')[0].checkValidity()) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to provide a valid email address!");
+      return false;
+    }
+    if(!repeatEmail) {
+      showAccountAlert("alert-warning", "Invalid input", "You need to repeat the new email you want to set");
+      return false;
+    }
+    if(email != repeatEmail) {
+      showAccountAlert("alert-warning", "Invalid input", "The emails do not match");
+      return false;
+    }
+
+    return true
+  }
+
+  function setupAccountDetails(){
+
+    //setup account alert
+    $('#account-alert-close').click(() => {
+      $('#account-alert').css("visibility", "hidden");
+      $("#account-alert").removeClass("in");
+    })
+
+    //Load profile
     api.user.profile((json) => {
-      const email = "kuchent@gmx.de";
       $('#account-mail').html("Email: " + json.email);
     }, (statusCode) => {
-      console.log("Unable to load profile: ", statusCode);
+      $('#account-mail').html("Email: " + "could not be loaded");
+      showAccountAlert("alert-danger", "Unable to load profile", "Your account information could not be loaded. (" + statusCode + ")");
     });
+
+    $('#change-password-button').click(() => {
+      if(validateChangePasswordInput()) {
+        let currentPassword = $('#input-cp-currentpassword').val();
+        let newPassword = $('#input-cp-password').val();
+
+        api.user.updatePassword(currentPassword, newPassword, () => {
+          showAccountAlert("alert-success", "Password changed", "Your password was successfully changed.");
+          $('#input-cp-currentpassword').val('');
+          $('#input-cp-password').val('');
+          $('#input-cp-repeatpassword').val('');
+        }, (statusCode) => {
+          showAccountAlert("alert-danger", "Unable to change password", "Unfortunately an error occured and you password was not changed (" + statusCode + ")");
+        });
+      }
+    })
+
+    $('#change-email-button').click(() => {
+      if(validateChangeEmailInput()) {
+        let password = $('#input-ce-password').val();
+        let email = $('#input-ce-email').val();
+
+        api.user.updateEmail(password, email, () => {
+          showAccountAlert("alert-success", "Email changed", "Your email address was successfully changed");
+          $('#input-ce-password').val('');
+          $('#input-ce-email').val('');
+          $('#input-ce-repeatemail').val('');
+        }, (statusCode) => {
+          showAccountAlert("alert-danger", "Unable to change email", "Unfortunately an error occured and your email was not changed (" + statusCode + ")");
+        });
+      }
+    })
   }
 
   /* Public Interface */

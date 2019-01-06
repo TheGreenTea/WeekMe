@@ -91,6 +91,40 @@ function initUser(baseUrl, saveToken) {
         common.expectEmptyResponseCall(requestResetUrl, settings, null, onSuccess, onFailure);
     }
 
+    // PATCH /users/updatepassword
+    const updatePasswordUrl = userBaseUrl + '/updatepassword';
+    const updatePassword = async (xAuthToken, currentPassword, newPassword, onSuccess, onFailure) => {
+      const body = { oldpassword: currentPassword, newpassword: newPassword };
+      const settings = {
+            method: 'PATCH',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'x-auth': xAuthToken
+            },
+            body: JSON.stringify(body)
+        };
+
+        common.expectEmptyResponseCall(updatePasswordUrl, settings, saveTokenFromHeader, onSuccess, onFailure);
+    }
+
+    // PATCH /users/updateemail
+    const updateEmailUrl = userBaseUrl + '/updateemail';
+    const updateEmail = async (xAuthToken, password, email, onSuccess, onFailure) => {
+      const body = { password: password, newemail: email };
+      const settings = {
+            method: 'PATCH',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'x-auth': xAuthToken
+            },
+            body: JSON.stringify(body)
+        };
+
+        common.expectEmptyResponseCall(updateEmailUrl, settings, saveTokenFromHeader, onSuccess, onFailure);
+    }
+
     // POST /users/me/resetpassword
     const resetUrl = userBaseUrl + '/newpassword';
 
@@ -114,6 +148,8 @@ function initUser(baseUrl, saveToken) {
       register,
       profile,
       requestPasswordReset: requestReset,
+      updatePassword,
+      updateEmail,
       reset: reset
     };
   }(baseUrl));

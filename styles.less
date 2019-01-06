@@ -24,8 +24,6 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 @color-5: #f3ccff;
 
 
-
-
 #content-main{
   background: #bbd2f7;
   padding: 0px 5px 0px 5px;
@@ -84,7 +82,7 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   display: inline-block;
   position: sticky;
   top: 0;
-  left: 0; 
+  left: 0;
 }
 
 .day-row, .stack-row {
@@ -148,10 +146,44 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   left: 12%;
 }
 
+.seperator {
+  height: 1px;
+  background-color: lightgray;
+  margin-bottom: 20px;
+}
+
 //account
+.alert.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+.alert.fade.in {
+  opacity: 1;
+}
+
+#account-alert {
+  margin-bottom: 4px;
+}
+
+#account-container {
+  margin-left: 60px;
+  width: 240px;
+}
 
 #content-account {
   display: none;
+}
+.account-subcontainer {
+  margin-bottom: 20px;
+}
+.account-form {
+  text-align: center;
+}
+.account-subcontainer .account-form button {
+  display: inline-block;
 }
 
 .btn.btn-primary {

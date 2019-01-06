@@ -39,12 +39,20 @@ let api = (function () {
 
       return token ? true: false;
     }
+    const updateEmail = async (password, email, onSuccess, onFailure) => {
+      user.updateEmail(loadToken(), password, email, onSuccess, onFailure)
+    }
+    const updatePassword = async (currentPassword, newPassword, onSuccess, onFailure) => {
+      user.updatePassword(loadToken(), currentPassword, newPassword, onSuccess, onFailure)
+    }
 
     return {
       register: user.register,
       login: user.login,
       requestPasswordReset: user.requestPasswordReset,
       reset: user.reset,
+      updatePassword: updatePassword,
+      updateEmail: updateEmail,
       logout: logout,
       profile: profile,
       loggedIn: loggedIn
