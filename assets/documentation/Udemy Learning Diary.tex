@@ -209,38 +209,36 @@ NoSQL databases like MongoDB using collections instead of tables. A collection s
 	\begin{figure}[H]
 		\centering 
 		\includegraphics[height=3cm]{figures/relational-document}     
-		\caption{Relational Model}           
+		\caption{Table vs. Collection}           
 	\end{figure}   
 
 
-These documents representing one row in the table. So one document is one object containing the information, split in columns which are the attributes. In relational models it is common to combine different tables with a “join”, to get the needed information.
+These documents representing one row in the table. So one document is one object containing the information, split in columns which are the attributes. In relational models it is common to combine different tables with a "join", to get the needed information.
 Instead of joining different tables, MongoDB provides the possibility to embed or link documents to create a relation between documents in different collections.    
 
 	\begin{figure}[H]
 		\centering 
 		\includegraphics[height=3cm]{figures/embedded-address}     
-		\caption{Relational Model}           
+		\caption{Embedding}           
 	\end{figure}    
-
 
 You can embed an object into another object,
 If you add a field to your object, 
 which contains another object.
-Here you can see a document of “user”,
+Here you can see a document of "user",
 where another object was added
-to store and access the address of the user.
-
+to store and access the address of the user. 
 
 Another way to store and access the address of a specific user, is to link both documents with a foreign key. You have just to write the key of the user as foreign key into the document of the address.
 
 
 	\begin{figure}[H]
-		\centering 
+		\centering  
 		\includegraphics[height=3cm]{figures/linking}     
-		\caption{Relational Model}           
-	\end{figure}    
+		\caption{Linking}           
+	\end{figure}     
 
-
+ 
 \section{Types of NoSQL databases} 
 NoSQL databases are usually classified into four different types. 
 
@@ -254,7 +252,7 @@ Known key-value pair based databases include Riak, Voldemort and Amazon's Dynamo
 \subsection{Document databases}
 The schema of data in those documents can differ in structure and still be part of the same collection.
 \subsection{Graph databases}
-
+ 
 %\subsection{Column based databases}                                                                                                      
 \textbf{Cassandra} \\
 Apache Cassandra is used and was developed by facebook. \\
@@ -448,7 +446,7 @@ var UserSchema = new mongoose.Schema({
 
 
 \subsection{Model Methods \& Instance Methods}
-Mongoose provides us with the ability to define methods for our models as well as for the documents stored inside our collections. Model methods are defined using the statics keyword. They act on the entire collection while instance methods are defined using the methods keyword and only act on an instance within a collection. Below I added one example of each type from the note-application. The findByToken method is a model method that finds and returns a user from the collection based on the token we pass in. The generateAuthToken method is an instance method that generates a unique token for an instance of a user inside the user collection. 
+Mongoose provides us with the ability to define methods for our models as well as for the documents stored inside our collections. Model methods are defined using the statics keyword. They act on the entire collection while instance methods are defined using the methods keyword and only act on an instance within a collection. Below I added one example of each type from the WeekMe application. The findByToken method is a model method that finds and returns a user from the collection based on the token we pass in. The generateAuthToken method is an instance method that generates a unique token for an instance of a user inside the user collection. 
 
 \begin{lstlisting}
 UserSchema.statics.findByToken = function (token){
