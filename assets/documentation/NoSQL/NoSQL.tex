@@ -240,24 +240,36 @@ Another way to store and access the address of a specific user, is to link both 
 
  
 \section{Types of NoSQL databases} 
-NoSQL databases are usually classified into four different types. 
+Just as the term "Not only SQL" is pretty broad, there are a broad variety of different database-systems to which it applies.
+Many of these different systems can be categorised in one of the following four general types. \cite{nosqllist}
 
 \subsection{Key-Value pair based databases}
-Key-Value pair based databases are the simplest type of NoSQL databases.
-%TODO add reference: https://dzone.com/articles/nosql-database-types-1
+Key-Value pair based databases are the simplest type of NoSQL databases. 
 As the name suggests they store key-value pairs. 
-The key is a unique string, while the value can be anything: a string, a number, a blob or even an entire new set of key-value pairs encapsulated in an object. 
-\\Thus, there is no defined structure for the values. This makes this kind of database very flexible but also, since there are no restrictions or checks for the values, prone to error and inconsistent data. 
-Known key-value pair based databases include Riak, Voldemort and Amazon's DynamoDB.
+The key is a unique string which is also the only way to query the database.\cite{kvquery} 
+The value on the other hand can be anything: a string, a number, a JSON document or even an entire new set of key-value pairs encapsulated in an object. 
+Known key-value pair based databases are Amazon's DynamoDB and the open source database Riak. 
 \subsection{Document databases}
-The schema of data in those documents can differ in structure and still be part of the same collection.
+Document databases also called document store collections of documents that include the data to be saved. 
+Depending on the specific database these documents have different encodings like for example XML, YAML or JSON. 
+They are similar to Key-Value pair based databases. 
+One key difference is that the content of the documents are used for queries. 
+Next to MongoDB another well known document database is Apache CouchDB.
+
 \subsection{Graph databases}
- 
-%\subsection{Column based databases}                                                                                                      
-\textbf{Cassandra} \\
-Apache Cassandra is used and was developed by facebook. \\
+Graph databases are based on Graphs which consist of Nodes and Edges. A node represents and entity and edges represent relationships between those entities. This makes them suitable to model highly interconnected data, which other No-SQL databases struggle with. \\
+Some graph databases use native graph storage that is optimised and designed for storing and managing graphs, others serialize the graph data into a relational, object-oriented database, or some other general-purpose data store. \cite{graph_storage}
 
-
+\subsection{Column based databases}
+Column databases are based on tables just as relational databases. They use a different approach that is column oriented.
+They store each column separately to allow for quicker scans when only a small number of columns are involved. 
+\cite{columnbased} 
+\begin{figure}[H]
+	\centering 
+	\includegraphics[height=8cm]{figures/column_based}     
+	\caption{Standard relational and column based layout of tables that hold the same data}          
+\end{figure}   
+Examples for this type of databases are Apache Cassandra (which was developed by Facebook) and Google's Big Tables.
 \section{MongoDB} 
 MongoDB is a very poplar and well supported open source No-SQL database. The main difference between traditional relational databases is that No-SQL databases do not store their data in tables, but rather in collections that are stored in JSON. Since JSON is the default object notation for JavaScript it works great with that language and makes development fast, efficient and easy. In general No-SQL databases claim to be highly scalable, efficient on storage, easily manageable and easy in their initial setup. On the contrary they often offer less functionality, are not so well-supported and there are not as many developers out there who can call themselves experts on the topic. 
 	In general it can be said that NO-SQL databases are a good choice when dealing with modern Web 2.0 applications, while they might not be the way to go when developing on different ground. \cite{nosqladvantages} The following chart gives a basic overview about some differences and similarities between SQL and No-SQL databases. 
