@@ -399,9 +399,21 @@ db.collection("Tasks").findOneAndUpdate({
 Sharding and replication are database-concepts that will provide higher write performance and increase fault tolerance respectively. Furthermore, by using either of the two, higher read speeds can be achieved. 
 They are not exclusive to No-SQL databases but are usually more complex to use with RDMBS and commonly require extra software. 
 MongoDB has the functionality built-in. Both concepts make use of multiple instances or systems running MongoDB. 
-Replication uses multiple systems that have the same data where sharding partions the data between different machines. 
+Replication uses multiple systems that have the same data where sharding partitions the data between different machines. 
 \subsubsection{Replication}
-%TODO: Add replication text
+
+In MongoDB there are two types of replication: \textit{master-slave replication} and \textit{replica sets}. Both are based on the operations log (\textbf{oplog}).
+The operations log is a special collection that records all operations that add, delete or modify data in the database. 
+It's a capped collection, which means that when it grows over a specified size it will start deleting older entries. 
+When applying all steps in a complete operations log, on an empty database, it will afterwards be in the same state. 
+That's the base concept for both types of replication. 
+In master-slave replication systems there is one master that will run all operations that modify the data. The slaves will repeat all steps from the oplog of the master.
+Slaves will thus be in the same state as the master and can be queried, thus increasing the read speed. They cannot be made any changes to the data using the slave systems.
+In case that the master node goes offline, the data is not lost and the system can reads can still be executed.
+In replica-sets is similar to the master-slave but has automatic-failover. There is a primary node that acts similar to the master and secondary nodes that are similar to the slaves. 
+The difference is that in case the primary node goes offline the system will make a secondary node the new primary node and will still be able to run all queries. 
+
+%TODO add sample code for master-slave
 
 \subsubsection{Sharding}
 Through Sharding MongoDB supports \textit{horizontal scaling}, meaning that instead of increasing the capacity of one computer, like using a better CPU or adding more RAM (\textit{vertical scaling}), more machines are added and the data is split between them. MongoDB is designed to be able to scale out easier than RDBMS but still it is a difficult and complex way to configure sharding on MongoDB and should be well thought through.
@@ -439,8 +451,8 @@ To set up sharding for a collection the following steps are necessary:
 
 \begin{enumerate}
 	\item Starting the shards as standard mongod-processes 
-    \item Define the shard key fo the collection to be sharded
-    \item  Starting a router adding shards and 
+    \item Defining the shard key for the collection to be sharded
+    \item Starting a router and adding shards 
 	\item Enabling sharding on the router
 \end{enumerate}
    
