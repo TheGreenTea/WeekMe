@@ -145,7 +145,7 @@ captionpos=b
 	[1.5cm]
 	\textsc{\LARGE HTW BERLIN}\\
 	[0.75cm]
-	\textsc{\LARGE Internationale Medininformatik} \\  
+	\textsc{\LARGE Internationale Medieninformatik} \\  
 	[9cm]
 	\end{center}	 
 	\begin{flushright}
@@ -213,7 +213,7 @@ NoSQL databases like MongoDB using collections instead of tables. A collection s
 	\end{figure}   
 
 
-These documents representing one row in the table. So one document is one object containing the information, split in columns which are the attributes. In relational models it is common to combine different tables with a "join", to get the needed information.
+These documents represent one row in the table. So one document is one object containing the information, split in columns which are the attributes. In relational models it is common to combine different tables with a "join", to get the needed information.
 Instead of joining different tables, MongoDB provides the possibility to embed or link documents to create a relation between documents in different collections.    
 
 	\begin{figure}[H]
@@ -229,7 +229,7 @@ Here you can see a document of "user",
 where another object was added
 to store and access the address of the user. 
 
-Another way to store and access the address of a specific user, is to link both documents with a foreign key. You have just to write the key of the user as foreign key into the document of the address.
+Another way to store and access the address of a specific user, is to link both documents with a foreign key. You just have to write the key of the user as foreign key into the document of the address.
 
 
 	\begin{figure}[H]
@@ -272,16 +272,16 @@ They store each column separately to allow for quicker scans when only a small n
 Examples for this type of databases are Apache Cassandra (which was developed by Facebook) and Google's Big Tables.
 \section{MongoDB} 
 MongoDB is a very poplar and well supported open source No-SQL database. The main difference between traditional relational databases is that No-SQL databases do not store their data in tables, but rather in collections that are stored in JSON. Since JSON is the default object notation for JavaScript it works great with that language and makes development fast, efficient and easy. In general No-SQL databases claim to be highly scalable, efficient on storage, easily manageable and easy in their initial setup. On the contrary they often offer less functionality, are not so well-supported and there are not as many developers out there who can call themselves experts on the topic. 
-	In general it can be said that NO-SQL databases are a good choice when dealing with modern Web 2.0 applications, while they might not be the way to go when developing on different ground. \cite{nosqladvantages} The following chart gives a basic overview about some differences and similarities between SQL and No-SQL databases. 
+	In general it can be said that No-SQL databases are a good choice when dealing with modern Web 2.0 applications, while they might not be the way to go when developing on different ground. \cite{nosqladvantages} The following chart gives a basic overview about some differences and similarities between SQL and No-SQL databases. 
 	
 
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
-                      & SQL                                                                                                      & NO-SQL                                                                                             \\ \hline
+                      & SQL                                                                                                      & No-SQL                                                                                             \\ \hline
 Both have a           & Database                                                                                                 & Database                                                                                           \\ \hline
 Structure of Database & Table                                                                                                    & Collection                                                                                         \\ \hline
-Entitiy               & 1 Row inside the table                                                                                   & \begin{tabular}[c]{@{}c@{}}1 Document inside \\ the collection\end{tabular}                        \\ \hline
+Entity               & 1 Row inside the table                                                                                   & \begin{tabular}[c]{@{}c@{}}1 Document inside \\ the collection\end{tabular}                        \\ \hline
 Entity Structure      & \begin{tabular}[c]{@{}c@{}}Table contains the same \\ properties (columns) for all entities\end{tabular} & \begin{tabular}[c]{@{}c@{}}Properties may vary between \\ documents in the collection\end{tabular} \\ \hline
 \end{tabular}
 	\caption{SQL and No-SQL Databases} 
