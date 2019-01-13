@@ -399,7 +399,7 @@ db.collection("Tasks").findOneAndUpdate({
 Sharding and replication are database-concepts that will provide higher write performance and increase fault tolerance respectively. Furthermore, by using either of the two, higher read speeds can be achieved. 
 They are not exclusive to No-SQL databases but are usually more complex to use with RDMBS and commonly require extra software. 
 MongoDB has the functionality built-in. Both concepts make use of multiple instances or systems running MongoDB. 
-Replication uses multiple systems that have the same data where sharding partitions the data between different machines. 
+Replication uses multiple systems that have the same data, while sharding partitions the data between different machines. 
 \subsubsection{Replication}
 
 In MongoDB there are two types of replication: \textit{master-slave replication} and \textit{replica sets}. Both are based on the operations log (\textbf{oplog}).
@@ -408,52 +408,55 @@ It's a capped collection, which means that when it grows over a specified size i
 When applying all steps in a complete operations log, on an empty database, it will afterwards be in the same state. 
 That's the base concept for both types of replication. 
 In master-slave replication systems there is one master that will run all operations that modify the data. The slaves will repeat all steps from the oplog of the master.
-Slaves will thus be in the same state as the master and can be queried, thus increasing the read speed. They cannot be made any changes to the data using the slave systems.
-In case that the master node goes offline, the data is not lost and the system can reads can still be executed.
-In replica-sets is similar to the master-slave but has automatic-failover. There is a primary node that acts similar to the master and secondary nodes that are similar to the slaves. 
-The difference is that in case the primary node goes offline the system will make a secondary node the new primary node and will still be able to run all queries. 
+Slaves will thus be in the same state as the master and can be queried, thus increasing the read speed. There cannot be made any changes to the data using the slave systems.
+In case that the master node goes offline, the data is not lost and the system reads can still be executed.
+Replica-sets are similar to the master-slave system, but have automatic-failover. There is a primary node that acts similar to the master and secondary nodes that are similar to the slaves. 
+The difference is that in case the primary node goes offline, the system will make a secondary node the new primary node. It will still be able to run all queries. 
 
 %TODO add sample code for master-slave
 
 \subsubsection{Sharding}
 Through Sharding MongoDB supports \textit{horizontal scaling}, meaning that instead of increasing the capacity of one computer, like using a better CPU or adding more RAM (\textit{vertical scaling}), more machines are added and the data is split between them. MongoDB is designed to be able to scale out easier than RDBMS but still it is a difficult and complex way to configure sharding on MongoDB and should be well thought through.
-%TODO: MongoDB was designed to scale out Page 4 Mongo DB O'Reily
+\cite{designed_to_scale}
 So sharding should only be used if required and can be activated on systems that run initially without it. 
 How to distribute the data to different machines is a core question when considering sharding.
-\paragraph{Manual vs automatic sharding}
+\paragraph{Manual vs automatic sharding} \mbox{}\\
 Sharding is possible by simply defining a rule that states what data gets do be stored on what system.
 Finding such a rule depends on the data and the application. 
 For this simple example imagine a company that saves some data about its users including their names. The company acquired so many users that they don't fit on one system anymore, so they decide to split the data to three servers. 
 A possible rule would be to save the data of the users depending on the first letter of their last name. A-I on the first, J-R on the second S-Z on the third system. 
-The application that uses a system like this would need to know where to look for or add what user. This is not very flexible and adds complexity to some tasks. 
-To get the total number of users three different queries would now be necessary. Also there is no guarantee that the data will be spread evenly on the systems. 
+The application that uses a system like this would need to know where to look for or add a user. This is not very flexible and adds complexity to some tasks. 
+To get the total number of users, three different queries would now be necessary. Also there is no guarantee that the data will be spread evenly on the systems. 
 This is an example for manual sharding and can be done with any database.
 Automatic sharding as it is implemented in MongoDB allows your application to ignore the fact that it isn't talking to only one MongoDB server, to some extent. 
 It also automates balancing the data across the different systems. 
-%TODO: cite P231 Introduction to sharding MongoDB O'reily
+\cite{automatic_sharding}
 
-\paragraph{Shard keys}
+\paragraph{Shard keys} \mbox{}\\
 Sharding in MongoDB can be controlled on the collection level, meaning that one collection might be split up onto different systems and others might reside on a single one.
 A collection will be split into chunks, which will be saved on the different shards.
-The decision on what chunks go onto what shard is made using the shard key of the collection. 
-This key consists of an immutable field or fields that exist in every document in the collection and cannot be changes later. 
+The decision on what chunks go onto what shard, is made using the shard key of the collection. 
+This key consists of an immutable field or fields that exist in every document in the collection and cannot be changed later. 
 Chunks have a range of the data they contain based on the shard key.
+\cite{shard_keys}
 
-%TODO: cite https://docs.mongodb.com/manual/sharding/
-\paragraph{Router}
+\paragraph{Router} \mbox{}\\
 The interface that applications talk to when using sharding is an instance of \textbf{mongos} instead of talking directly to the shards. 
 The router in MongoDB routes queries and write operation to shards. 
-%TODO: cite https://docs.mongodb.com/manual/core/sharded-cluster-query-router/
-It's also used fo configuration tasks like adding or enabling shards are done on the router instance.
+\cite{router}
+It's also used for configuration tasks like adding or enabling shards.
 
-\paragraph{Necessary setup steps}
+\paragraph{Necessary setup steps}\mbox{}\\
 To set up sharding for a collection the following steps are necessary:
 
 \begin{enumerate}
 	\item Starting the shards as standard mongod-processes 
-    \item Defining the shard key for the collection to be sharded
-    \item Starting a router and adding shards 
-	\item Enabling sharding on the router
+    \item Defining the shard key for the collection to be sharded \\
+    This can be done using \textit{sh.shardCollection()}
+    \item Starting a router and adding shards \\
+    Shards can be added using \textit{sh.addShard()}
+	\item Enabling sharding on the router \\
+	This can be done using \textit{sh.enableSharding()}
 \end{enumerate}
    
 
