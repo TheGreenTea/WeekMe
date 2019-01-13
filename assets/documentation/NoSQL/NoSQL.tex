@@ -272,27 +272,10 @@ They store each column separately to allow for quicker scans when only a small n
 Examples for this type of databases are Apache Cassandra (which was developed by Facebook) and Google's Big Tables.
 \section{MongoDB} 
 MongoDB is a very poplar and well supported open source No-SQL database. The main difference between traditional relational databases is that No-SQL databases do not store their data in tables, but rather in collections that are stored in JSON. Since JSON is the default object notation for JavaScript it works great with that language and makes development fast, efficient and easy. In general No-SQL databases claim to be highly scalable, efficient on storage, easily manageable and easy in their initial setup. On the contrary they often offer less functionality, are not so well-supported and there are not as many developers out there who can call themselves experts on the topic. 
-	In general it can be said that No-SQL databases are a good choice when dealing with modern Web 2.0 applications, while they might not be the way to go when developing on different ground. \cite{nosqladvantages} The following chart gives a basic overview about some differences and similarities between SQL and No-SQL databases. 
+	In general it can be said that No-SQL databases are a good choice when dealing with modern Web 2.0 applications, while they might not be the way to go when developing on different ground. \cite{nosqladvantages}. 
 	
-
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-                      & SQL                                                                                                      & No-SQL                                                                                             \\ \hline
-Both have a           & Database                                                                                                 & Database                                                                                           \\ \hline
-Structure of Database & Table                                                                                                    & Collection                                                                                         \\ \hline
-Entity               & 1 Row inside the table                                                                                   & \begin{tabular}[c]{@{}c@{}}1 Document inside \\ the collection\end{tabular}                        \\ \hline
-Entity Structure      & \begin{tabular}[c]{@{}c@{}}Table contains the same \\ properties (columns) for all entities\end{tabular} & \begin{tabular}[c]{@{}c@{}}Properties may vary between \\ documents in the collection\end{tabular} \\ \hline
-\end{tabular}
-	\caption{SQL and No-SQL Databases} 
-	\label{tab:SQL and No-SQL Databases} 
-\end{table}
-
-
-
-
 \subsection{MongoDB \_id}
-The \_id property is part of every document that is stored inside MongoDB. It serves as a primary key used to identify the document. In many SQL databases an auto-incrementing integer value is used as a primary key, MongoDB on the other hand uses a generated 12 byte value such as 507f1f77bcf86cd799439011. The \_id is generated in the following way:
+The \_id property is part of every document that is stored inside MongoDB. It serves as a primary key used to identify the document. In many SQL databases an auto-incrementing integer value is used as a primary key, MongoDB on the other hand uses a generated 12 byte value such as 507f1f77bcf86cd799439011. The \_id is generated in the following way: 
 
 \begin{itemize}
 	\item First 4 bytes: Timestamp referring to moment in time the document was created
@@ -580,10 +563,8 @@ Working with NoSQL databases comes with a set of advantages and disadvantages wh
 
 % List of Figures, list of tables 
 \listoffigures
-\addcontentsline{toc}{section}{\numberline{}List of Figures}   
- 
-\listoftables
-\addcontentsline{toc}{section}{\numberline{}List of Tables} 
+\addcontentsline{toc}{section}{\numberline{}List of Figures}    
+  
 \cleardoublepage 
 
 \bibliographystyle{IEEEtran}

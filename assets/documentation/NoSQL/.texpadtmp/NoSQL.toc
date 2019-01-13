@@ -4,14 +4,21 @@
 \contentsline {subsection}{\numberline {3.1}Key-Value pair based databases}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Document databases}{3}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Graph databases}{3}{subsection.3.3}
-\contentsline {section}{\numberline {4}MongoDB}{3}{section.4}
+\contentsline {subsection}{\numberline {3.4}Column based databases}{3}{subsection.3.4}
+\contentsline {section}{\numberline {4}MongoDB}{4}{section.4}
 \contentsline {subsection}{\numberline {4.1}MongoDB \_id}{4}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Working with MongoDB}{4}{subsection.4.2}
-\contentsline {section}{\numberline {5}Mongoose}{6}{section.5}
-\contentsline {subsection}{\numberline {5.1}Mongoose Models and Schemas}{6}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Model Methods \& Instance Methods}{7}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Mongoose Middleware}{8}{subsection.5.3}
-\contentsline {section}{\numberline {6}Advantages and Disadvantages of NoSQL}{9}{section.6}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{9}{section*.8}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Tables}{9}{section*.9}
-\contentsline {section}{\hbox to\@tempdima {\hfil }References}{10}{section*.10}
+\contentsline {subsection}{\numberline {4.2}Working with MongoDB}{5}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Sharding and Replication}{7}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Replication}{7}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Sharding}{7}{subsubsection.4.3.2}
+\contentsline {paragraph}{\numberline {4.3.2.1}Manual vs automatic sharding}{7}{paragraph.4.3.2.1}
+\contentsline {paragraph}{\numberline {4.3.2.2}Shard keys}{8}{paragraph.4.3.2.2}
+\contentsline {paragraph}{\numberline {4.3.2.3}Router}{8}{paragraph.4.3.2.3}
+\contentsline {paragraph}{\numberline {4.3.2.4}Necessary setup steps}{8}{paragraph.4.3.2.4}
+\contentsline {section}{\numberline {5}Mongoose}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}Mongoose Models and Schemas}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Model Methods \& Instance Methods}{10}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Mongoose Middleware}{11}{subsection.5.3}
+\contentsline {section}{\numberline {6}Advantages and Disadvantages of NoSQL}{11}{section.6}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{12}{section*.8}
+\contentsline {section}{\hbox to\@tempdima {\hfil }References}{13}{section*.9}

@@ -4,14 +4,15 @@
 \BOOKMARK [2][-]{subsection.3.1}{Key-Value pair based databases}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Document databases}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.3}{Graph databases}{section.3}% 6
-\BOOKMARK [1][-]{section.4}{MongoDB}{}% 7
-\BOOKMARK [2][-]{subsection.4.1}{MongoDB \137id}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Working with MongoDB}{section.4}% 9
-\BOOKMARK [1][-]{section.5}{Mongoose}{}% 10
-\BOOKMARK [2][-]{subsection.5.1}{Mongoose Models and Schemas}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.2}{Model Methods \046 Instance Methods}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.3}{Mongoose Middleware}{section.5}% 13
-\BOOKMARK [1][-]{section.6}{Advantages and Disadvantages of NoSQL}{}% 14
-\BOOKMARK [1][-]{section*.8}{List of Figures}{}% 15
-\BOOKMARK [1][-]{section*.9}{List of Tables}{}% 16
-\BOOKMARK [1][-]{section*.10}{References}{}% 17
+\BOOKMARK [2][-]{subsection.3.4}{Column based databases}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{MongoDB}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{MongoDB \137id}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Working with MongoDB}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Sharding and Replication}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Mongoose}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{Mongoose Models and Schemas}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Model Methods \046 Instance Methods}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Mongoose Middleware}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Advantages and Disadvantages of NoSQL}{}% 16
+\BOOKMARK [1][-]{section*.8}{List of Figures}{}% 17
+\BOOKMARK [1][-]{section*.9}{References}{}% 18
