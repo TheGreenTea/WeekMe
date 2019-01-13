@@ -395,7 +395,55 @@ db.collection("Tasks").findOneAndUpdate({
 \end{lstlisting}
  
 
+\subsection{Sharding and Replication}
+Sharding and replication are database-concepts that will provide higher write performance and increase fault tolerance respectively. Furthermore, by using either of the two, higher read speeds can be achieved. 
+They are not exclusive to No-SQL databases but are usually more complex to use with RDMBS and commonly require extra software. 
+MongoDB has the functionality built-in. Both concepts make use of multiple instances or systems running MongoDB. 
+Replication uses multiple systems that have the same data where sharding partions the data between different machines. 
+\subsubsection{Replication}
+%TODO: Add replication text
 
+\subsubsection{Sharding}
+Through Sharding MongoDB supports \textit{horizontal scaling}, meaning that instead of increasing the capacity of one computer, like using a better CPU or adding more RAM (\textit{vertical scaling}), more machines are added and the data is split between them. MongoDB is designed to be able to scale out easier than RDBMS but still it is a difficult and complex way to configure sharding on MongoDB and should be well thought through.
+%TODO: MongoDB was designed to scale out Page 4 Mongo DB O'Reily
+So sharding should only be used if required and can be activated on systems that run initially without it. 
+How to distribute the data to different machines is a core question when considering sharding.
+\paragraph{Manual vs automatic sharding}
+Sharding is possible by simply defining a rule that states what data gets do be stored on what system.
+Finding such a rule depends on the data and the application. 
+For this simple example imagine a company that saves some data about its users including their names. The company acquired so many users that they don't fit on one system anymore, so they decide to split the data to three servers. 
+A possible rule would be to save the data of the users depending on the first letter of their last name. A-I on the first, J-R on the second S-Z on the third system. 
+The application that uses a system like this would need to know where to look for or add what user. This is not very flexible and adds complexity to some tasks. 
+To get the total number of users three different queries would now be necessary. Also there is no guarantee that the data will be spread evenly on the systems. 
+This is an example for manual sharding and can be done with any database.
+Automatic sharding as it is implemented in MongoDB allows your application to ignore the fact that it isn't talking to only one MongoDB server, to some extent. 
+It also automates balancing the data across the different systems. 
+%TODO: cite P231 Introduction to sharding MongoDB O'reily
+
+\paragraph{Shard keys}
+Sharding in MongoDB can be controlled on the collection level, meaning that one collection might be split up onto different systems and others might reside on a single one.
+A collection will be split into chunks, which will be saved on the different shards.
+The decision on what chunks go onto what shard is made using the shard key of the collection. 
+This key consists of an immutable field or fields that exist in every document in the collection and cannot be changes later. 
+Chunks have a range of the data they contain based on the shard key.
+
+%TODO: cite https://docs.mongodb.com/manual/sharding/
+\paragraph{Router}
+The interface that applications talk to when using sharding is an instance of \textbf{mongos} instead of talking directly to the shards. 
+The router in MongoDB routes queries and write operation to shards. 
+%TODO: cite https://docs.mongodb.com/manual/core/sharded-cluster-query-router/
+It's also used fo configuration tasks like adding or enabling shards are done on the router instance.
+
+\paragraph{Necessary setup steps}
+To set up sharding for a collection the following steps are necessary:
+
+\begin{enumerate}
+	\item Starting the shards as standard mongod-processes 
+    \item Define the shard key fo the collection to be sharded
+    \item  Starting a router adding shards and 
+	\item Enabling sharding on the router
+\end{enumerate}
+   
 
 
 \section{Mongoose}
@@ -514,9 +562,6 @@ UserSchema.pre("save", function (next) {
 
 \section{Advantages and Disadvantages of NoSQL}
 Working with NoSQL databases comes with a set of advantages and disadvantages when compared to working with relational databases. While relational databases all share a certain standard and mostly the same query language, each NoSQL database can be implemented very differently. Relational databases are also considered more stable and offer a larger set of tools. Due to their maturity and the fact that they have been around for almost 40 years there are much more skilled and experienced developers available. NoSQL databases on the other hand have different strengths. As the different types of NoSQL databases are very different by nature, different NoSQL databases are suited for different projects. In general their initial setup process is much quicker and due to their easy management database administrators can become obsolete. Due to their flexible schemas NoSQL databases, when used without a document modeling layer (ODM) like Mongoose, are well suited for projects where the structure of the data is expected to change frequently. Any large scaled system that handles and generates a lot of data should be considered to be implemented using a NoSQL database. Since these implementations can run in clusters of cheap machines they offer an improved scalability and are cost efficient while avoiding bottlenecks. Whenever data consistency is crucial, eg. for an accounting or payment management system, or when there are many complex relationships between the data, a relational database system should be preferred. 
-
-
-
 
 % List of Figures, list of tables 
 \listoffigures
