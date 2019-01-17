@@ -150,9 +150,9 @@ captionpos=b
 	\end{center}	 
 	\begin{flushright}
 		\textsc{\large Jakub Mueller / David Schmoecker / Jonas Heinig \\
-		\#544832 / 544655 / 550169 \\
+		\ 544832 / 544655 / 550169 \\
 		WS18/19\\}
-	\end{flushright} 
+	\end{flushright}  
 	 
 	
 	
@@ -185,10 +185,11 @@ The image below gives an overview about the technologies that we have used in th
 		\includegraphics[height=6.2cm]{figures/architecture}    
 		\caption{System Architecture}     
 	\end{figure}  
-
+ 
 \subsection{Backend} 
 
 \subsubsection{Node.js}
+The backbone of our backend is a node.js server. As node natively supports all the functionality we really need for our server we could use it by itself. Instead we chose to extend nodes functionality using express.js, as it generally makes development slightly faster.  
 
 \myparagraph{Modules}  
 
@@ -318,7 +319,7 @@ We can visit \url{https://jwt.io } to get information about the hash we have cre
 
 	\begin{figure}[H] 
 		\centering 
-		\includegraphics[height=12cm]{figures/jwt}    
+		\includegraphics[height=10cm]{figures/jwt}    
 		\caption[Jsonwebtoken info at: https://jwt.io]{Jsonwebtoken info at: https://jwt.io}     
 		\label{fig: Jsonwebtoken info at: https://jwt.io}      
 	\end{figure}    
