@@ -24,5 +24,4 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Editing tasks}{12}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Deleting tasks}{12}{subsubsection.3.2.3}
 \contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{13}{section*.7}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Tables}{13}{section*.8}
-\contentsline {section}{\hbox to\@tempdima {\hfil }References}{14}{section*.9}
+\contentsline {section}{\hbox to\@tempdima {\hfil }References}{14}{section*.8}
