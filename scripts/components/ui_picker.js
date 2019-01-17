@@ -99,7 +99,7 @@ var PickerGenerator = function() {
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 id="modalHeadlineColorPicker" class="modal-title">Choose the a color for your task</h4>
+            <h4 id="modalHeadlineColorPicker" class="modal-title">Choose the color for your task</h4>
           </div>
 
           <!-- Modal body -->
