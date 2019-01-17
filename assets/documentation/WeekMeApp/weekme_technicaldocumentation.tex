@@ -139,6 +139,7 @@ var decoded = jwt.verify (token, "mysaltysalt");
 console.log("Decoded", decoded);  //Decoded --> {id: 10, iat: 1526910769}
 \end{lstlisting}
 
+\cleardoublepage 
 
 We can visit \url{https://jwt.io } to get information about the hash we have created using the jsonwebtoken module. Each component of our token stores a different information. The red part is the header. The purple part is the payload storing the actual information (id, iat) and the blue part is the hash that lets us verify that the payload has never been changed. 
 
@@ -268,7 +269,8 @@ Last but not least we need to make sure that Heroku is also provided with an env
 	\end{figure}  
 
 
-\subsubsection{MongoDB \& Mongoose}      
+\subsubsection{MongoDB \& Mongoose} 
+All data that is created by WeekMe is stored inside a MongoDB database instance. As MongoDB works very well together with node and due to the fact that our entire business logic is coded in JavaScript we decided to use a JSON style document based database. This allows for easy transformation from the JavaScript objects to JSON and vice versa reducing development time and the amount of code.  
   
 
 \subsection{Frontend}
