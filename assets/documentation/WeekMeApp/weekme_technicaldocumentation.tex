@@ -1,0 +1,286 @@
+\section{Technical Documentation}
+
+\subsection{Architecture} 
+Folgendes Bild gibt einen groben Überblick über die in der WeekMe Webapplikation verwendeten Technologien und wo diese im Gesamtsystem zum Einsatz kommen. 
+ 
+The image below gives an overview about the technologies that we have used in the development of the WeekMe application and where these are used within our overall system.  
+
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[height=6.2cm]{figures/architecture}    
+		\caption{System Architecture}     
+	\end{figure}  
+ 
+\subsection{Backend} 
+
+\subsubsection{Node.js}
+The backbone of our backend is a node.js server. As node natively supports all the functionality we really need for our server we could use it by itself. Instead we chose to extend nodes functionality using express.js, as it generally makes development slightly faster.  
+
+\myparagraph{Modules}  
+
+
+
+\textbf{Express.js}  is one of the most popular modules available on npm. It is a server side web framework that extends the functionality of Node.js with many handy tools making development faster and easier. An express application consists of at least one file usually called app.js. This file registers any middleware and controllers the application is using. Furthermore the web-server is started here. A basic express web-server can be started in the following way:  
+
+\begin{lstlisting}
+const express = require("express");
+var app = express();
+app.listen(3000, () => {
+  console.log("Server is up on port: ", 3000); 
+});  
+\end{lstlisting}    
+
+
+
+\textbf{Routing} 
+Routing is used to determine how our application responds to client requests at a particular endpoint.  
+Typical client requests HTTP methods are GET, POST, PUT and DELETE. The initial setup of our routing is done using an instance of our express app. We can add routes and their handlers to our app in the following form:
+
+\begin{lstlisting}
+	app.METHOD(PATH, HANDLER); 
+\end{lstlisting}
+
+Where app is an instance of express, METHOD is an HTTP request method, PATH is a path on the server and HANDLER is the function executed when the route is matched. The simple examples below demonstrate a basic routing for each HTTP method type. In all of these cases our handler simply returns a string value to the client.   
+
+\begin{lstlisting}
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+app.post('/', function (req, res) {
+  res.send('Got a POST request')
+})
+
+app.put('/user', function (req, res) {
+  res.send('Got a PUT request at /user')
+})
+
+app.delete('/user', function (req, res) {
+  res.send('Got a DELETE request at /user')
+})
+
+\end{lstlisting}
+
+
+\textbf{Serving static files}
+In order to be able to serve static files our WeekMe application needs to be configured properly. The most common scenario in which we need to serve public files is when we want to include css, html or other resource files. We use an integrated express middleware function called "express.static" (as explained in the next section) to let our app know where to find our public directory containing the static files. Having done this clients are able to load files from the public directory.     
+
+\begin{lstlisting}
+	app.use(express.static('public'));  
+\end{lstlisting}
+
+
+
+\textbf{Express Middleware} lets us run certain code before or after certain events. Express middleware adds on to the express functionality. Middleware functions have access to the request and response object as well as the next middleware function in the execution cycle.  Common examples of things express middleware can do are:  
+
+\begin{itemize}
+	\item Execute Code
+	\item Change to request or response objects
+	\item Determine whether or not somebody is logged in and may access a page
+	\item respond to a request 
+\end{itemize}
+
+The following middleware function is used inside the application to determine whether the user that is accessing the route is logged in.  
+
+\begin{lstlisting}
+var authenticate = (req, res, next) => {
+  var token = req.header("x-auth");
+
+  User.findByToken(token).then((user) => {
+    if(!user){
+      return Promise.reject();
+    }
+    req.user = user;
+    req.token = token;
+    next(); 
+  }).catch((e) => {
+    res.status(401).send();
+  });
+};
+\end{lstlisting}  
+
+After having defined our middleware function, we need to append it to one of our routes so that it will be executed when this route is being accessed.   
+
+\begin{lstlisting}
+//Tell route to use middleware authenticate
+app.get("/users/me", authenticate, (req, res) => {
+  //because we are using the middleware, we now have all the data we appended inside that middleware available here inside the req object
+  res.send(req.user);
+}); 
+\end{lstlisting} 
+
+\textbf{Bcrypt} is a module that can be used to hash passwords. Hashing passwords is considered a mandatory operation before storing them to a database in any secure and professional environment, as it prevents attackers that might get access to the dataset from reading and using any passwords that are stored. Hashing is a one way street and always returns the exact same hash for the same string. When hashing a password a salt is used to increase security even further. Salting password hashes is also considered mandatory. Otherwise we will always receive the same exact hash when using the same exact password. This would enable people to use a lookup table that maps thousands of common password phrases or english words to their hashes. Ultimately they would be able to get the password from the hash. Thats why an unknown salt is needed. Often a randomly generated value is used for the salting process. This ensures that will never receive the same value twice and prevents users from being able to trick us and change data by generating their own hashes. 
+
+\begin{lstlisting}
+// Hashing a password
+bcrypt.hash('my password', 'my salt', (err, hash) => {
+  // Store hash password in DB
+});
+
+//Checking a password
+bcrypt.compare('my password', hash, (err, res) => {
+  // res == true or res == false
+});
+\end{lstlisting}
+
+
+\textbf{JsonWebToken} is yet another npm module that helps us to setup a secure environment for our application. Its main use case is generating unique tokens that can be used for user authentication. Once generated and assigned to a specific user, the tokens can be used to access private routes that could otherwise not be accessed. This way not anyone can make a HTTP request to our server and we make sure that only verified and authenticated requests are being made. In fact, most routes inside WeekMe will be private and only the login and signup routes will be public. In the code snipped below we use jsonwebtoken to create a token. When the token is decoded using jsonwebtokens verify method, we need to pass in the exact same salt that we used when creating the token, otherwise we will not be able to access the id and iat (=issuedAt) properties that are stored inside the data object.  
+
+\begin{lstlisting}
+const jwt = require("jsonwebtoken");
+
+var data = {
+  id: 10
+};
+
+var token = jwt.sign(data, "mysaltysalt");
+console.log(token);
+var decoded = jwt.verify (token, "mysaltysalt");
+console.log("Decoded", decoded);  //Decoded --> {id: 10, iat: 1526910769}
+\end{lstlisting}
+
+
+We can visit \url{https://jwt.io } to get information about the hash we have created using the jsonwebtoken module. Each component of our token stores a different information. The red part is the header. The purple part is the payload storing the actual information (id, iat) and the blue part is the hash that lets us verify that the payload has never been changed. 
+
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[height=10cm]{figures/jwt}    
+		\caption[Jsonwebtoken info at: https://jwt.io]{Jsonwebtoken info at: https://jwt.io}     
+		\label{fig: Jsonwebtoken info at: https://jwt.io}      
+	\end{figure}    
+
+ 
+
+
+When a user signs up, a unique token will be created and stored into the database. From now on this token is used for any authentication when accessing private routes instead of the email and password properties that have been provided by the user in the signup process. 
+
+\begin{lstlisting}
+UserSchema.methods.generateAuthToken = function () {
+  var user = this; 
+  var access = "auth";
+  var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET);
+
+  user.tokens = user.tokens.concat([{access, token}]);
+  return user.save().then(() => {
+    return token;
+  });
+};
+
+\end{lstlisting}
+
+
+
+
+\subsubsection{Heroku}
+Heroku is a handy and powerful online platform that enables us to easily deploy and test our applications in the cloud. Once we have setup our account on Heroku.com a series of terminal commands is required in order to get our application up and running on Heroku. The first step is to login to our Heroku account inside of the terminal. 
+
+\begin{verbatim}
+	$ heroku login
+\end{verbatim}
+
+Once we are logged in we have to add our public ssh key to Heroku.
+
+\begin{verbatim}
+	$ heroku keys:add
+\end{verbatim}
+
+If we would like to delete a key from Heroku we use the following command while providing the corresponding email address. 
+\begin{verbatim}
+	$ heroku keys:remove example@mail.com 
+\end{verbatim}
+
+We can check for any keys linked to the Heroku account in the following way.
+\begin{verbatim}
+	$ heroku keys 
+\end{verbatim}
+
+In order to create a new application in Heroku and link it to our Git repository we use the create command. 
+\begin{verbatim}
+	$ heroku create
+\end{verbatim}
+
+When we want to deploy our application to Heroku we simply need to push it to the heroku branch that has been created in the last step. 
+\begin{verbatim}
+	$ git push heroku
+\end{verbatim}
+
+Using the heroku open command a browser window with our application will be launched.
+\begin{verbatim}
+	$ heroku open
+\end{verbatim}
+
+In order to make sure that heroku is actually launching the correct file we need to edit the package.json file and go to the scripts section. In there we edit the value of the start property to launch the server. 
+
+\begin{lstlisting}
+  ...
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"  // Heroku will execute this line on startup 
+  } 
+  ...
+\end{lstlisting}
+
+
+\subsubsection{Making the App Secure}
+In order to have a truly secure application we need make sure that no sensitive information like API keys or passwords are stored inside the code. For that matter we create a config.js file that will be added to the .gitignore file to exclude it from being pushed to our repository. Sensitive data should not be pushed to the repository because anybody that has access to the repository will be able to see it.   
+ 
+\begin{lstlisting}
+//config.json 
+{
+  "development": {
+    "PORT": 3000, 
+    "MONGODB_URI": "mongodb://localhost:27017/WeekMe",
+    "JWT_SECRET": "aüaspldapü201122309dxkasdkasldk10"
+  }
+} 
+\end{lstlisting}
+
+
+One way to remove sensitive information from our code is to use environment variables. 
+In the code snipped below we set the environment variable depending on whether we are in our development (localhost) or production (Heroku) environment. 
+
+\begin{lstlisting}
+config.js
+var env = process.env.NODE_ENV || "development";  
+console.log("env ***** ", env);
+if(env === "development" || env === "test"){
+  var config = require("./config.json"); //When using require on a json file it will automatically be converted to a javascript object.
+  var envConfig = config[env]; //get env property of config
+  Object.keys(envConfig).forEach((key) => {
+    process.env[key] = envConfig[key];
+  });
+}
+\end{lstlisting}
+ 
+Once we have assigned all keys to the process.env variable we may access them from anywhere inside our code. 
+
+\begin{lstlisting}
+	var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET);
+\end{lstlisting}
+
+Last but not least we need to make sure that Heroku is also provided with an environment variable storing the JWT\_SECRET value so that the application may function properly in production.  
+
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[height=1.4cm]{figures/herokuenvironmentvar}    
+		\caption[Setting an environment variable in Heroku]{Setting an environment variable in Heroku}     
+		\label{fig: Setting an environment variable in Heroku}     
+	\end{figure}  
+
+
+\subsubsection{MongoDB \& Mongoose}      
+  
+
+\subsection{Frontend}
+\subsubsection{Technologies}
+\paragraph{Gridstack vs. Bootstrap}\mbox{}\\
+\paragraph{Bootstrap}\mbox{}\\
+W
+To get drag and drop functionality we used bootstrap.js 
+\paragraph{less}\mbox{}\\
+The used stylesheets are generated from less code. 
+Leaner Styles Sheets (less) is a backwards-compatible language extension for CSS. It adds features like variables, mixins and functions.
+%TODO cite: http://lesscss.org
+
+\subsubsection{Architecture}
+\subsubsection{Calling our API}
