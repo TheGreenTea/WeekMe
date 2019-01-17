@@ -1,20 +1,10 @@
-// Entypo
-
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-
-[class*="entypo-"]:before {
-  font: 1.4em 'entypo', sans-serif;
-}
-
-// Styles
-
 body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
 
-.picker-container {
+.picker-container { 
     /* margin: 5em auto 0; */
     width: 100%;
 }
