@@ -4,7 +4,7 @@ body {
     color: #333;
 }
 
-.picker-container { 
+.picker-container {
     /* margin: 5em auto 0; */
     width: 100%;
 }
@@ -77,6 +77,7 @@ textarea {
   border-style: solid;
   border-color: black;
   border-radius: 1em;
+  margin-bottom: 5px;  
 }
 
 #btnChangeColor {
