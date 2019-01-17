@@ -256,7 +256,7 @@ var MainController = function() {
     let tasks = tasksJson['tasks'];
 
     //Add stack tasksJson
-    let overdueTasks = tasks.filter(task => task.dueAt != null && task.dueAt < new Date())
+    let overdueTasks = tasks.filter(task => task.dueAt != null && task.dueAt < DateFormatter.getTimeStamp(0))
     let stackTasks = tasks.filter(task => task.dueAt == null);
     var sortedStackTasks = stackTasks.sort(function(a, b){return a.position - b.position});
     sortedStackTasks = sortedStackTasks.concat(overdueTasks);
