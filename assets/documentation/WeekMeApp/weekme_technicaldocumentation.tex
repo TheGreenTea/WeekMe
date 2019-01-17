@@ -1,9 +1,7 @@
 \section{Technical Documentation}
 
 \subsection{Architecture} 
-Folgendes Bild gibt einen groben Überblick über die in der WeekMe Webapplikation verwendeten Technologien und wo diese im Gesamtsystem zum Einsatz kommen. 
- 
-The image below gives an overview about the technologies that we have used in the development of the WeekMe application and where these are used within our overall system.  
+The image below gives an overview about the technologies that we have used in the development of the WeekMe application and where these are used within our overall system.   
 
 	\begin{figure}[H] 
 		\centering 
@@ -16,11 +14,11 @@ The image below gives an overview about the technologies that we have used in th
 \subsubsection{Node.js}
 The backbone of our backend is a node.js server. As node natively supports all the functionality we really need for our server we could use it by itself. Instead we chose to extend nodes functionality using express.js, as it generally makes development slightly faster.  
 
-\myparagraph{Modules}  
+\myparagraph{Modules}   
 
 
 
-\textbf{Express.js}  is one of the most popular modules available on npm. It is a server side web framework that extends the functionality of Node.js with many handy tools making development faster and easier. An express application consists of at least one file usually called app.js. This file registers any middleware and controllers the application is using. Furthermore the web-server is started here. A basic express web-server can be started in the following way:  
+\textbf{Express.js}  is one of the most popular modules available on npm. It is a server side web framework that extends the functionality of Node.js with many handy tools making development faster and easier. An express application consists of at least one file usually called app.js. This file registers any middleware and controllers the application is using. Furthermore the web-server is started here. A basic express web-server can be started in the following way:   
 
 \begin{lstlisting}
 const express = require("express");
@@ -139,6 +137,7 @@ var decoded = jwt.verify (token, "mysaltysalt");
 console.log("Decoded", decoded);  //Decoded --> {id: 10, iat: 1526910769}
 \end{lstlisting}
 
+\cleardoublepage 
 
 We can visit \url{https://jwt.io } to get information about the hash we have created using the jsonwebtoken module. Each component of our token stores a different information. The red part is the header. The purple part is the payload storing the actual information (id, iat) and the blue part is the hash that lets us verify that the payload has never been changed. 
 
@@ -268,7 +267,8 @@ Last but not least we need to make sure that Heroku is also provided with an env
 	\end{figure}  
 
 
-\subsubsection{MongoDB \& Mongoose}      
+\subsubsection{MongoDB \& Mongoose} 
+All data that is created by WeekMe is stored inside a MongoDB database instance. As MongoDB works very well together with node and due to the fact that our entire business logic is coded in JavaScript we decided to use a JSON style document based database. This allows for easy transformation from the JavaScript objects to JSON and vice versa reducing development time and the amount of code.  
   
 
 \subsection{Frontend}
@@ -282,5 +282,32 @@ The used stylesheets are generated from less code.
 Leaner Styles Sheets (less) is a backwards-compatible language extension for CSS. It adds features like variables, mixins and functions.
 %TODO cite: http://lesscss.org
 
+
 \subsubsection{Architecture}
 \subsubsection{Calling our API}
+
+\subsubsection{Picker Popup}
+
+
+To create a new task or to edit an existing task we decided to create an overlaying popup window with several creating steps.
+We wanted the creation process to be as easy and fast as possible to reduce the needed afford and enable a quick usage.
+So we split the process in three steps:
+
+Step one:
+The popup window opens with a customized headline, a textarea for the task-description, a colored button for the color picker, a button for the day picker if you want to choose another day as pre-selected and a done button to create the save the task immediately.
+In step one it’s required to enter a task-description. The options to choose a color for the task or a day in which the task will be saved are optional. So if the user clicks the done button immediately after he typed a description the task will be saved with the pre-selected color and the pre-selected day. 
+
+On the other hand the user can decide to change the color and press the button which is colored in the selected color of the task in the left bottom corner of the popup window. This will trigger step two in which the user can choose the color for the task. The popup window for step one will disappear and the color picker popup will appear. After the user clicks on one of the six color buttons or the back button, step two will disappear and the step one will be shown again with an updated color picker button and the task description you entered before.
+
+To enter step three you have to click on the “another day” button to open the day picker popup. Now you can choose another day or the stack out of a dropdown menu to save the task to. Then you can finish the creation process with a click on done or you can enter step one again if you click back. In this case the day picker will be reset.
+
+To realize such a popup window we used the “modal” component from bootstrap. The advantage of using this modal is that it is responsive, so it works and looks good on any device or browser.  
+
+At first the html-code of all three steps of the picker-popup is created and will be inserted to the DOM. This is realized in the functions createModal() and insertModal(). The picker to select the day the task will be added to is created and inserted right after the modal creation at the functions createPicker() and insertPicker(). How the days are arranged at the dropdown menu depends on the current day. The pre-selected day is the day you clicked on to starting the task creating process. The functions createPicker() and insertPicker() will be executed at other points of the program to reset the picker options and the selected day. 
+
+To open the task creation popup you have to call the showPicker() function of the ui\_picker.js document. Depending on how you make the call the picker will occur in different shapes. The  popup style depends on which button you clicked at the surface. If you want to edit a task, create a task at a specific day or create a task in general. The difference between the shown popups are the headline, color, existing task-description and which buttons are shown. I implemented some shortcut buttons who were planned to be used in the case the user wants to create a task not related to a certain day. We didn’t implemented such a button for day-independent-task-creation without a preselection yet. This option was not necessary at this point, but we look forward to implement this as well. Cause these Shortcut buttons are designed to assign the created task with one click to the current day or to the stack, which we expect will be the most used options, so the user don’t have to go over to the third popup-window, where they can choose another day. This will shorten the time of task creation and improve the user experience. To prove our expectation we look forward to use these already implemented but hidden shortcut buttons to run some A/B-testing.
+
+
+
+
+
