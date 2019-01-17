@@ -16,12 +16,13 @@
 \contentsline {paragraph}{\numberline {2.3.1.3}less}{10}{paragraph.2.3.1.3}
 \contentsline {subsubsection}{\numberline {2.3.2}Architecture}{10}{subsubsection.2.3.2}
 \contentsline {subsubsection}{\numberline {2.3.3}Calling our API}{10}{subsubsection.2.3.3}
-\contentsline {section}{\numberline {3}User Documentation}{11}{section.3}
-\contentsline {subsection}{\numberline {3.1}Account}{11}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Working with tasks}{11}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Creating tasks}{11}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Editing tasks}{11}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Deleting tasks}{11}{subsubsection.3.2.3}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{12}{section*.7}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Tables}{12}{section*.8}
-\contentsline {section}{\hbox to\@tempdima {\hfil }References}{13}{section*.9}
+\contentsline {subsubsection}{\numberline {2.3.4}Picker Popup}{10}{subsubsection.2.3.4}
+\contentsline {section}{\numberline {3}User Documentation}{12}{section.3}
+\contentsline {subsection}{\numberline {3.1}Account}{12}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Working with tasks}{12}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Creating tasks}{12}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Editing tasks}{12}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Deleting tasks}{12}{subsubsection.3.2.3}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{13}{section*.7}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Tables}{13}{section*.8}
+\contentsline {section}{\hbox to\@tempdima {\hfil }References}{14}{section*.9}
