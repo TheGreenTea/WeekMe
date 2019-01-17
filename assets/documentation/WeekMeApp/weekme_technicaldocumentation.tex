@@ -272,23 +272,26 @@ All data that is created by WeekMe is stored inside a MongoDB database instance.
   
 
 \subsection{Frontend}
+Apart from HTML, CSS and JavaScript WeekMe makes use of the following technologies. 
 \subsubsection{Technologies}
 \paragraph{Bootstrap}\mbox{}\\
-Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.
-%TODO cite https://getbootstrap.com
-Bootstrap is an open source toolkit for web-development. 
-We use it's grid-layout, drag and drop functionality, menu and buttons we used bootstrap.js 
+Bootstrap is an open source toolkit used to build responsive, mobile-first projects on the web. 
+It is the world’s most popular front-end component library. WeekMe makes use of its grid-layout, modals, navigation bar and buttons.
+\cite{bootstrap}
+
 \paragraph{less}\mbox{}\\
-The used stylesheets are generated from less code. 
 Leaner Styles Sheets (less) is a backwards-compatible language extension for CSS. It adds features like variables, mixins and functions.
-%TODO cite: http://lesscss.org
+\cite{less}
+The stylesheets used for designing WeekMe are generated from less code. 
 
+\paragraph{jQuery}\mbox{}\\
+jQuery is a fast and feature-rich JavaScript library. It makes things like HTML document manipulation and traversal, animations and event handling simpler. It is very popular and works with a multitude of browsers.
+\cite{jquery}
+In WeekMe it is mainly used to help querying the DOM (Document Object Model) and adding event handlers. 
 
-\subsubsection{Architecture}
 \subsubsection{Calling our API}
 
 \subsubsection{Picker Popup}
-
 
 To create a new task or to edit an existing task we decided to create an overlaying popup window with several creating steps.
 We wanted the creation process to be as easy and fast as possible to reduce the needed afford and enable a quick usage.
