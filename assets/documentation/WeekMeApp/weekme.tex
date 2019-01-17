@@ -139,7 +139,7 @@ captionpos=b
 	\begin{center}
 	\line(1,0){300} \\
 	[4mm]
-	\huge{\bfseries WT1 Webapplications \\ Projekt: WeekMe} \\  
+	\huge{\bfseries WT1 Web Applications \\ Projekt: WeekMe} \\  
 	[2mm]
 	\line(1,0){200}\\	
 	[1.5cm]
@@ -152,7 +152,7 @@ captionpos=b
 		\textsc{\large Jakub Mueller / David Schmoecker / Jonas Heinig \\
 		\ 544832 / 544655 / 550169 \\
 		WS18/19\\}
-	\end{flushright} 
+	\end{flushright}  
 	 
 	
 	
@@ -185,10 +185,11 @@ The image below gives an overview about the technologies that we have used in th
 		\includegraphics[height=6.2cm]{figures/architecture}    
 		\caption{System Architecture}     
 	\end{figure}  
-
+ 
 \subsection{Backend} 
 
 \subsubsection{Node.js}
+The backbone of our backend is a node.js server. As node natively supports all the functionality we really need for our server we could use it by itself. Instead we chose to extend nodes functionality using express.js, as it generally makes development slightly faster.  
 
 \myparagraph{Modules}  
 
@@ -318,7 +319,7 @@ We can visit \url{https://jwt.io } to get information about the hash we have cre
 
 	\begin{figure}[H] 
 		\centering 
-		\includegraphics[height=12cm]{figures/jwt}    
+		\includegraphics[height=10cm]{figures/jwt}    
 		\caption[Jsonwebtoken info at: https://jwt.io]{Jsonwebtoken info at: https://jwt.io}     
 		\label{fig: Jsonwebtoken info at: https://jwt.io}      
 	\end{figure}    
@@ -448,12 +449,12 @@ Last but not least we need to make sure that Heroku is also provided with an env
   
 
 \subsection{Frontend}
+\subsubsection{Gridstack vs. Bootstrap}
+\subsubsection{Architecture}
+\subsubsection{Calling our API}
+ 
 
-
-
-
-
-
+\section{User Documentation}
 
 % List of Figures, list of tables 
 \listoffigures
