@@ -5,7 +5,6 @@ A level-1 auxiliary file: weekme_concept.aux
 A level-1 auxiliary file: weekme_technicaldocumentation.aux
 A level-1 auxiliary file: weekme_userdocumentation.aux
 The style file: IEEEtran.bst
-I found no \citation commands---while reading file /usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -17,45 +16,44 @@ Database file #1: ../references/icwref.bib
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 0 entries,
+You've used 3 entries,
             4087 wiz_defined-function locations,
-            824 strings with 7558 characters,
-and the built_in function-call counts, 104 in all, are:
-= -- 0
-> -- 0
+            830 strings with 7637 characters,
+and the built_in function-call counts, 766 in all, are:
+= -- 27
+> -- 3
 < -- 0
-+ -- 0
++ -- 3
 - -- 0
-* -- 19
-:= -- 27
-add.period$ -- 0
-call.type$ -- 0
+* -- 34
+:= -- 128
+add.period$ -- 3
+call.type$ -- 3
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
+cite$ -- 3
+duplicate$ -- 66
+empty$ -- 85
 format.name$ -- 0
-if$ -- 3
+if$ -- 150
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 23
+int.to.str$ -- 3
+missing$ -- 18
+newline$ -- 38
 num.names$ -- 0
-pop$ -- 0
+pop$ -- 78
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1
+skip$ -- 42
 stack$ -- 0
 substring$ -- 0
-swap$ -- 0
+swap$ -- 24
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 0
+type$ -- 3
 warning$ -- 0
 while$ -- 0
-width$ -- 0
-write$ -- 22
-(There was 1 error message)
+width$ -- 4
+write$ -- 43

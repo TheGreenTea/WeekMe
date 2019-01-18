@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.14)  17 JAN 2019 18:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.14)  18 JAN 2019 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -555,8 +555,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \WF@box=\box28
 \WF@everypar=\toks20
 Package: wrapfig 2003/01/31  v 3.6
-) (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
  (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
  (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/caption3.sty
@@ -575,54 +575,65 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: wrapfig package is loaded.
 )
-\c@subfigure=\count105
-\c@subtable=\count106
+\c@KVtest=\count105
+\sf@farskip=\skip44
+\sf@captopadj=\dimen126
+\sf@capskip=\skip45
+\sf@nearskip=\skip46
+\c@subfigure=\count106
+\c@subfigure@save=\count107
+\c@lofdepth=\count108
+\c@subtable=\count109
+\c@subtable@save=\count110
+\c@lotdepth=\count111
+\sf@top=\skip47
+\sf@bottom=\skip48
 ) (/usr/local/texlive/2017/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box29
 \UL@hyphenbox=\box30
-\UL@skip=\skip44
+\UL@skip=\skip49
 \UL@hook=\toks21
-\UL@height=\dimen126
-\UL@pe=\count107
-\UL@pixel=\dimen127
+\UL@height=\dimen127
+\UL@pe=\count112
+\UL@pixel=\dimen128
 \ULC@box=\box31
 Package: ulem 2012/05/18
-\ULdepth=\dimen128
+\ULdepth=\dimen129
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/pbox/pbox.sty
 Package: pbox 2011/12/07 v1.2 Dynamic parboxes
  (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count108
-\calc@Bcount=\count109
-\calc@Adimen=\dimen129
-\calc@Bdimen=\dimen130
-\calc@Askip=\skip45
-\calc@Bskip=\skip46
+\calc@Acount=\count113
+\calc@Bcount=\count114
+\calc@Adimen=\dimen130
+\calc@Bdimen=\dimen131
+\calc@Askip=\skip50
+\calc@Bskip=\skip51
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count110
-\calc@Cskip=\skip47
+\calc@Ccount=\count115
+\calc@Cskip=\skip52
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\pb@xlen=\skip48
+\pb@xlen=\skip53
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count111
+\lst@mode=\count116
 \lst@gtempboxa=\box32
 \lst@token=\toks22
-\lst@length=\count112
-\lst@currlwidth=\dimen131
-\lst@column=\count113
-\lst@pos=\count114
-\lst@lostspace=\dimen132
-\lst@width=\dimen133
-\lst@newlines=\count115
-\lst@lineno=\count116
-\lst@maxwidth=\dimen134
+\lst@length=\count117
+\lst@currlwidth=\dimen132
+\lst@column=\count118
+\lst@pos=\count119
+\lst@lostspace=\dimen133
+\lst@width=\dimen134
+\lst@newlines=\count120
+\lst@lineno=\count121
+\lst@maxwidth=\dimen135
  (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count117
-\lst@skipnumbers=\count118
+\c@lstnumber=\count122
+\lst@skipnumbers=\count123
 \lst@framebox=\box33
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -630,92 +641,92 @@ File: listings.cfg 2015/06/04 1.6 listings configuration
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
  (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen135
-\extrarowheight=\dimen136
+\col@sep=\dimen136
+\extrarowheight=\dimen137
 \NC@list=\toks23
-\extratabsurround=\skip49
-\backup@length=\skip50
+\extratabsurround=\skip54
+\backup@length=\skip55
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/mhchem/mhchem.sty
 Package: mhchem 2017/01/16 v4.06 for typesetting chemical formulae
  (/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2017/05/13 L3 programming layer (loader) 
  (/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2017/05/13 L3 programming layer (code)
-\c_max_int=\count119
-\l_tmpa_int=\count120
-\l_tmpb_int=\count121
-\g_tmpa_int=\count122
-\g_tmpb_int=\count123
-\g__prg_map_int=\count124
-\c_log_iow=\count125
-\l_iow_line_count_int=\count126
-\l__iow_line_target_int=\count127
-\l__iow_one_indent_int=\count128
-\l__iow_indent_int=\count129
-\c_zero_dim=\dimen137
-\c_max_dim=\dimen138
-\l_tmpa_dim=\dimen139
-\l_tmpb_dim=\dimen140
-\g_tmpa_dim=\dimen141
-\g_tmpb_dim=\dimen142
-\c_zero_skip=\skip51
-\c_max_skip=\skip52
-\l_tmpa_skip=\skip53
-\l_tmpb_skip=\skip54
-\g_tmpa_skip=\skip55
-\g_tmpb_skip=\skip56
+\c_max_int=\count124
+\l_tmpa_int=\count125
+\l_tmpb_int=\count126
+\g_tmpa_int=\count127
+\g_tmpb_int=\count128
+\g__prg_map_int=\count129
+\c_log_iow=\count130
+\l_iow_line_count_int=\count131
+\l__iow_line_target_int=\count132
+\l__iow_one_indent_int=\count133
+\l__iow_indent_int=\count134
+\c_zero_dim=\dimen138
+\c_max_dim=\dimen139
+\l_tmpa_dim=\dimen140
+\l_tmpb_dim=\dimen141
+\g_tmpa_dim=\dimen142
+\g_tmpb_dim=\dimen143
+\c_zero_skip=\skip56
+\c_max_skip=\skip57
+\l_tmpa_skip=\skip58
+\l_tmpb_skip=\skip59
+\g_tmpa_skip=\skip60
+\g_tmpb_skip=\skip61
 \c_zero_muskip=\muskip11
 \c_max_muskip=\muskip12
 \l_tmpa_muskip=\muskip13
 \l_tmpb_muskip=\muskip14
 \g_tmpa_muskip=\muskip15
 \g_tmpb_muskip=\muskip16
-\l_keys_choice_int=\count130
-\c__fp_leading_shift_int=\count131
-\c__fp_middle_shift_int=\count132
-\c__fp_trailing_shift_int=\count133
-\c__fp_big_leading_shift_int=\count134
-\c__fp_big_middle_shift_int=\count135
-\c__fp_big_trailing_shift_int=\count136
-\c__fp_Bigg_leading_shift_int=\count137
-\c__fp_Bigg_middle_shift_int=\count138
-\c__fp_Bigg_trailing_shift_int=\count139
-\c__fp_rand_size_int=\count140
-\c__fp_rand_four_int=\count141
-\c__fp_rand_eight_int=\count142
-\l__sort_length_int=\count143
-\l__sort_min_int=\count144
-\l__sort_top_int=\count145
-\l__sort_max_int=\count146
-\l__sort_true_max_int=\count147
-\l__sort_block_int=\count148
-\l__sort_begin_int=\count149
-\l__sort_end_int=\count150
-\l__sort_A_int=\count151
-\l__sort_B_int=\count152
-\l__sort_C_int=\count153
+\l_keys_choice_int=\count135
+\c__fp_leading_shift_int=\count136
+\c__fp_middle_shift_int=\count137
+\c__fp_trailing_shift_int=\count138
+\c__fp_big_leading_shift_int=\count139
+\c__fp_big_middle_shift_int=\count140
+\c__fp_big_trailing_shift_int=\count141
+\c__fp_Bigg_leading_shift_int=\count142
+\c__fp_Bigg_middle_shift_int=\count143
+\c__fp_Bigg_trailing_shift_int=\count144
+\c__fp_rand_size_int=\count145
+\c__fp_rand_four_int=\count146
+\c__fp_rand_eight_int=\count147
+\l__sort_length_int=\count148
+\l__sort_min_int=\count149
+\l__sort_top_int=\count150
+\l__sort_max_int=\count151
+\l__sort_true_max_int=\count152
+\l__sort_block_int=\count153
+\l__sort_begin_int=\count154
+\l__sort_end_int=\count155
+\l__sort_A_int=\count156
+\l__sort_B_int=\count157
+\l__sort_C_int=\count158
 \c_empty_box=\box34
 \l_tmpa_box=\box35
 \l_tmpb_box=\box36
 \g_tmpa_box=\box37
 \g_tmpb_box=\box38
-\l__box_top_dim=\dimen143
-\l__box_bottom_dim=\dimen144
-\l__box_left_dim=\dimen145
-\l__box_right_dim=\dimen146
-\l__box_top_new_dim=\dimen147
-\l__box_bottom_new_dim=\dimen148
-\l__box_left_new_dim=\dimen149
-\l__box_right_new_dim=\dimen150
+\l__box_top_dim=\dimen144
+\l__box_bottom_dim=\dimen145
+\l__box_left_dim=\dimen146
+\l__box_right_dim=\dimen147
+\l__box_top_new_dim=\dimen148
+\l__box_bottom_new_dim=\dimen149
+\l__box_left_new_dim=\dimen150
+\l__box_right_new_dim=\dimen151
 \l__box_internal_box=\box39
 \l__coffin_internal_box=\box40
-\l__coffin_internal_dim=\dimen151
-\l__coffin_offset_x_dim=\dimen152
-\l__coffin_offset_y_dim=\dimen153
-\l__coffin_x_dim=\dimen154
-\l__coffin_y_dim=\dimen155
-\l__coffin_x_prime_dim=\dimen156
-\l__coffin_y_prime_dim=\dimen157
+\l__coffin_internal_dim=\dimen152
+\l__coffin_offset_x_dim=\dimen153
+\l__coffin_offset_y_dim=\dimen154
+\l__coffin_x_dim=\dimen155
+\l__coffin_y_dim=\dimen156
+\l__coffin_x_prime_dim=\dimen157
+\l__coffin_y_prime_dim=\dimen158
 \c_empty_coffin=\box41
 \l__coffin_aligned_coffin=\box42
 \l__coffin_aligned_internal_coffin=\box43
@@ -724,19 +735,19 @@ Package: expl3 2017/05/13 L3 programming layer (code)
 \l__coffin_display_coffin=\box46
 \l__coffin_display_coord_coffin=\box47
 \l__coffin_display_pole_coffin=\box48
-\l__coffin_display_offset_dim=\dimen158
-\l__coffin_display_x_dim=\dimen159
-\l__coffin_display_y_dim=\dimen160
-\l__coffin_bounding_shift_dim=\dimen161
-\l__coffin_left_corner_dim=\dimen162
-\l__coffin_right_corner_dim=\dimen163
-\l__coffin_bottom_corner_dim=\dimen164
-\l__coffin_top_corner_dim=\dimen165
-\l__coffin_scaled_total_height_dim=\dimen166
-\l__coffin_scaled_width_dim=\dimen167
+\l__coffin_display_offset_dim=\dimen159
+\l__coffin_display_x_dim=\dimen160
+\l__coffin_display_y_dim=\dimen161
+\l__coffin_bounding_shift_dim=\dimen162
+\l__coffin_left_corner_dim=\dimen163
+\l__coffin_right_corner_dim=\dimen164
+\l__coffin_bottom_corner_dim=\dimen165
+\l__coffin_top_corner_dim=\dimen166
+\l__coffin_scaled_total_height_dim=\dimen167
+\l__coffin_scaled_width_dim=\dimen168
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count154
+\l__driver_color_stack_int=\count159
 \l__driver_tmp_box=\box49
 )) (/usr/local/texlive/2017/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2017/05/13 LaTeX2e option processing using LaTeX3 keys
@@ -745,61 +756,61 @@ Package: l3regex 2017/05/13 L3 Experimental regular expressions
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/l3experimental/l3str/l3tl-build.sty
 Package: l3tl-build 2017/05/13 L3 Experimental token list construction
-\l__tl_build_start_index_int=\count155
-\l__tl_build_index_int=\count156
+\l__tl_build_start_index_int=\count160
+\l__tl_build_index_int=\count161
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/l3experimental/l3str/l3tl-analysis.sty
 Package: l3tl-analysis 2017/05/13 L3 Experimental token list analysis
-\l__tl_analysis_normal_int=\count157
-\l__tl_analysis_index_int=\count158
-\l__tl_analysis_nesting_int=\count159
-\l__tl_analysis_type_int=\count160
+\l__tl_analysis_normal_int=\count162
+\l__tl_analysis_index_int=\count163
+\l__tl_analysis_nesting_int=\count164
+\l__tl_analysis_type_int=\count165
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/l3experimental/l3str/l3intarray.sty
 Package: l3intarray 2017/05/13 L3 Experimental low-level arrays of small integers
-\g__intarray_font_int=\count161
+\g__intarray_font_int=\count166
 )
-\l__regex_internal_a_int=\count162
-\l__regex_internal_b_int=\count163
-\l__regex_internal_c_int=\count164
-\l__regex_balance_int=\count165
-\l__regex_group_level_int=\count166
-\l__regex_mode_int=\count167
-\c__regex_cs_in_class_mode_int=\count168
-\c__regex_cs_mode_int=\count169
-\l__regex_catcodes_int=\count170
-\l__regex_default_catcodes_int=\count171
-\c__regex_catcode_D_int=\count172
-\c__regex_catcode_S_int=\count173
-\c__regex_catcode_L_int=\count174
-\c__regex_catcode_O_int=\count175
-\c__regex_catcode_A_int=\count176
-\c__regex_all_catcodes_int=\count177
-\l__regex_show_lines_int=\count178
-\l__regex_min_state_int=\count179
-\l__regex_max_state_int=\count180
-\l__regex_left_state_int=\count181
-\l__regex_right_state_int=\count182
-\l__regex_capturing_group_int=\count183
-\l__regex_min_pos_int=\count184
-\l__regex_max_pos_int=\count185
-\l__regex_current_pos_int=\count186
-\l__regex_start_pos_int=\count187
-\l__regex_success_pos_int=\count188
-\l__regex_current_char_int=\count189
-\l__regex_current_catcode_int=\count190
-\l__regex_last_char_int=\count191
-\l__regex_case_changed_char_int=\count192
-\l__regex_current_state_int=\count193
-\l__regex_step_int=\count194
-\l__regex_min_active_int=\count195
-\l__regex_max_active_int=\count196
-\l__regex_replacement_csnames_int=\count197
-\l__regex_match_count_int=\count198
-\l__regex_min_submatch_int=\count199
-\l__regex_submatch_int=\count266
-\l__regex_zeroth_submatch_int=\count267
+\l__regex_internal_a_int=\count167
+\l__regex_internal_b_int=\count168
+\l__regex_internal_c_int=\count169
+\l__regex_balance_int=\count170
+\l__regex_group_level_int=\count171
+\l__regex_mode_int=\count172
+\c__regex_cs_in_class_mode_int=\count173
+\c__regex_cs_mode_int=\count174
+\l__regex_catcodes_int=\count175
+\l__regex_default_catcodes_int=\count176
+\c__regex_catcode_D_int=\count177
+\c__regex_catcode_S_int=\count178
+\c__regex_catcode_L_int=\count179
+\c__regex_catcode_O_int=\count180
+\c__regex_catcode_A_int=\count181
+\c__regex_all_catcodes_int=\count182
+\l__regex_show_lines_int=\count183
+\l__regex_min_state_int=\count184
+\l__regex_max_state_int=\count185
+\l__regex_left_state_int=\count186
+\l__regex_right_state_int=\count187
+\l__regex_capturing_group_int=\count188
+\l__regex_min_pos_int=\count189
+\l__regex_max_pos_int=\count190
+\l__regex_current_pos_int=\count191
+\l__regex_start_pos_int=\count192
+\l__regex_success_pos_int=\count193
+\l__regex_current_char_int=\count194
+\l__regex_current_catcode_int=\count195
+\l__regex_last_char_int=\count196
+\l__regex_case_changed_char_int=\count197
+\l__regex_current_state_int=\count198
+\l__regex_step_int=\count199
+\l__regex_min_active_int=\count266
+\l__regex_max_active_int=\count267
+\l__regex_replacement_csnames_int=\count268
+\l__regex_match_count_int=\count269
+\l__regex_min_submatch_int=\count270
+\l__regex_submatch_int=\count271
+\l__regex_zeroth_submatch_int=\count272
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip57
+\@mathmargin=\skip62
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -807,61 +818,61 @@ Package: amstext 2000/06/29 v2.01 AMS text
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks24
-\ex@=\dimen168
+\ex@=\dimen169
 )) (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen169
+\pmbraise@=\dimen170
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count268
+\inf@bad=\count273
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count269
-\leftroot@=\count270
+\uproot@=\count274
+\leftroot@=\count275
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count271
-\DOTSCASE@=\count272
+\classnum@=\count276
+\DOTSCASE@=\count277
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box50
 \strutbox@=\box51
-\big@size=\dimen170
+\big@size=\dimen171
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count273
-\c@MaxMatrixCols=\count274
+\macc@depth=\count278
+\c@MaxMatrixCols=\count279
 \dotsspace@=\muskip17
-\c@parentequation=\count275
-\dspbrk@lvl=\count276
+\c@parentequation=\count280
+\dspbrk@lvl=\count281
 \tag@help=\toks25
-\row@=\count277
-\column@=\count278
-\maxfields@=\count279
+\row@=\count282
+\column@=\count283
+\maxfields@=\count284
 \andhelp@=\toks26
-\eqnshift@=\dimen171
-\alignsep@=\dimen172
-\tagshift@=\dimen173
-\tagwidth@=\dimen174
-\totwidth@=\dimen175
-\lineht@=\dimen176
+\eqnshift@=\dimen172
+\alignsep@=\dimen173
+\tagshift@=\dimen174
+\tagwidth@=\dimen175
+\totwidth@=\dimen176
+\lineht@=\dimen177
 \@envbody=\toks27
-\multlinegap=\skip58
-\multlinetaggap=\skip59
+\multlinegap=\skip63
+\multlinetaggap=\skip64
 \mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/chemgreek/chemgreek.sty (/usr/local/texlive/2017/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2017/05/13 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count280
-\g__xparse_grabber_int=\count281
-\l__xparse_m_args_int=\count282
-\l__xparse_mandatory_args_int=\count283
-\l__xparse_v_nesting_int=\count284
+\l__xparse_current_arg_int=\count285
+\g__xparse_grabber_int=\count286
+\l__xparse_m_args_int=\count287
+\l__xparse_mandatory_args_int=\count288
+\l__xparse_v_nesting_int=\count289
 )
 Package: chemgreek 2016/12/20 v1.1 interfaceforuprightgreeklettersforuseinchemistry (CN)
-\l__chemgreek_tmpa_int=\count285
-\g__chemgreek_tmpa_int=\count286
+\l__chemgreek_tmpa_int=\count290
+\g__chemgreek_tmpa_int=\count291
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -913,22 +924,22 @@ Package: chemgreek 2016/12/20 v1.1 interfaceforuprightgreeklettersforuseinchemis
 . Defining command \selectchemgreekmapping with sig. 'm' on line 491.
 .................................................
 )
-\l__mhchem_ce_distanceFromLastComma_int=\count287
-\__mhchem_arrow_extPgfLength_skip=\skip60
-\mhchem@minispace@tmp=\skip61
-\mhchem@minibackspace@tmp=\skip62
-\mhchem@bondwidth=\skip63
-\mhchem@bondheight=\skip64
-\mhchem@smallbondwidth@tmpA=\skip65
-\mhchem@smallbondwidth@tmpB=\skip66
-\mhchem@smallbondwidth=\skip67
-\mhchem@bondtmp@minussidebearingleft=\skip68
-\mhchem@bondtmp@minussidebearingright=\skip69
-\l__mhchem_option_version_int=\count288
-\mhchem@option@minusmathsidebearingleft=\dimen177
-\mhchem@option@minusmathsidebearingright=\dimen178
-\mhchem@option@minustextsidebearingleft=\dimen179
-\mhchem@option@minustextsidebearingright=\dimen180
+\l__mhchem_ce_distanceFromLastComma_int=\count292
+\__mhchem_arrow_extPgfLength_skip=\skip65
+\mhchem@minispace@tmp=\skip66
+\mhchem@minibackspace@tmp=\skip67
+\mhchem@bondwidth=\skip68
+\mhchem@bondheight=\skip69
+\mhchem@smallbondwidth@tmpA=\skip70
+\mhchem@smallbondwidth@tmpB=\skip71
+\mhchem@smallbondwidth=\skip72
+\mhchem@bondtmp@minussidebearingleft=\skip73
+\mhchem@bondtmp@minussidebearingright=\skip74
+\l__mhchem_option_version_int=\count293
+\mhchem@option@minusmathsidebearingleft=\dimen178
+\mhchem@option@minusmathsidebearingright=\dimen179
+\mhchem@option@minustextsidebearingleft=\dimen180
+\mhchem@option@minustextsidebearingright=\dimen181
 
 
 Package mhchem Warning: You did not specify a 'version' option for the mhchem
@@ -1091,19 +1102,19 @@ Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
 Package: xtemplate 2017/05/13 L3 Experimental prototype document functions
-\l__xtemplate_tmp_dim=\dimen181
-\l__xtemplate_tmp_int=\count289
+\l__xtemplate_tmp_dim=\dimen182
+\l__xtemplate_tmp_int=\count294
 \l__xtemplate_tmp_muskip=\muskip18
-\l__xtemplate_tmp_skip=\skip70
+\l__xtemplate_tmp_skip=\skip75
 )
 Package: xfrac 2017/05/13 L3 Experimental split-level fractions
 \l__xfrac_slash_box=\box52
 \l__xfrac_tmp_box=\box53
-\l__xfrac_denominator_bot_sep_dim=\dimen182
-\l__xfrac_numerator_bot_sep_dim=\dimen183
-\l__xfrac_numerator_top_sep_dim=\dimen184
-\l__xfrac_slash_left_sep_dim=\dimen185
-\l__xfrac_slash_right_sep_dim=\dimen186
+\l__xfrac_denominator_bot_sep_dim=\dimen183
+\l__xfrac_numerator_bot_sep_dim=\dimen184
+\l__xfrac_numerator_top_sep_dim=\dimen185
+\l__xfrac_slash_left_sep_dim=\dimen186
+\l__xfrac_slash_right_sep_dim=\dimen187
 \l__xfrac_slash_left_muskip=\muskip19
 \l__xfrac_slash_right_muskip=\muskip20
 .................................................
@@ -1118,22 +1129,26 @@ Package: xfrac 2017/05/13 L3 Experimental split-level fractions
 .................................................
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip71
-\bibsep=\skip72
+\bibhang=\skip76
+\bibsep=\skip77
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count290
+\c@NAT@ctr=\count295
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip73
-\f@ncyO@elh=\skip74
-\f@ncyO@erh=\skip75
-\f@ncyO@olh=\skip76
-\f@ncyO@orh=\skip77
-\f@ncyO@elf=\skip78
-\f@ncyO@erf=\skip79
-\f@ncyO@olf=\skip80
-\f@ncyO@orf=\skip81
-) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.aux (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_concept.aux) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_technicaldocumentation.aux) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_userdocumentation.aux))
+\fancy@headwidth=\skip78
+\f@ncyO@elh=\skip79
+\f@ncyO@erh=\skip80
+\f@ncyO@olh=\skip81
+\f@ncyO@orh=\skip82
+\f@ncyO@elf=\skip83
+\f@ncyO@erf=\skip84
+\f@ncyO@olf=\skip85
+\f@ncyO@orf=\skip86
+) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.aux (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_concept.aux) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_technicaldocumentation.aux) (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme_userdocumentation.aux
+
+LaTeX Warning: Label `fig: Setting an environment variable in Heroku' multiply defined.
+
+))
 \openout1 = `weekme.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
@@ -1201,7 +1216,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count291
+\c@section@level=\count296
 )
 LaTeX Info: Redefining \ref on input line 136.
 LaTeX Info: Redefining \pageref on input line 136.
@@ -1212,16 +1227,16 @@ LaTeX Info: Redefining \nameref on input line 136.
 
  (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count292
-\scratchdimen=\dimen187
+\scratchcounter=\count297
+\scratchdimen=\dimen188
 \scratchbox=\box55
-\nofMPsegments=\count293
-\nofMParguments=\count294
+\nofMPsegments=\count298
+\nofMParguments=\count299
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count295
-\MPscratchDim=\dimen188
-\MPnumerator=\count296
-\makeMPintoPDFobject=\count297
+\MPscratchCnt=\count300
+\MPscratchDim=\dimen189
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
 \everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1236,9 +1251,10 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count298
+\c@lstlisting=\count303
 .................................................
 . chemgreek info: "mapping-activated"
 . 
@@ -1354,34 +1370,45 @@ Overfull \hbox (9.95923pt too wide) in paragraph at lines 264--265
  []
 
 [9 <./figures/herokuenvironmentvar.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
-
- []
-
-
-Overfull \hbox (9.1334pt too wide) in paragraph at lines 296--299
+Overfull \hbox (9.1334pt too wide) in paragraph at lines 300--303
 []\T1/ptm/m/n/10.95 Step one: The popup win-dow opens with a cus-tomized head-line, a textarea for the task-description,
  []
 
 [10]) [11]
 \openout2 = `weekme_userdocumentation.aux'.
 
- (./weekme_userdocumentation.tex) [12
+ (./weekme_userdocumentation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--5
+
+ []
+
+<figures/user_docu_accounts_page.PNG, id=266, 1129.21875pt x 2445.135pt>
+File: figures/user_docu_accounts_page.PNG Graphic file (type png)
+ <use figures/user_docu_accounts_page.PNG>
+Package pdftex.def Info: figures/user_docu_accounts_page.PNG used on input line 10.
+(pdftex.def)             Requested size: 131.39955pt x 284.52756pt.
+ [12
 
 
-] (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.lof)
+ <./figures/user_docu_accounts_page.PNG>] <figures/user_docu_createtask.PNG, id=275, 1129.21875pt x 2445.135pt>
+File: figures/user_docu_createtask.PNG Graphic file (type png)
+ <use figures/user_docu_createtask.PNG>
+Package pdftex.def Info: figures/user_docu_createtask.PNG used on input line 24.
+(pdftex.def)             Requested size: 131.39955pt x 284.52756pt.
+ <figures/user_docu_createtask_day.PNG, id=276, 1129.21875pt x 2445.135pt>
+File: figures/user_docu_createtask_day.PNG Graphic file (type png)
+ <use figures/user_docu_createtask_day.PNG>
+Package pdftex.def Info: figures/user_docu_createtask_day.PNG used on input line 26.
+(pdftex.def)             Requested size: 131.39955pt x 284.52756pt.
+ [13 <./figures/user_docu_createtask.PNG> <./figures/user_docu_createtask_day.PNG>]) [14] (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.lof)
 \tf@lof=\write5
 \openout5 = `weekme.lof'.
 
- [13
+ [15
 
-] (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.bbl
-
-Package natbib Warning: Empty `thebibliography' environment on input line 24.
-
-)
+] (/usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 191.
- [14
+ [16
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 191.
@@ -1390,21 +1417,25 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 191.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 191.
 Package rerunfilecheck Info: File `weekme.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
  ) 
 Here is how much of TeX's memory you used:
- 20729 strings out of 492995
- 363413 string characters out of 6132704
- 671742 words of memory out of 5000000
- 23859 multiletter control sequences out of 15000+600000
- 583408 words of font info for 71 fonts, out of 8000000 for 9000
+ 20873 strings out of 492995
+ 365962 string characters out of 6132704
+ 674892 words of memory out of 5000000
+ 23986 multiletter control sequences out of 15000+600000
+ 586256 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,43p,10397b,1845s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on /usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.pdf (16 pages, 1252956 bytes).
+ 44i,12n,51p,10397b,1846s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /usr/local/apache-tomcat-9.0.12/webapps/weekme/assets/documentation/WeekMeApp/.texpadtmp/weekme.pdf (18 pages, 1903381 bytes).
 PDF statistics:
- 337 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 157 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 372 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 167 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
