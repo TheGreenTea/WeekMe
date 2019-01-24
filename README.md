@@ -8,7 +8,7 @@ You can find the backend code used for this project
 
 
 ### User documentation:
-Using **WeekMe** you can plan your next week. Not more, not less. No bloated UI nor functions you will probably never use anyway. How does this **awesome application** work? Hopefully it’s so intuitive that any explanation is unnecessary, but just in case here is a short introduction for you.
+Using **WeekMe** you can plan your next week. Not more, not less. No bloated UI nor functions you will probably never use anyway. How does this **awesome application** work? Hopefully it’s so intuitive that any explanation is unnecessary, but just in case here is a short introduction for you.yet
 
 #### Account
 Like in most web apps you can sign up for an account, log in and out as well as change your password and email. And of course there is also a solution in case you forget your password.
@@ -30,7 +30,7 @@ You did it. You successfully planned something, stuck to the plan and finished a
 Don’t like a task you created anymore? Just check it off as done - no one will know!
 
 #### The stack
-At the very bottom of your week there is an eighth entry labeled "stack" - What’s that all about you might ask - well, this is where you can put tasks that you know you want to do but just don’t exactly know on what day yet. You can interact with it just as with every other day as explained above. In case you did not manage to check off everything on any given day those tasks will automatically be moved to the stack for you.
+At the very bottom of your week there is an eighth entry labeled "stack" - What’s that all about you might ask - well, this is where you can put tasks that you know you want to do but just don’t exactly know when. You can interact with it just as with every other day as explained above. In case you did not manage to check off everything on any given day those tasks will automatically be moved to the stack for you.
 
 ### Authors: 
 * [Jonas Heinig]
