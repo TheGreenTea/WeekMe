@@ -1,0 +1,40 @@
+//Colors
+@corp_main: #02C39A;
+@corp_secondary: #F0F3BD;
+@corp_tertiary: #028090;
+@error_red: #fc8090;
+
+@menu-background: #e1e1e1;
+@text-color: #1A237E;
+@task-menu-bar-height: 40px;
+
+@day-background: #fffef4;
+@task-background: #fffddf;
+
+
+// Task Card Colors
+@color-0: #ffffe6;
+@color-1: #ccffcc;
+@color-2: #ffcccc;
+@color-3: #cceeff;
+@color-4: #ffa366;
+@color-5: #f3ccff;
+
+
+//Device sizes
+@xs-min: 480px;
+@sm-min: 768px;
+@md-min: 992px;
+@lg-min: 1200px;
+
+@xs-max: (@sm-min - 1);
+@sm-max: (@md-min - 1);
+@md-max: (@lg-min - 1);
+
+@phone:          ~"only screen and (min-width: @{xs-min})";
+@phone-strict:   ~"only screen and (min-width: @{xs-min}) and (max-width: @{xs-max})";
+@tablet:         ~"only screen and (min-width: @{sm-min})";
+@tablet-strict:  ~"only screen and (min-width: @{sm-min}) and (max-width: @{sm-max})";
+@desktop:        ~"only screen and (min-width: @{md-min})";
+@desktop-strict: ~"only screen and (min-width: @{md-min}) and (max-width: @{md-max})";
+@large:          ~"only screen and (min-width: @{lg-min})";

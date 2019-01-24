@@ -1,8 +1,8 @@
 $(document).ready(() => {
-  LoginController.init();
+  UserController.init();
 });
 
-var LoginController = function() {
+var UserController = function() {
 
 
   /* Configuration */
@@ -131,6 +131,21 @@ var LoginController = function() {
   }
 
   function initEvents() {
+
+    $("#login-form").keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+          $("#login-button").click();
+      }
+    });
+
+    $("#input-repeat-password").keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+          $("#register-button").click(); 
+      }
+    });
+
     $("#forgot-password-link").click(function(e) {
         window.location = "./request-reset.html";
     });

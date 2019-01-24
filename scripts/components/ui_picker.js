@@ -52,7 +52,7 @@ var PickerGenerator = function() {
               <button type="button" id="btnPickDay" class="btn btn-secondary btn-third" data-toggle="modal" data-target="#newTaskStepTwo">
                 another day
               </button>
-              <button type="button" id="btnDone" class="btn btn-primary btn-first">
+              <button type="button" id="btnDone" class="btn btn-secondary btn-first">
                 Done
               </button>
             </div>
@@ -216,6 +216,7 @@ var PickerGenerator = function() {
   function createNewTaskOnStack(){
     taskColor = 0;
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
+    disableButtonToConfirmTask();
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
