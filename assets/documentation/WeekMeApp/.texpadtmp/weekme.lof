@@ -1,10 +1,12 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Schedule inside Note Taking App\relax }}{1}{figure.caption.2}
 \contentsline {figure}{\numberline {2}{\ignorespaces First Draft\relax }}{2}{figure.caption.3}
-\contentsline {figure}{\numberline {3}{\ignorespaces System Architecture\relax }}{3}{figure.caption.4}
-\contentsline {figure}{\numberline {4}{\ignorespaces Jsonwebtoken info at: https://jwt.io}}{7}{figure.caption.5}
-\contentsline {figure}{\numberline {5}{\ignorespaces Setting an environment variable in Heroku}}{9}{figure.caption.6}
-\contentsline {figure}{\numberline {6}{\ignorespaces WeekMe account page}}{12}{figure.caption.7}
-\contentsline {figure}{\numberline {7}{\ignorespaces Creation process on mobile\relax }}{13}{figure.caption.8}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Popup to enter description in}}}{13}{subfigure.7.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Change day later on}}}{13}{subfigure.7.2}
-\contentsline {figure}{\numberline {8}{\ignorespaces WeekMe account page}}{14}{figure.caption.9}
+\contentsline {figure}{\numberline {3}{\ignorespaces System Architecture\relax }}{5}{figure.caption.4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Jsonwebtoken info at: https://jwt.io}}{9}{figure.caption.5}
+\contentsline {figure}{\numberline {5}{\ignorespaces Reset Password Email\relax }}{10}{figure.caption.6}
+\contentsline {figure}{\numberline {6}{\ignorespaces Setting an environment variable in Heroku}}{12}{figure.caption.7}
+\contentsline {figure}{\numberline {7}{\ignorespaces WeekMe account page}}{15}{figure.caption.8}
+\contentsline {figure}{\numberline {8}{\ignorespaces Creation process on mobile\relax }}{16}{figure.caption.9}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Popup to enter description in}}}{16}{subfigure.8.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Change day later on}}}{16}{subfigure.8.2}
+\contentsline {figure}{\numberline {9}{\ignorespaces WeekMe account page}}{17}{figure.caption.10}
+\contentsline {figure}{\numberline {10}{\ignorespaces Task creation workflow}}{18}{figure.caption.11}

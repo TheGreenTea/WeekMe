@@ -166,7 +166,27 @@ UserSchema.methods.generateAuthToken = function () {
 \end{lstlisting}
 
 
+\cleardoublepage
 
+\textbf{NodeMailer} is a popular NPM module that can be used to send emails from a node server. Within our application we have decided to use this library to be able to send out reset-password emails to our users in case they have forgotten their login password. In case a user does not click on the provided reset link inside the email the reset code in the database expires after an hour has passed. 
+
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[height=4.5cm]{figures/passwordresetmail}    
+		\caption{Reset Password Email}     
+	\end{figure}  
+
+	In order to send the emails we created a new gmail account and applied the required configuration steps that enable our account to be accessed by our WeekMe API server. Finally we created the EmailSender module where we provided the login credentials. In order to exclude the gmail account password from the repository we stored it inside a Heroku environment variable that we can access from within our code (see line 5 below). Next to the initial configuration the EmailSender module also contains a basic implementation to send out said emails to our users.   
+	
+	\begin{lstlisting} 
+	var transporter = nodemailer.createTransport({
+    	service: 'gmail',
+    	auth: {
+     	 user: 'weekmeapp@gmail.com',
+     	 pass: process.env.GMAILPASSWORD
+    	}
+	})
+	\end{lstlisting}
 
 \subsubsection{Heroku}
 Heroku is a handy and powerful online platform that enables us to easily deploy and test our applications in the cloud. Once we have setup our account on Heroku.com a series of terminal commands is required in order to get our application up and running on Heroku. The first step is to login to our Heroku account inside of the terminal. 
