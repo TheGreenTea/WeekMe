@@ -1,27 +1,6 @@
 out: ./styles/styles.css, sourcemap: true, compress: true
 
-//Colors
-//TODO: remove duplicate (loginStyles.less)
-@corp_main: #02C39A;
-@corp_secondary: #F0F3BD;
-@corp_tertiary: #028090;
-
-
-@menu-background: #e1e1e1;
-@text-color: #1A237E;
-@task-menu-bar-height: 40px;
-
-@day-background: #fffef4;
-@task-background: #fffddf;
-
-
-// Task Card Colors
-@color-0: #ffffe6;
-@color-1: #ccffcc;
-@color-2: #ffcccc;
-@color-3: #cceeff;
-@color-4: #ffa366;
-@color-5: #f3ccff;
+@import "variables.less";
 
 
 #content-main{
@@ -33,7 +12,7 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   margin: 2px !important;
   text-align: center;
   height: 62px;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 .card-body {
