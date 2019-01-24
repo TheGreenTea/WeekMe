@@ -288,7 +288,7 @@ Last but not least we need to make sure that Heroku is also provided with an env
 \subsubsection{MongoDB \& Mongoose} 
 All data that is created by WeekMe is stored inside a MongoDB database instance. As MongoDB works very well together with node and due to the fact that our entire business logic is coded in JavaScript we decided to use a JSON style document based database. This allows for easy transformation from the JavaScript objects to JSON and vice versa reducing development time and the amount of code.  
   
-
+\newpage
 \subsection{Frontend}
 Apart from HTML, CSS and JavaScript WeekMe makes use of the following technologies. 
 \subsubsection{Technologies}
@@ -304,11 +304,44 @@ The stylesheets used for designing WeekMe are generated from less code.
 
 \paragraph{jQuery}\mbox{}\\
 jQuery is a fast and feature-rich JavaScript library. It makes things like HTML document manipulation and traversal, animations and event handling simpler. It is very popular and works with a multitude of browsers.
+Although in 2019 most things can be done in Vanilla JavaScript in a similar way we chose to use it out of personal preference. It also offers great legacy browser support.  
 \cite{jquery}
 In WeekMe it is mainly used to help querying and manipulating the DOM (Document Object Model) and adding event handlers. 
 
-\subsubsection{Calling our API}
+\subsubsection{Calls to the WeekMe backend}
+For calling the WeekMe API there was the question on how the syntax should look like to call it. 
+We knew that there would be calls regarding the user and calls regarding the task. 
+What we came up with was the following base scheme:
+\lstinline{api.entity.action(actionDependentParameters, onSuccess, onFailure)} \\
+Where entity would be \lstinline{user} or \lstinline{task} and action is the meaning full method name of the call that will be made. 
+Additionally to all parameters that such a call may or may not need there is also two passed arguments \lstinline{onSuccess} and \lstinline{onFailure}. 
+These are be functions that will be executed in the success or failure case. 
+The latter one will be passed the http error status code as parameter, whereas \lstinline{onSuccess} will either have no parameter passed if nothing is expected to be returned or a parameter that contains JSON that is returned from the backend. \\
 
+The code to achieve this is split into four different files. 
+\begin{itemize}
+	\item api\_common.js \\
+	The base on which all calls are made. One function to make a call that doesn't expect any JSON to be returned and one that does. 
+	\item api\_user.js \\
+	Contains the calls that relate to the user management. Like login/logout, signup, request password reset etc.
+	\item api\_task.js \\
+	Contains the calls that relate to tasks, like creating and updating a task or getting all task of the logged in user
+	\item api.js \\
+	Implements a wrapper around task and user that handles saving and loading the JWT, that is used for authentication, from or to a cookie. That way we can use \lstinline{api.} from anywhere without worrying about authentication, since it will be handled at this \textit{layer}.
+\end{itemize}
+ 
+\begin{lstlisting}
+api.user.updatePassword(currentPassword, newPassword, () => {
+          showAccountAlert("alert-success", "Password changed", "Your password was successfully changed.");
+		  //some more code here
+        }, (statusCode) => {
+          showAccountAlert("alert-danger", "Unable to change password", "Unfortunately an error occurred and you password was not changed (" + statusCode + ")");
+        });
+\end{lstlisting}
+The code above is an example as used in the frontend on how to use the described construct. The \lstinline{api.user.updatePassword()} method is defined in api.js where the token will be loaded from the cookie and the method with the same name in api\_user.js will be called, which as an extra parameter will take the authentication token. In api\_user.js the endpoint, HTTP method and other properties of the called are specified and passed to a function in api\_common.js that makes the async call, doesn't expect a JSON as response and calls either \lstinline{onSuccess} or \lstinline{onFailure} depending on the response of the backend. In both cases an alert is shown to the user. 
+To achieve this structure and limit what functions are visible IIFEs (Immediately Invoked Function Expression) were used.
+
+\newpage
 \subsubsection{Picker Popup} 
 To create a new task or to edit an existing task we decided to create an overlaying popup window with several creating steps. \\
 We wanted the creation process to be as easy and fast as possible to reduce the needed afford and enable a quick usage. \\
