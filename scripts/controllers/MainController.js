@@ -135,7 +135,7 @@ var MainController = function() {
 
     $(card).find(".button-delete-task").click(function(e) {
       e.stopPropagation();
-      $(this).removeClass("card-selected");  
+      $(".card-selected").removeClass("card-selected");    
       const taskContainer= $(this).parent().parent().parent();
       const taskId = $(this).parent().parent().attr("id");
 
