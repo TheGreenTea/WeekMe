@@ -19,10 +19,10 @@
 \contentsline {section}{\numberline {3}User Documentation}{12}{section.3}
 \contentsline {subsection}{\numberline {3.1}Account}{12}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Working with tasks}{12}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Creating tasks}{12}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.1}Creating tasks}{13}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Editing tasks}{13}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Moving tasks}{13}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.4}Checking off and deleting tasks}{13}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4}Checking off and deleting tasks}{14}{subsubsection.3.2.4}
 \contentsline {subsubsection}{\numberline {3.2.5}The stack}{14}{subsubsection.3.2.5}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{15}{section*.9}
-\contentsline {section}{\hbox to\@tempdima {\hfil }References}{16}{section*.10}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Figures}{15}{section*.10}
+\contentsline {section}{\hbox to\@tempdima {\hfil }References}{16}{section*.11}
