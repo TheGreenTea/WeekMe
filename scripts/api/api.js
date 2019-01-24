@@ -35,8 +35,6 @@ let api = (function () {
     }
     const loggedIn = () => {
       let token = loadToken()
-      console.log(token);
-
       return token ? true: false;
     }
     const updateEmail = async (password, email, onSuccess, onFailure) => {
