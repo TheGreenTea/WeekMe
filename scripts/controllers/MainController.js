@@ -410,6 +410,7 @@ var MainController = function() {
           $('#input-ce-password').val('');
           $('#input-ce-email').val('');
           $('#input-ce-repeatemail').val('');
+          $('#account-mail').html(email);    
         }, (statusCode) => {
           showAccountAlert("alert-danger", "Unable to change email", "Unfortunately an error occured and your email was not changed (" + statusCode + ")");
         });
