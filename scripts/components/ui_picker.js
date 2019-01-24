@@ -216,6 +216,7 @@ var PickerGenerator = function() {
   function createNewTaskOnStack(){
     taskColor = 0;
     $("#newTaskStepOne").modal({backdrop: 'static'}, "show");
+    disableButtonToConfirmTask();
     $('#btnToday').hide();
     $('#btnStack').hide();
     $('#btnDone').show();
