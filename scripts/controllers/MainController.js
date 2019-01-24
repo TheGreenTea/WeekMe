@@ -395,7 +395,7 @@ var MainController = function() {
           $('#input-cp-password').val('');
           $('#input-cp-repeatpassword').val('');
         }, (statusCode) => {
-          showAccountAlert("alert-danger", "Unable to change password", "Unfortunately an error occured and you password was not changed (" + statusCode + ")");
+          showAccountAlert("alert-danger", "Unable to change password", "Unfortunately an error occurred and you password was not changed (" + statusCode + ")");
         });
       }
     })
@@ -411,7 +411,7 @@ var MainController = function() {
           $('#input-ce-email').val('');
           $('#input-ce-repeatemail').val('');
         }, (statusCode) => {
-          showAccountAlert("alert-danger", "Unable to change email", "Unfortunately an error occured and your email was not changed (" + statusCode + ")");
+          showAccountAlert("alert-danger", "Unable to change email", "Unfortunately an error occurred and your email was not changed (" + statusCode + ")");
         });
       }
     })
