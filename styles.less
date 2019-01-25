@@ -3,6 +3,10 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 @import "variables.less";
 
 
+body {
+  background-color: @corp_main !important;
+}
+
 #content-main{
   background: #bbd2f7;
   padding: 0px 5px 0px 5px;
@@ -12,7 +16,7 @@ out: ./styles/styles.css, sourcemap: true, compress: true
   margin: 2px !important;
   text-align: center;
   height: 62px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .card-body {
@@ -155,6 +159,8 @@ out: ./styles/styles.css, sourcemap: true, compress: true
 
 #content-account {
   display: none;
+  background: #fafafa;
+  padding-bottom: 8%;   
 }
 .account-subcontainer {
   margin-bottom: 20px;
