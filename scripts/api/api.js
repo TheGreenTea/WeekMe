@@ -1,7 +1,7 @@
 let api = (function () {
   //const baseUrl = 'https://192.168.178.20:3000/weekme'
-  const baseUrl = 'https://weekmeapi.herokuapp.com';
-  // const baseUrl = 'http://localhost:3000';
+  // const baseUrl = 'https://weekmeapi.herokuapp.com';
+  const baseUrl = 'http://localhost:3000';
 
   const common = initCommon();
   const tokenName = "token"

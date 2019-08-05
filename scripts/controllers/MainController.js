@@ -99,9 +99,6 @@ var MainController = function() {
           } else {
             $(`#day-row-${taskData.dayDiff}`).append(taskCard);
           }
-
-          initCardEvents(`#${json._id}`);
-
         }, (statusCode) => {
           alert(statusCode);
         });
@@ -118,10 +115,9 @@ var MainController = function() {
     }
   }
 
-  function initCardEvents(card = ".card"){
+  function initCardEvents(){
 
-    $(card).click(function(e) {
-
+    $("#content-main").on("click", ".card", function(e){
       e.stopPropagation();
 
       if($(".card-selected").length){
@@ -130,12 +126,11 @@ var MainController = function() {
       } else {
         $(this).addClass("card-selected");
       }
-
     });
 
-    $(card).find(".button-delete-task").click(function(e) {
+    $("#content-main").on("click", ".button-delete-task", function(e){
       e.stopPropagation();
-      $(".card-selected").removeClass("card-selected");    
+      $(".card-selected").removeClass("card-selected");
       const taskContainer= $(this).parent().parent().parent();
       const taskId = $(this).parent().parent().attr("id");
 
@@ -144,11 +139,14 @@ var MainController = function() {
       }, (statusCode) => {
         console.log("Unable to remove task: ", statusCode);
       });
-
     });
 
-    $(card).find(".button-edit-task").click(function(e) {
+
+    $("#content-main").on("click", ".button-edit-task", function(e){
       e.stopPropagation();
+
+      const card = $(this).parent().parent();
+
       let dayDiff = $(card).parent().parent().attr("id").replace("day-row-", "");
       if(dayDiff === "stack-row") dayDiff = null;
 
@@ -179,15 +177,13 @@ var MainController = function() {
 
           if(taskData.dayDiff != dayDiff) $(row).append($(card).parent()); //Move to new row if the day has changed
 
-
-
           $(".card-selected").removeClass("card-selected");
         }, (statusCode) => {
           alert(statusCode);
         });
       });
-
     });
+
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
@@ -264,7 +260,6 @@ var MainController = function() {
     sortedStackTasks.forEach(function(task) {
       let taskCard = TemplateGenerator.getTaskCard(task.content, task._id, task.color);
       $("#stack-row").append(taskCard);
-      initCardEvents($(`#${task._id}`));
     });
 
 
@@ -278,8 +273,6 @@ var MainController = function() {
         let utcDateStamp = new Date(task.dueAt);
         let dayDiff = DateFormatter.getDayDiff(utcDateStamp);
         $("#day-row-" + dayDiff).append(taskCard);
-
-        initCardEvents($(`#${task._id}`));
       });
     }
   }
