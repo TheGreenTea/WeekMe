@@ -62,12 +62,14 @@ var MainController = function() {
 
   function initRowEvents(){
     $(".task-row").click(function(e) {
+      if(e.target !== e.currentTarget) return;
       moveSelectedCardToRow($(this));
     });
 
     $(".day-header").click(function(e) {
       const index = $("#content-main").find(".day-header").index(this);
       const row = $("#content-main").find(`.row:eq(${index})`);
+      if(e.target !== e.currentTarget) return;
       moveSelectedCardToRow($(row));
     });
 
@@ -119,7 +121,6 @@ var MainController = function() {
 
     $("#content-main").on("click", ".card", function(e){
       e.stopPropagation();
-
       if($(".card-selected").length){
           moveCardToPositionOfOtherCard($(".card-selected"), $(this));
           $(".card-selected").removeClass("card-selected");
@@ -187,8 +188,10 @@ var MainController = function() {
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
-
     const cardId = card.attr("id");
+
+    if(cardId === otherCard.attr('id')) return;
+
     const dayDiff = otherCard.parent().parent().attr("id").replace("day-row-", "");
     const newPositionOfCard = otherCard.parent().parent().find(".card").index(otherCard);
 
@@ -220,8 +223,11 @@ var MainController = function() {
   }
 
   function moveCardToRow(card, row){
+
+    if(row.attr('id') === card.parent().parent().attr('id')) return;
+
     const cardId = card.attr("id");
-    const dayDiff = row.attr("id").replace("day-row-", "");
+    const dayDiff = row.attr("id").replace("day-row-", ""); 
     const newPositionOfCard = row.find(".card").length;
 
     api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
