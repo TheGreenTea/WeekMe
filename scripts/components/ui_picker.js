@@ -36,10 +36,10 @@ var PickerGenerator = function() {
 
             <!-- Modal body -->
             <div class="modal-body">
-              <textarea rows="4" cols="50" maxlength="80" class="new-task-textarea" placeholder="Task description..."></textarea>
+              <textarea rows="4" cols="50" maxlength="180" class="new-task-textarea" placeholder="Task description..."></textarea>
             </div>
 
-            <!-- Modal footer -->
+            <!-- Modal footer --> 
             <div class="modal-footer">
               <button type="button" id="btnChangeColor" class="color-0"></button>
 
