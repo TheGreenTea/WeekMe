@@ -39,7 +39,7 @@ var PickerGenerator = function() {
               <textarea rows="4" cols="50" maxlength="180" class="new-task-textarea" placeholder="Task description..."></textarea>
             </div>
 
-            <!-- Modal footer --> 
+            <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" id="btnChangeColor" class="color-0"></button>
 
@@ -300,6 +300,7 @@ var PickerGenerator = function() {
     $('#newTaskStepOne').remove();
     $('#newTaskStepTwo').remove();
     $('#newTaskColorPicker').remove();
+    MainController.deselectCard();   
   }
 
   function bindListeners(){

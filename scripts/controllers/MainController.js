@@ -21,6 +21,12 @@ var MainController = function() {
     setupAccountDetails();
   }
 
+  function deselectCard(){
+    const card = $(".card-selected");
+    $(card).removeClass("card-selected");
+    $(card).css("min-height", "");
+  }
+
   /* Private Methods */
 
   function setupContainers(){
@@ -128,7 +134,7 @@ var MainController = function() {
         selectCard(this);
       }
     });
- 
+
     $("#content-main").on("click", ".button-delete-task", function(e){
       e.stopPropagation();
       deselectCard();
@@ -172,6 +178,7 @@ var MainController = function() {
           console.log("JSON", json);
           $(card).find(".card-body").html(taskData.content);
           $(card).removeClass();
+          selectCard(card); //reselect after removing all classes, so that deselect will work later on
           $(card).addClass(`color-${taskData.color}`);
           $(card).addClass(`card`);
           const row = $(`#day-row-${taskData.dayDiff}`);
@@ -193,12 +200,6 @@ var MainController = function() {
     $(card).addClass("card-selected");
     $(card).width(cardWidth);
     $(card).css("min-height", cardHeight + 36);
-  }
-
-  function deselectCard(){
-    const card = $(".card-selected");
-    $(card).removeClass("card-selected");
-    $(card).css("min-height", "");
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
@@ -436,6 +437,7 @@ var MainController = function() {
 
   return {
     init,
+    deselectCard
   }
 
 }();
