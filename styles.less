@@ -14,9 +14,27 @@ body {
 
 .card {
   margin: 2px !important;
-  text-align: center; 
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
   height: 62px;
   overflow: hidden;
+
+    /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto; 
+  hyphens: auto;
 }
 
 .card-body {
@@ -26,6 +44,10 @@ body {
   -webkit-box-orient: vertical;
    margin: 0 !important;
    padding: 0px !important;
+}
+
+.card-selected .card-body {
+  margin-bottom: 30px !important;
 }
 
 .color-0 {
@@ -54,7 +76,10 @@ body {
 
 .card-selected{
   background: white;
-  overflow: scroll;
+  position: absolute;
+  z-index: 3000;
+  max-height: 150px;
+  height: auto;
 }
 
 
@@ -69,7 +94,7 @@ body {
 .card-selected .card-buttons{
   display: inline-block;
   position: sticky;
-  top: 0;
+  bottom: 0;
   left: 0;
 }
 
@@ -111,6 +136,7 @@ body {
 .button-edit-task {
   position: absolute;
   left: 0;
+  bottom: 0;
   background-image: url('../assets/img/edit.png');
   background-size: 30px 30px;
   width: 30px;
@@ -120,6 +146,7 @@ body {
 .button-delete-task {
   position: absolute;
   right: 0;
+  bottom: 0;
   background-image: url('../assets/img/check.png');
   background-size: 30px 30px;
   width: 30px;

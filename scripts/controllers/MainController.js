@@ -113,7 +113,7 @@ var MainController = function() {
   function moveSelectedCardToRow(row){
     if($(".card-selected").length){
       moveCardToRow($(".card-selected"), $(row));
-      $(".card-selected").removeClass("card-selected");
+      deselectCard();
     }
   }
 
@@ -123,15 +123,15 @@ var MainController = function() {
       e.stopPropagation();
       if($(".card-selected").length){
           moveCardToPositionOfOtherCard($(".card-selected"), $(this));
-          $(".card-selected").removeClass("card-selected");
+          deselectCard();
       } else {
-        $(this).addClass("card-selected");
+        selectCard(this);
       }
     });
-
+ 
     $("#content-main").on("click", ".button-delete-task", function(e){
       e.stopPropagation();
-      $(".card-selected").removeClass("card-selected");
+      deselectCard();
       const taskContainer= $(this).parent().parent().parent();
       const taskId = $(this).parent().parent().attr("id");
 
@@ -178,13 +178,27 @@ var MainController = function() {
 
           if(taskData.dayDiff != dayDiff) $(row).append($(card).parent()); //Move to new row if the day has changed
 
-          $(".card-selected").removeClass("card-selected");
+          deselectCard();
         }, (statusCode) => {
           alert(statusCode);
         });
       });
     });
 
+  }
+
+  function selectCard(card){
+    const cardWidth = $(card).width();
+    const cardHeight = $(card).height();
+    $(card).addClass("card-selected");
+    $(card).width(cardWidth);
+    $(card).css("min-height", cardHeight + 36);
+  }
+
+  function deselectCard(){
+    const card = $(".card-selected");
+    $(card).removeClass("card-selected");
+    $(card).css("min-height", "");
   }
 
   function moveCardToPositionOfOtherCard(card, otherCard){
@@ -224,10 +238,10 @@ var MainController = function() {
 
   function moveCardToRow(card, row){
 
-    if(row.attr('id') === card.parent().parent().attr('id')) return;
+    // if(row.attr('id') === card.parent().parent().attr('id')) return;
 
     const cardId = card.attr("id");
-    const dayDiff = row.attr("id").replace("day-row-", ""); 
+    const dayDiff = row.attr("id").replace("day-row-", "");
     const newPositionOfCard = row.find(".card").length;
 
     api.task.updatePosition(cardId, DateFormatter.getTimeStamp(dayDiff), newPositionOfCard, () => {
